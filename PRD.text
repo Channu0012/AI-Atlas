@@ -1,0 +1,3040 @@
+ # AI ATLAS
+
+## Production-Ready Product Requirements Document
+
+**Product:** AI Atlas
+**Product Type:** AI discovery, search, recommendation, comparison, workflow, and stack-building platform
+**Primary Goal:** Help users find the right AI tools and build the right AI workflow based on what they actually want to accomplish.
+**Product Principle:** **“Don’t search for AI tools. Tell us what you want to accomplish, and AI Atlas will find the right AI tools and build the right AI stack for you.”**
+
+---
+
+# 1. DEVELOPMENT AGENT ROLE
+
+Act as a senior:
+
+* Product Architect
+* CTO
+* Full-Stack Engineer
+* Next.js Engineer
+* TypeScript Engineer
+* Firebase Architect
+* AI Systems Engineer
+* Recommendation-System Engineer
+* UX/UI Designer
+* Security Engineer
+* QA Engineer
+* Performance Engineer
+* SEO Engineer
+* Technical Product Manager
+
+Build AI Atlas as a **real production-oriented application**, not a visual prototype.
+
+Every major feature must be functional, connected to the correct backend architecture, validated, tested, and designed for future scalability.
+
+Do not optimize the product merely for screenshots.
+
+Optimize for:
+
+**Correctness → Trust → Data Quality → Recommendation Quality → UX → Security → Performance → Maintainability → Scalability**
+
+---
+
+# 2. PRODUCT VISION
+
+AI Atlas is not an AI tools directory.
+
+It is a decision engine that connects:
+
+**User → Goal → Intent → Capabilities → Tools → Workflow → Stack → Feedback**
+
+The user should not need to know which AI tools exist.
+
+The user should be able to say:
+
+> “I want to launch a YouTube channel with AI, I am a beginner, and I have a ₹2,000 monthly budget.”
+
+AI Atlas should understand the goal, identify the required capabilities, filter incompatible tools, rank suitable tools, explain why they were selected, and optionally construct a complete workflow.
+
+The product's value is **decision quality**, not the number of tools listed. The underlying requirements explicitly prioritize reducing choices and identifying the strongest options rather than overwhelming users with thousands of listings.
+
+---
+
+# 3. CORE PRODUCT PROMISE
+
+Every major UX decision must support this experience:
+
+> “I don't need to know which AI tool exists. I can simply explain what I need, and AI Atlas figures out the best tools and workflow for me.”
+
+Primary product capabilities:
+
+1. AI Tool Discovery
+2. Natural-Language AI Search
+3. Recommendation Engine
+4. AI Stack Builder
+5. Workflow Builder
+6. Tool Comparison
+7. Alternative Finder
+8. Personalization
+9. Tool Verification
+10. Search/Recommendation Intelligence
+
+---
+
+# 4. NON-NEGOTIABLE DEVELOPMENT RULES
+
+## 4.1 No fake functionality
+
+Never create fake:
+
+* Users
+* Followers
+* Reviews
+* Ratings
+* Tool statistics
+* Tool pricing
+* Recommendation results
+* Search activity
+* Analytics
+* Verification status
+* Admin actions
+* Likes
+* Comments
+* Tool usage statistics
+
+The source specification explicitly requires real Firebase-backed functionality and prohibits presenting fake production data as real.
+
+If real data does not exist:
+
+* show a truthful empty state;
+* use explicitly labelled demo/seed data only during development;
+* or allow administrators to enter verified information.
+
+Never simulate a successful backend operation when nothing happened.
+
+---
+
+# 5. DATA TRUST PRINCIPLE
+
+AI Atlas must distinguish between:
+
+* Verified tool information
+* User-generated reviews
+* Community submissions
+* AI-generated explanations
+* Sponsored placements
+* Affiliate links
+
+The LLM must never invent:
+
+* Pricing
+* Features
+* Ratings
+* Availability
+* Platforms
+* Integrations
+* APIs
+* Company information
+* Verification status
+
+The database is the source of truth.
+
+The LLM is an interpretation and explanation layer.
+
+---
+
+# 6. TECHNOLOGY STACK
+
+Use:
+
+### Frontend / Application
+
+* Next.js
+* React
+* TypeScript
+* App Router
+* Tailwind CSS
+* shadcn/ui
+* Lucide Icons
+
+### Backend
+
+* Next.js server-side functionality
+* Route Handlers / API endpoints
+* Reusable server-side services
+* Repository/data-access layer
+
+### Firebase
+
+* Firebase Authentication
+* Cloud Firestore
+* Firebase Storage
+* Firebase Analytics
+
+### AI
+
+* LLM API
+* Structured output
+* Zod validation
+* Intent extraction
+* AI explanation generation
+
+### Testing
+
+* Vitest
+* Playwright
+
+### Deployment
+
+* Vercel
+* Firebase
+
+### Search
+
+Start with:
+
+* Firestore-compatible structured querying
+* keyword matching
+* normalized fields
+* scoring
+
+Architect search interfaces so semantic/vector search can be introduced later without rewriting the entire search system.
+
+Do not introduce a complex vector database prematurely.
+
+---
+
+# 7. HIGH-LEVEL ARCHITECTURE
+
+Use this architecture:
+
+```text
+Browser
+   ↓
+Next.js UI
+   ↓
+Server/API Layer
+   ↓
+Domain Services
+   ├── Auth
+   ├── Search
+   ├── Recommendation
+   ├── Tools
+   ├── Workflows
+   ├── Stacks
+   ├── Reviews
+   └── Analytics
+   ↓
+Firestore / Storage
+   ↓
+External AI Provider
+```
+
+Important principle:
+
+**UI components must not contain critical business logic.**
+
+Use reusable domain services instead.
+
+---
+
+# 8. PRIMARY NAVIGATION
+
+Desktop navigation:
+
+* Discover
+* Categories
+* Workflows
+* Compare
+* AI Search
+
+Authenticated navigation:
+
+* Saved Tools
+* My Stacks
+* Profile
+
+Admin:
+
+* `/admin`
+
+Mobile navigation:
+
+* Home
+* Search
+* Explore
+* Stacks
+* Profile
+
+Navigation must be intentionally designed for mobile rather than simply collapsing desktop navigation.
+
+---
+
+# 9. ROUTING ARCHITECTURE
+
+Create these public routes:
+
+```text
+/
+ /ask
+ /tools
+ /tools/[slug]
+
+ /categories
+ /categories/[slug]
+
+ /use-cases
+ /use-cases/[slug]
+
+ /workflows
+ /workflows/[slug]
+
+ /compare
+ /compare/[slug]
+
+ /login
+ /signup
+ /forgot-password
+ /onboarding
+
+ /submit-tool
+```
+
+Authenticated routes:
+
+```text
+/profile
+/saved-tools
+/stacks
+/stacks/[id]
+```
+
+Admin routes:
+
+```text
+/admin
+/admin/tools
+/admin/tools/new
+/admin/tools/[id]
+/admin/categories
+/admin/capabilities
+/admin/use-cases
+/admin/workflows
+/admin/submissions
+/admin/verification
+/admin/reviews
+/admin/reports
+/admin/users
+/admin/recommendations
+/admin/analytics
+/admin/settings
+/admin/audit-logs
+```
+
+---
+
+# 10. HOMEPAGE
+
+Route:
+
+`/`
+
+The homepage must immediately communicate the product.
+
+## Hero
+
+Headline:
+
+**Find the right AI for any job.**
+
+Supporting text:
+
+**Tell us what you want to accomplish. We’ll find the tools that fit.**
+
+Primary interaction:
+
+Large natural-language goal input.
+
+Examples:
+
+* “I want to build a website for my startup.”
+* “I need free AI tools for studying.”
+* “I want to create YouTube videos.”
+* “I need an AI tool for market research.”
+* “I want to automate my business.”
+
+Primary CTA:
+
+**Find My AI Stack**
+
+## Goal shortcuts
+
+Display only a small number:
+
+* Build a Website
+* Create Videos
+* Study
+* Research
+* Coding
+* Marketing
+* Design
+
+Do not overwhelm the hero with hundreds of categories.
+
+## Data-driven homepage sections
+
+Render from actual database information:
+
+* Popular Tools
+* Popular Categories
+* Popular Workflows
+* Recently Verified
+* Trending Searches
+
+Never hardcode fake counts.
+
+If data is insufficient, show a polished empty state.
+
+---
+
+# 11. AI SEARCH EXPERIENCE
+
+Route:
+
+`/ask`
+
+This is the flagship experience.
+
+The user enters a natural-language objective.
+
+Example:
+
+> “I want to create professional YouTube videos using AI and I have a low budget.”
+
+The system must interpret the objective instead of simply keyword-searching it.
+
+---
+
+# 12. INTENT EXTRACTION
+
+Convert the user's request into validated structured intent.
+
+Required possible fields:
+
+```ts
+type SearchIntent = {
+  goal: string;
+  userType?: string;
+  budget?: {
+    amount?: number;
+    currency?: string;
+    period?: "monthly" | "yearly" | "one-time";
+  };
+  skillLevel?: "beginner" | "intermediate" | "professional";
+  requiredCapabilities: string[];
+  preferredCapabilities?: string[];
+  platform?: string[];
+  priorities?: string[];
+  constraints?: string[];
+  outputType?: string;
+  industry?: string;
+};
+```
+
+Example:
+
+```json
+{
+  "goal": "create-youtube-video",
+  "userType": "creator",
+  "budget": {
+    "amount": 2000,
+    "currency": "INR"
+  },
+  "skillLevel": "beginner",
+  "requiredCapabilities": [
+    "research",
+    "script-generation",
+    "voice-generation",
+    "video-generation",
+    "thumbnail-generation"
+  ],
+  "platform": ["web"],
+  "priorities": [
+    "ease-of-use",
+    "value"
+  ]
+}
+```
+
+Validate the LLM output using Zod.
+
+Reject malformed structured output.
+
+Never blindly trust model output.
+
+---
+
+# 13. INTELLIGENT FOLLOW-UP QUESTIONS
+
+Do not interrogate users.
+
+Ask only missing information that materially changes the recommendation.
+
+Possible questions:
+
+### Budget
+
+* Free only
+* Under ₹500
+* ₹500–₹2,000
+* ₹2,000+
+* Flexible
+
+### Experience
+
+* Beginner
+* Intermediate
+* Professional
+
+### Priority
+
+* Best quality
+* Lowest cost
+* Easiest to use
+* Fastest
+* Best overall
+
+Rule:
+
+**Never ask a question whose answer is already present in the user's request.**
+
+Use progressive disclosure.
+
+---
+
+# 14. RECOMMENDATION ENGINE
+
+This is the core intelligence layer.
+
+Architecture:
+
+```text
+User Goal
+   ↓
+Intent Extraction
+   ↓
+Candidate Retrieval
+   ↓
+Hard Constraint Filtering
+   ↓
+Deterministic Scoring
+   ↓
+Ranking
+   ↓
+Diversification
+   ↓
+LLM Explanation
+   ↓
+Recommendation Response
+```
+
+The LLM must NOT directly choose from the complete database.
+
+---
+
+# 15. CANDIDATE RETRIEVAL
+
+Retrieve approximately 50–100 candidates based on available structured data:
+
+* Categories
+* Capabilities
+* Use cases
+* Target users
+* Pricing
+* Platforms
+* API availability
+* Open-source status
+* Difficulty
+* Keyword relevance
+* Semantic relevance when available
+
+Then run filtering and ranking.
+
+Never load thousands of tool documents into the browser.
+
+---
+
+# 16. HARD CONSTRAINT ENGINE
+
+Hard requirements must be filters.
+
+Examples:
+
+If:
+
+> “Free only.”
+
+Then a paid-only tool must be excluded.
+
+If:
+
+> “Must have an API.”
+
+Then tools without an API must be excluded.
+
+If:
+
+> “Android only.”
+
+Then unsupported tools must be excluded.
+
+If:
+
+> “Open source only.”
+
+Then proprietary tools must be excluded.
+
+Pipeline:
+
+```text
+Candidate Retrieval
+        ↓
+Hard Constraint Filtering
+        ↓
+Scoring
+        ↓
+Ranking
+```
+
+Do not let a higher score override a hard constraint.
+
+---
+
+# 17. RECOMMENDATION SCORING ENGINE
+
+Use a transparent weighted scoring model.
+
+Default weights:
+
+| Factor           | Weight |
+| ---------------- | -----: |
+| Use-case match   |    35% |
+| Capability match |    25% |
+| Budget fit       |    15% |
+| Quality          |    10% |
+| Skill-level fit  |     5% |
+| Reliability      |     5% |
+| Platform fit     |     5% |
+
+Normalize each component from `0–1`.
+
+### IMPORTANT
+
+The final score must be calculated as a **weighted sum**, not multiplication.
+
+Correct model:
+
+```ts
+score =
+  useCaseMatch * 0.35 +
+  capabilityMatch * 0.25 +
+  budgetFit * 0.15 +
+  quality * 0.10 +
+  skillFit * 0.05 +
+  reliability * 0.05 +
+  platformFit * 0.05;
+```
+
+Then:
+
+```ts
+finalScore = score * 100;
+```
+
+Store the weight configuration centrally in backend/system configuration.
+
+Do not hardcode weights throughout UI components.
+
+---
+
+# 18. DYNAMIC WEIGHTING
+
+Adapt weighting to user intent.
+
+Example:
+
+User:
+
+> “I don't care about price. Give me the highest quality.”
+
+Increase quality importance.
+
+User:
+
+> “I'm a student with no budget.”
+
+Budget may become:
+
+* Hard constraint
+* Or extremely high-weight preference
+
+depending on explicit wording.
+
+User:
+
+> “I want something extremely easy to use.”
+
+Increase ease-of-use weight.
+
+Create a configurable scoring system:
+
+```ts
+type RecommendationWeights = {
+  useCase: number;
+  capability: number;
+  budget: number;
+  quality: number;
+  skill: number;
+  reliability: number;
+  platform: number;
+  easeOfUse?: number;
+};
+```
+
+---
+
+# 19. RECOMMENDATION RESULT CATEGORIES
+
+Only display categories supported by actual data/scoring.
+
+Possible labels:
+
+* Best Overall
+* Best Free
+* Best Value
+* Best Quality
+* Best for Beginners
+* Best for Professionals
+* Best for Developers
+* Best for Privacy
+* Best for Teams
+* Best for API
+
+Do not manufacture category labels merely to make the result page look impressive.
+
+---
+
+# 20. AI EXPLANATION SYSTEM
+
+After deterministic ranking, pass only the top candidates and verified database facts to the LLM.
+
+The LLM should explain:
+
+* Why the tool matches the goal
+* Which requirements it satisfies
+* Relevant strengths
+* Relevant limitations
+
+Example:
+
+> Tool A is recommended because it matches your required video capabilities, supports your platform, fits your budget, and is suitable for beginners.
+
+Then:
+
+> However, its free plan has usage limits.
+
+The LLM must not introduce facts absent from the supplied verified data.
+
+---
+
+# 21. RECOMMENDATION UX
+
+Display:
+
+### User Goal
+
+Show a concise interpretation of what the user asked for.
+
+### Requirements
+
+Show extracted requirements as chips:
+
+```text
+Beginner
+Under ₹2,000
+Video
+Voice
+Research
+Web
+```
+
+### Top Recommendations
+
+Each recommendation card should show:
+
+* Tool logo
+* Name
+* Category
+* Recommendation type
+* Match score
+* Why recommended
+* Important limitations
+* Pricing
+* Verification status
+* Platform
+* Save
+* Compare
+* Visit website
+
+### Explanation
+
+Provide concise human-readable reasoning.
+
+### Alternative
+
+Provide relevant alternatives.
+
+### Build My Stack
+
+CTA:
+
+**Build a complete AI Stack**
+
+---
+
+# 22. LOADING EXPERIENCE
+
+AI generation should communicate meaningful stages:
+
+```text
+Understanding your goal...
+Finding matching tools...
+Checking your requirements...
+Ranking the strongest matches...
+Building your AI stack...
+```
+
+Never use a fake progress percentage.
+
+Never claim a stage completed unless it actually did.
+
+---
+
+# 23. FAILURE FALLBACK
+
+If the AI explanation service fails:
+
+Display:
+
+> AI explanation is currently unavailable. Here are the strongest matches based on your selected requirements.
+
+Then show deterministic results.
+
+The recommendation experience must degrade gracefully instead of completely failing because an LLM request failed.
+
+---
+
+# 24. TOOL DATABASE
+
+Create Firestore collection:
+
+`tools`
+
+Fields:
+
+```ts
+{
+  id: string;
+  name: string;
+  slug: string;
+  tagline: string;
+  description: string;
+  website: string;
+
+  company: {
+    name: string;
+    website?: string;
+  };
+
+  logo?: string;
+
+  categoryIds: string[];
+  capabilityIds: string[];
+  useCaseIds: string[];
+
+  targetUsers: string[];
+  features: string[];
+
+  pricing: {
+    model: "free" | "freemium" | "paid" | "custom" | "unknown";
+    freePlan: boolean;
+    freeTrial: boolean;
+    startingPrice?: number;
+    currency?: string;
+    billingPeriod?: string;
+  };
+
+  platforms: {
+    web: boolean;
+    ios: boolean;
+    android: boolean;
+    windows: boolean;
+    mac: boolean;
+    linux: boolean;
+  };
+
+  api: {
+    available: boolean;
+  };
+
+  openSource: boolean;
+
+  difficulty:
+    "beginner" |
+    "intermediate" |
+    "professional";
+
+  strengths: string[];
+  limitations: string[];
+  integrations: string[];
+  supportedLanguages: string[];
+
+  verification: {
+    status:
+      "verified" |
+      "pending" |
+      "needs-review" |
+      "inactive";
+    websiteChecked: boolean;
+    pricingChecked: boolean;
+    featuresChecked: boolean;
+    lastVerifiedAt?: Timestamp;
+    pricingCheckedAt?: Timestamp;
+    featuresCheckedAt?: Timestamp;
+    websiteCheckedAt?: Timestamp;
+    verificationNotes?: string;
+  };
+
+  metrics?: {
+    viewCount?: number;
+    saveCount?: number;
+    outboundClickCount?: number;
+  };
+
+  status:
+    "draft" |
+    "published" |
+    "archived";
+
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+}
+```
+
+Use IDs/references for queryable taxonomy fields.
+
+Do not store important classification only as display strings.
+
+---
+
+# 25. CATEGORIES
+
+Collection:
+
+`categories`
+
+Support hierarchical categories.
+
+Example:
+
+```text
+AI Video
+ ├── Video Generation
+ ├── Video Editing
+ ├── Avatar Video
+ └── Animation
+
+AI Coding
+ ├── Code Generation
+ ├── Code Review
+ ├── Debugging
+ └── Developer Agents
+
+AI Research
+ ├── Web Research
+ ├── Academic Research
+ └── Document Analysis
+```
+
+Schema:
+
+```ts
+{
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  parentId?: string;
+  icon?: string;
+  sortOrder: number;
+  status: "active" | "draft" | "archived";
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+}
+```
+
+---
+
+# 26. CAPABILITIES
+
+Collection:
+
+`capabilities`
+
+Capabilities describe what a tool can do.
+
+Examples:
+
+* text-generation
+* text-to-image
+* text-to-video
+* image-to-video
+* speech-to-text
+* text-to-speech
+* voice-cloning
+* code-generation
+* code-review
+* web-research
+* document-analysis
+* presentation-generation
+* data-analysis
+* 3d-generation
+* translation
+* automation
+* agent-execution
+
+Categories describe **where a tool belongs**.
+
+Capabilities describe **what a tool can do**.
+
+This distinction must remain fundamental to the data architecture.
+
+---
+
+# 27. USE CASE SYSTEM
+
+Collection:
+
+`useCases`
+
+Examples:
+
+* create-youtube-video
+* make-instagram-reel
+* build-website
+* write-research-paper
+* study-for-exam
+* create-presentation
+* launch-startup
+* market-research
+* generate-product-images
+* automate-business
+
+Schema:
+
+```ts
+{
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  requiredCapabilities: string[];
+  targetUsers: string[];
+  recommendedWorkflowId?: string;
+  status: string;
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+}
+```
+
+---
+
+# 28. TOOL DETAIL PAGE
+
+Route:
+
+`/tools/[slug]`
+
+Sections:
+
+1. Tool identity
+2. Logo
+3. Name
+4. Tagline
+5. Company
+6. Verification
+7. Visit Website
+8. Save
+9. Compare
+10. Overview
+11. Best For
+12. Capabilities
+13. Features
+14. Pricing
+15. Platforms
+16. API
+17. Integrations
+18. Strengths
+19. Limitations
+20. Who Should Use It?
+21. Who Shouldn't Use It?
+22. Alternatives
+23. Related Workflows
+24. Reviews
+25. Last Verified
+
+Every factual field must be sourced from verified database information.
+
+---
+
+# 29. VERIFICATION SYSTEM
+
+Every published tool should have verification metadata.
+
+Show:
+
+* Last verified
+* Website checked
+* Pricing checked
+* Features checked
+* Verification status
+
+Statuses:
+
+* Verified
+* Pending
+* Needs Review
+* Inactive
+* Draft
+
+A tool that is no longer available must not silently continue appearing as healthy.
+
+---
+
+# 30. ALTERNATIVE FINDER
+
+Every tool page must have:
+
+**Find Alternatives**
+
+Options:
+
+* Cheaper
+* Free
+* Better Quality
+* Easier
+* More Powerful
+* Open Source
+* Better API
+* Better for Beginners
+
+Do not build a separate ranking system.
+
+Reuse the recommendation engine with modified intent/weights.
+
+---
+
+# 31. COMPARISON SYSTEM
+
+Route:
+
+`/compare`
+
+Allow 2–4 tools.
+
+Compare:
+
+* Price
+* Free plan
+* Capabilities
+* Platforms
+* API
+* Open source
+* Difficulty
+* Integrations
+* Use cases
+* Verification
+* Ratings when sufficient legitimate data exists
+
+Include AI summary:
+
+```text
+Choose A if...
+Choose B if...
+Choose C if...
+```
+
+The summary must be generated only from structured comparison data.
+
+---
+
+# 32. WORKFLOW SYSTEM
+
+A workflow represents a multi-step goal.
+
+Example:
+
+```text
+YouTube Content Creation
+
+Research
+   ↓
+Script
+   ↓
+Voice
+   ↓
+Video
+   ↓
+Thumbnail
+   ↓
+Editing
+   ↓
+Publishing
+```
+
+Collection:
+
+`workflows`
+
+Each workflow contains:
+
+```ts
+{
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+
+  steps: [
+    {
+      id: string;
+      order: number;
+      title: string;
+      description: string;
+      requiredCapabilities: string[];
+      recommendedToolIds: string[];
+    }
+  ];
+
+  status: string;
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+}
+```
+
+---
+
+# 33. AI STACK BUILDER
+
+The Stack Builder is a major differentiating feature.
+
+Example:
+
+User:
+
+> “I want to launch a startup.”
+
+AI Atlas identifies:
+
+```text
+Market Research
+↓
+Business Planning
+↓
+Branding
+↓
+Website
+↓
+Development
+↓
+Marketing
+↓
+Customer Support
+↓
+Analytics
+```
+
+For each step show:
+
+* Tool
+* Purpose
+* Why recommended
+* Estimated price
+* Alternative
+* Difficulty
+* Verification status
+
+Then calculate approximate total monthly cost.
+
+Never invent prices.
+
+If pricing is unavailable:
+
+**Pricing unavailable**
+
+Do not estimate a price without verified underlying data.
+
+---
+
+# 34. STACK PAGE
+
+Route:
+
+`/stacks/[id]`
+
+Schema:
+
+```ts
+{
+  id: string;
+  name: string;
+  description: string;
+  goal: string;
+
+  tools: [
+    {
+      toolId: string;
+      role: string;
+      order: number;
+    }
+  ];
+
+  estimatedMonthlyCost?: {
+    amount: number;
+    currency: string;
+  };
+
+  visibility: "private" | "public";
+
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+}
+```
+
+Users can:
+
+* Save
+* Edit
+* Add tool
+* Remove tool
+* Reorder
+* Share
+* Duplicate
+* Keep private
+* Make public
+
+---
+
+# 35. AUTHENTICATION
+
+Use Firebase Authentication.
+
+Support:
+
+* Email/password
+* Google Sign-In
+
+Routes:
+
+```text
+/login
+/signup
+/forgot-password
+/onboarding
+```
+
+Never manually store passwords.
+
+---
+
+# 36. USER ONBOARDING
+
+Ask a short set of questions:
+
+* User type
+* Interests
+* Skill level
+* Typical budget
+* Preferred platforms
+* Free/open-source preference
+
+Do not create a long onboarding wizard.
+
+Store preferences in the user's Firestore profile.
+
+Use them for personalization.
+
+---
+
+# 37. USER PROFILE
+
+Route:
+
+`/profile`
+
+Sections:
+
+* Account
+* Preferences
+* Interests
+* Saved Tools
+* Stacks
+* Reviews
+* Search History
+* Recommendation Settings
+
+Allow users to update preferences and delete appropriate personal data.
+
+---
+
+# 38. SAVED TOOLS
+
+Do not duplicate full tool objects in users.
+
+Store:
+
+```ts
+{
+  toolId: string;
+  savedAt: Timestamp;
+}
+```
+
+Use user-specific references.
+
+---
+
+# 39. REVIEWS
+
+Users can review tools.
+
+Schema:
+
+```ts
+{
+  id: string;
+  userId: string;
+  toolId: string;
+  rating: number;
+  title: string;
+  body: string;
+  pros: string[];
+  cons: string[];
+  status: "pending" | "published" | "removed";
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+}
+```
+
+Validate ratings server-side.
+
+Never publish reviews automatically.
+
+---
+
+# 40. TOOL SUBMISSION SYSTEM
+
+Route:
+
+`/submit-tool`
+
+Flow:
+
+```text
+User Submission
+      ↓
+Duplicate Detection
+      ↓
+Validation
+      ↓
+AI Classification
+      ↓
+Admin Review
+      ↓
+Approval
+      ↓
+Publication
+```
+
+Never automatically publish unverified submissions.
+
+---
+
+# 41. DUPLICATE DETECTION
+
+Compare submissions using:
+
+* Domain
+* Tool name
+* Company
+* Description
+* Capabilities
+* Semantic similarity when available
+
+If a likely duplicate exists:
+
+Send to admin review.
+
+Do not automatically reject unless confidence and policy clearly justify it.
+
+---
+
+# 42. ADMIN DASHBOARD
+
+Route:
+
+`/admin`
+
+Navigation:
+
+```text
+Dashboard
+Tools
+Categories
+Capabilities
+Use Cases
+Workflows
+Submissions
+Verification
+Reports
+Reviews
+Users
+Recommendations
+Analytics
+Settings
+Audit Logs
+```
+
+Completely protect the admin area.
+
+Frontend hiding is not security.
+
+---
+
+# 43. ADMIN DASHBOARD METRICS
+
+Show real data only:
+
+* Total tools
+* Published tools
+* Verified tools
+* Pending tools
+* Tools needing review
+* Broken tools
+* Pending submissions
+* Reports
+* Users
+* Searches today
+* Recommendations generated
+* Recommendation clicks
+* No-result searches
+* Tool outbound clicks
+
+Never hardcode statistics.
+
+---
+
+# 44. ADMIN TOOL EDITOR
+
+Build a serious admin editor.
+
+Sections:
+
+* Basic Information
+* Company
+* Categories
+* Capabilities
+* Use Cases
+* Features
+* Pricing
+* Platforms
+* API
+* Integrations
+* Strengths
+* Limitations
+* Verification
+* SEO
+* Publication Status
+
+Requirements:
+
+* Server validation
+* Client validation
+* Dirty-state detection
+* Unsaved-change warning
+* Publish/draft controls
+* Verification controls
+* Audit logging
+
+---
+
+# 45. VERIFICATION QUEUE
+
+Example queue entries:
+
+```text
+Tool A — pricing needs verification
+Tool B — website unavailable
+Tool C — feature reported incorrect
+Tool D — not verified recently
+```
+
+Admin actions:
+
+* Open
+* Edit
+* Verify
+* Reject
+* Archive
+* Add verification notes
+
+---
+
+# 46. SEARCH-GAP ANALYTICS
+
+Track failed searches.
+
+Admin should see:
+
+* Popular no-result searches
+* Frequently requested capabilities
+* Missing categories
+* Missing tools
+* Potential database gaps
+
+This becomes a product-intelligence system for deciding what data should be added next.
+
+---
+
+# 47. FIRESTORE COLLECTIONS
+
+Primary collections:
+
+```text
+users
+tools
+categories
+capabilities
+useCases
+workflows
+stacks
+reviews
+recommendations
+searchEvents
+toolSubmissions
+toolReports
+toolChanges
+collections
+systemConfig
+auditLogs
+```
+
+Do not create deeply nested structures without clear justification.
+
+---
+
+# 48. USER DATA MODEL
+
+```ts
+{
+  id: string;
+  displayName?: string;
+  photoURL?: string;
+
+  role: "user" | "editor" | "admin";
+
+  onboardingCompleted: boolean;
+
+  profile: {
+    userType?: string;
+    interests?: string[];
+    skillLevel?: string;
+  };
+
+  preferences: {
+    budget?: number;
+    currency?: string;
+    preferredPlatforms?: string[];
+    preferFree?: boolean;
+    preferOpenSource?: boolean;
+  };
+
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+}
+```
+
+CRITICAL:
+
+Users cannot change their own role.
+
+Authorization must be enforced using server-side checks and Firebase Security Rules.
+
+---
+
+# 49. RECOMMENDATION SESSION MODEL
+
+Collection:
+
+`recommendations`
+
+Schema:
+
+```ts
+{
+  id: string;
+  userId?: string;
+
+  query: string;
+
+  intent: object;
+
+  constraints: string[];
+
+  results: [
+    {
+      toolId: string;
+      score: number;
+      rank: number;
+      reasonCodes: string[];
+      explanation?: string;
+    }
+  ];
+
+  createdAt: Timestamp;
+}
+```
+
+Do not unnecessarily store sensitive personal information.
+
+---
+
+# 50. ANALYTICS EVENTS
+
+Track meaningful product events:
+
+```text
+homepage_search_started
+search_completed
+search_no_results
+recommendation_generated
+recommendation_tool_clicked
+tool_viewed
+tool_saved
+tool_compared
+outbound_tool_clicked
+stack_generated
+stack_saved
+review_created
+tool_submitted
+```
+
+Do not collect pointless events.
+
+---
+
+# 51. PRODUCT METRICS
+
+Track:
+
+* Search-to-result rate
+* No-result rate
+* Recommendation CTR
+* Tool page views
+* Save rate
+* Comparison usage
+* Stack creation rate
+* Stack save rate
+* Outbound click rate
+* Recommendation feedback
+* Returning users
+
+Do not manipulate analytics numbers.
+
+---
+
+# 52. RECOMMENDATION FEEDBACK
+
+After recommendations ask:
+
+**Was this recommendation useful?**
+
+Options:
+
+* Helpful
+* Not Relevant
+* Wrong Budget
+* Wrong Capability
+* Too Difficult
+* Other
+
+Store structured feedback.
+
+Future ranking improvements should use this feedback.
+
+---
+
+# 53. TRUST / SPONSORED CONTENT
+
+Organic relevance must remain independent of sponsorship.
+
+If sponsored placements are added later:
+
+* Label them clearly.
+* Never secretly manipulate relevance scores.
+* Keep sponsorship separate from organic recommendation scoring.
+
+---
+
+# 54. FIREBASE STORAGE
+
+Use Firebase Storage for:
+
+```text
+/tools/{toolId}/
+/users/{userId}/
+/workflows/{workflowId}/
+```
+
+Assets:
+
+* Tool logos
+* Tool screenshots
+* User avatars
+* Workflow covers
+* Legitimate uploaded assets
+
+Do not store large images inside Firestore documents.
+
+---
+
+# 55. SECURITY REQUIREMENTS
+
+Public users can read only published public information.
+
+Authenticated users can modify only permitted personal resources.
+
+Users may:
+
+* Create their own stacks
+* Create reviews
+* Submit tools
+
+Users may NOT:
+
+* Publish tools
+* Modify recommendation scores
+* Modify other users' stacks
+* Modify roles
+* Write arbitrary protected data
+* Access admin functionality
+
+Editors may manage tool data according to their role.
+
+Admins may manage administrative resources.
+
+Privileged operations must be protected server-side.
+
+---
+
+# 56. API ARCHITECTURE
+
+Use:
+
+`/api/v1`
+
+Endpoints:
+
+```text
+GET    /api/v1/tools
+GET    /api/v1/tools/:slug
+
+POST   /api/v1/search
+POST   /api/v1/recommend
+POST   /api/v1/compare
+
+GET    /api/v1/workflows
+GET    /api/v1/workflows/:slug
+POST   /api/v1/workflows/generate
+
+POST   /api/v1/stacks
+PATCH  /api/v1/stacks/:id
+DELETE /api/v1/stacks/:id
+
+POST   /api/v1/recommendations/:id/feedback
+
+POST   /api/v1/tool-submissions
+POST   /api/v1/reviews
+```
+
+Admin endpoints require role authorization.
+
+---
+
+# 57. API VALIDATION
+
+Validate all inputs using Zod.
+
+Never blindly trust:
+
+* URL parameters
+* Request bodies
+* User IDs
+* Roles
+* Prices
+* Ratings
+* Tool IDs
+* Pagination
+* Filters
+* AI output
+
+All critical validation must happen server-side.
+
+---
+
+# 58. API RESPONSE FORMAT
+
+Success:
+
+```json
+{
+  "success": true,
+  "data": {}
+}
+```
+
+Error:
+
+```json
+{
+  "success": false,
+  "error": {
+    "code": "ERROR_CODE",
+    "message": "Human-readable message"
+  }
+}
+```
+
+Do not expose:
+
+* stack traces
+* secrets
+* internal infrastructure details
+* API credentials
+
+---
+
+# 59. ERROR HANDLING
+
+Handle gracefully:
+
+* Firebase failures
+* LLM failures
+* Network failures
+* Empty search
+* Invalid tool data
+* Website failures
+* Timeouts
+* Rate limits
+* Authentication errors
+* Malformed AI output
+
+A failed AI explanation must not crash search.
+
+A failed external AI request should fall back to deterministic results when possible.
+
+---
+
+# 60. SEARCH ARCHITECTURE
+
+Pipeline:
+
+```text
+Query
+ ↓
+Normalize
+ ↓
+Keyword / Structured Retrieval
+ ↓
+Semantic Retrieval (when available)
+ ↓
+Merge Candidates
+ ↓
+Hard Filters
+ ↓
+Ranking
+ ↓
+Return Results
+```
+
+MVP:
+
+Use Firestore-compatible querying and a practical structured search approach.
+
+Future-proof the architecture for semantic search.
+
+---
+
+# 61. PERFORMANCE REQUIREMENTS
+
+Never download thousands of tool documents into the browser.
+
+Use:
+
+* Server-side querying
+* Pagination
+* Lazy loading
+* Image optimization
+* Debouncing
+* Caching where safe
+* Server-side data fetching
+* Minimal Firebase reads
+
+Do not call the LLM on every keystroke.
+
+LLM generation should happen only after a meaningful user submission.
+
+Keep JS bundles small.
+
+---
+
+# 62. RESPONSIVE UX
+
+## Desktop
+
+Use:
+
+* Multi-column layouts
+* Spacious content hierarchy
+* Strong visual scanning
+* Persistent contextual actions where appropriate
+
+## Mobile
+
+Prioritize:
+
+1. Search
+2. Recommendations
+3. Tool information
+4. CTA
+5. Comparison
+6. Workflow
+
+Avoid:
+
+* Horizontal overflow
+* Tiny buttons
+* unreadable tables
+* desktop-only interactions
+
+Comparison tables should become responsive cards or horizontally scrollable sections.
+
+---
+
+# 63. VISUAL DESIGN SYSTEM
+
+The visual direction:
+
+**Premium + Intelligent + Minimal + Technical + Trustworthy**
+
+Avoid:
+
+* Excessive gradients
+* Glowing AI brains
+* Futuristic cliché graphics
+* Heavy glassmorphism
+* Giant meaningless numbers
+* Excessive 3D
+* Noisy backgrounds
+* Animation for decoration alone
+
+Prioritize:
+
+* Typography
+* Spacing
+* Hierarchy
+* Alignment
+* Information density
+* Accessibility
+* Speed
+* Clear CTAs
+
+Use animation only when it improves comprehension or interaction.
+
+---
+
+# 64. CORE COMPONENT SYSTEM
+
+Build reusable components:
+
+```text
+Navbar
+Footer
+SearchBar
+GoalSearch
+ToolCard
+ToolBadge
+ToolLogo
+ToolRating
+PricingBadge
+VerificationBadge
+FilterPanel
+SearchResults
+RecommendationCard
+RecommendationReason
+ComparisonTable
+WorkflowGraph
+WorkflowStep
+StackCard
+SaveButton
+ReviewCard
+EmptyState
+LoadingState
+ErrorState
+AdminSidebar
+AdminTable
+ToolEditor
+VerificationQueue
+AnalyticsCard
+```
+
+Do not create multiple versions of the same component unnecessarily.
+
+---
+
+# 65. FRONTEND STRUCTURE
+
+Use:
+
+```text
+src/
+  app/
+  components/
+  features/
+  lib/
+  hooks/
+  types/
+  constants/
+  utils/
+```
+
+Domain modules:
+
+```text
+features/
+  auth/
+  search/
+  tools/
+  recommendations/
+  workflows/
+  stacks/
+  users/
+  admin/
+```
+
+Firebase:
+
+```text
+lib/firebase
+```
+
+AI:
+
+```text
+lib/ai
+```
+
+Recommendation:
+
+```text
+lib/recommendation
+```
+
+Search:
+
+```text
+lib/search
+```
+
+---
+
+# 66. RECOMMENDATION CODE STRUCTURE
+
+Create separate modules:
+
+```text
+intent.ts
+retrieve.ts
+filter.ts
+score.ts
+rank.ts
+diversify.ts
+explain.ts
+```
+
+Each module must be independently testable.
+
+Never create a giant recommendation file.
+
+---
+
+# 67. AI CODE STRUCTURE
+
+Create:
+
+```text
+AI client
+Intent extraction
+Structured schemas
+Prompt templates
+Explanation generation
+Error handling
+Fallback logic
+```
+
+All AI API keys remain server-side.
+
+Never expose them in client bundles.
+
+---
+
+# 68. DATABASE ACCESS LAYER
+
+Centralize Firestore operations.
+
+Create reusable functions such as:
+
+```ts
+getToolBySlug()
+searchTools()
+getPublishedTools()
+getToolsByCapabilities()
+createStack()
+getUserStack()
+saveTool()
+createReview()
+getRecommendations()
+```
+
+Avoid scattering raw Firestore queries through React components.
+
+---
+
+# 69. SEO
+
+SEO-friendly public routes:
+
+```text
+/tools/example-ai
+/categories/ai-video
+/use-cases/youtube-shorts
+/workflows/startup-launch
+/compare/tool-a-vs-tool-b
+```
+
+Use dynamic metadata from verified information.
+
+Include:
+
+* title
+* description
+* canonical URL
+* Open Graph metadata
+* structured metadata where appropriate
+
+Do not create thousands of thin AI-generated pages.
+
+Every indexed page must provide genuine value.
+
+---
+
+# 70. DATA FRESHNESS
+
+Tool information changes frequently.
+
+Store:
+
+```text
+lastVerifiedAt
+pricingCheckedAt
+featuresCheckedAt
+websiteCheckedAt
+status
+verificationNotes
+```
+
+Do not describe information as current unless the verification metadata supports that claim.
+
+---
+
+# 71. FUTURE DATA PIPELINE
+
+Architect for:
+
+```text
+Tool Discovery
+ ↓
+Duplicate Detection
+ ↓
+Data Extraction
+ ↓
+Classification
+ ↓
+Validation
+ ↓
+Admin Review
+ ↓
+Publication
+ ↓
+Change Monitoring
+```
+
+Do not build a massive crawler in MVP.
+
+Create extension points for it later.
+
+---
+
+# 72. TOOL HEALTH SYSTEM
+
+Eventually support:
+
+* Active
+* Needs Review
+* Inactive
+* Possible Broken URL
+* Pricing Changed
+* Not Recently Verified
+
+This should help the admin team maintain database quality.
+
+---
+
+# 73. EMPTY STATES
+
+Never merely show:
+
+**No results.**
+
+Example:
+
+> We couldn't find a verified tool matching all your requirements.
+
+Actions:
+
+* Modify Search
+* Remove a Constraint
+* Increase Budget
+* Explore Similar Tools
+
+Empty states must help users continue.
+
+---
+
+# 74. ACCESSIBILITY
+
+Implement:
+
+* Semantic HTML
+* Keyboard navigation
+* Visible focus states
+* Accessible labels
+* ARIA where necessary
+* Accessible forms
+* Accessible dialogs
+* Accessible tables
+* Sufficient contrast
+* Non-color-only information communication
+* Proper touch target sizing
+
+---
+
+# 75. TESTING STRATEGY
+
+## Unit tests
+
+Test:
+
+* Intent schema validation
+* Hard filters
+* Budget matching
+* Capability matching
+* Recommendation scoring
+* Ranking
+* Alternatives
+* Cost calculation
+* Permission logic
+
+## Integration tests
+
+Test:
+
+* Firebase operations
+* Search pipeline
+* Recommendation pipeline
+* Authentication
+
+## End-to-end Playwright tests
+
+Test:
+
+* Signup
+* Login
+* Search
+* Recommendation
+* Tool page
+* Compare
+* Save tool
+* Create stack
+* Admin login
+* Tool publishing
+* Review submission
+
+---
+
+# 76. SECURITY TESTING
+
+Verify:
+
+* Normal users cannot access admin functions.
+* Users cannot edit another user's stack.
+* Users cannot modify roles.
+* Users cannot publish tools.
+* Users cannot manipulate recommendation scores.
+* Protected collections reject arbitrary writes.
+* API keys never appear in client bundles.
+* Admin endpoints enforce authorization.
+
+---
+
+# 77. ADMIN AUDIT LOG
+
+Collection:
+
+`auditLogs`
+
+Schema:
+
+```ts
+{
+  id: string;
+  actorId: string;
+  action: string;
+  entityType: string;
+  entityId: string;
+  changes?: object;
+  timestamp: Timestamp;
+}
+```
+
+Examples:
+
+```text
+tool.created
+tool.updated
+tool.verified
+tool.archived
+review.removed
+user.role_changed
+workflow.published
+```
+
+---
+
+# 78. DEVELOPMENT PHASES
+
+Do not build the entire product blindly in one massive operation.
+
+Build sequentially.
+
+---
+
+## PHASE 1 — FOUNDATION
+
+Build:
+
+* Next.js
+* TypeScript
+* Tailwind
+* shadcn/ui
+* Firebase
+* Authentication
+* Firestore
+* Storage
+* Base layouts
+* Design system
+* Routing
+* User profile
+
+---
+
+## PHASE 2 — DATA + ADMIN
+
+Build:
+
+* Tool CRUD
+* Categories
+* Capabilities
+* Use cases
+* Pricing
+* Verification
+* Admin dashboard
+* Tool editor
+* Publishing
+* Security
+* Audit logs
+
+Seed only a small number of legitimate verified/demo-labelled tools.
+
+---
+
+## PHASE 3 — PUBLIC DISCOVERY
+
+Build:
+
+* Homepage
+* Tool directory
+* Tool pages
+* Categories
+* Use cases
+* Search
+* Filters
+* SEO
+* Responsive UI
+
+---
+
+## PHASE 4 — RECOMMENDATION ENGINE
+
+Build:
+
+* `/ask`
+* Intent extraction
+* Follow-up questions
+* Candidate retrieval
+* Hard filtering
+* Deterministic scoring
+* Ranking
+* AI explanations
+* Recommendation results
+
+---
+
+## PHASE 5 — COMPARISON
+
+Build:
+
+* Compare page
+* 2–4 tool comparison
+* AI comparison summary
+* Alternative finder
+
+---
+
+## PHASE 6 — WORKFLOWS + STACKS
+
+Build:
+
+* Workflow database
+* Workflow pages
+* AI Stack Builder
+* Cost calculation
+* Save stack
+* Edit stack
+* Share stack
+
+---
+
+## PHASE 7 — INTELLIGENCE
+
+Build:
+
+* Recommendation feedback
+* Search analytics
+* No-result analytics
+* Personalization
+* Semantic search
+* Ranking improvements
+
+---
+
+## PHASE 8 — DATA OPERATIONS
+
+Build:
+
+* Tool submissions
+* Duplicate detection
+* Verification queue
+* Tool health
+* Pricing monitoring
+* Website monitoring
+* Automated classification
+
+---
+
+## PHASE 9 — COMMUNITY
+
+Build:
+
+* Reviews
+* Public stacks
+* Community workflows
+* Collections
+* Reports
+* Moderation
+
+---
+
+# 79. MVP DEFINITION
+
+The first production MVP must contain:
+
+### Core
+
+* Homepage
+* Authentication
+* Tool database
+* Admin panel
+* Tool pages
+* Categories
+* Use cases
+* Search
+* Filters
+* Natural-language recommendations
+* Comparison
+* Basic workflow generation
+* Saved tools
+* Basic stacks
+* Analytics
+* Security
+* Responsive UI
+
+Do NOT include in MVP:
+
+* Social networking
+* Chat platform
+* Browser extension
+* Native mobile applications
+* Complex autonomous agents
+* Enterprise governance
+* Massive crawler infrastructure
+* Fake activity systems
+
+The MVP should be focused.
+
+---
+
+# 80. DATABASE QUALITY TARGET
+
+Prefer:
+
+**500 accurate, structured, verified tools**
+
+over:
+
+**50,000 unverified, duplicated, outdated listings**
+
+Do not optimize marketing claims around inflated tool counts.
+
+The database must become a trustworthy AI knowledge layer.
+
+---
+
+# 81. KNOWLEDGE GRAPH DIRECTION
+
+Eventually evolve the underlying system into a knowledge graph:
+
+```text
+Users
+  ↕
+Goals
+  ↕
+Capabilities
+  ↕
+Tools
+  ↕
+Use Cases
+  ↕
+Workflows
+  ↕
+Stacks
+  ↕
+Feedback
+```
+
+This should enable queries such as:
+
+* What tool can do this?
+* What is the best option for me?
+* What is the cheapest alternative?
+* What tools work together?
+* What workflow should I use?
+* What should I use instead?
+* What AI stack should my business use?
+
+---
+
+# 82. PERFORMANCE TARGET
+
+Normal browsing must feel immediate.
+
+AI generation must not freeze the whole application.
+
+Use:
+
+* Staged responses
+* Streaming where useful
+* Caching
+* Server-side fetching
+* Pagination
+* Optimized images
+* Efficient Firebase reads
+
+Large database operations must never happen blindly in the browser.
+
+---
+
+# 83. VISUAL QA
+
+Before declaring the application complete, inspect every important page on:
+
+* Desktop
+* Tablet
+* Mobile
+
+Also test:
+
+* Loading
+* Empty states
+* Errors
+* Long tool names
+* Long descriptions
+* Large datasets
+* Missing logos
+* Missing pricing
+* No reviews
+* No recommendations
+* Slow network
+* Authentication errors
+* Permission failures
+
+The product is not production-ready merely because the happy path works.
+
+---
+
+# 84. FULL QA PASS
+
+After implementation, act as an independent professional QA engineer.
+
+Test for:
+
+* Functional bugs
+* Broken buttons
+* Broken routes
+* Wrong permissions
+* Firebase errors
+* UI inconsistencies
+* Responsive issues
+* Accessibility issues
+* Slow pages
+* Incorrect validation
+* AI hallucinations
+* Incorrect recommendation logic
+* Database errors
+* SEO problems
+* Console errors
+* Network errors
+* Unhandled exceptions
+* Security problems
+
+Do not merely report bugs.
+
+Fix them.
+
+---
+
+# 85. PRODUCTION READINESS CHECKLIST
+
+The application is complete only when:
+
+### Authentication
+
+* Signup works
+* Login works
+* Google authentication works
+* Password reset works
+* Protected routes work
+
+### Firebase
+
+* Firestore works
+* Storage works
+* Security Rules work
+* Server-side authorization works
+
+### Admin
+
+* Admin authorization works
+* Tool CRUD works
+* Publishing works
+* Verification works
+* Audit logging works
+
+### Discovery
+
+* Tool directory works
+* Categories work
+* Use cases work
+* Filters work
+* Search works
+
+### AI
+
+* Intent extraction works
+* Zod validation works
+* Follow-up questions work
+* Candidate retrieval works
+* Hard constraints work
+* Ranking works
+* AI explanations use verified data
+* AI failure fallback works
+
+### Comparison
+
+* Compare works
+* Alternatives work
+
+### Workflows
+
+* Workflow pages work
+* Workflow generation works
+* Stack generation works
+* Stack editing works
+* Stack saving works
+* Cost calculation works
+
+### Users
+
+* Save tool works
+* Profile works
+* Preferences work
+* Reviews work
+* Submission flow works
+
+### Analytics
+
+* Events fire correctly
+* No-result tracking works
+* Recommendation feedback works
+
+### Quality
+
+* Mobile works
+* Desktop works
+* SEO works
+* Accessibility works
+* No major console errors
+* No critical security problems
+* No fake production data
+
+---
+
+# 86. ENVIRONMENT CONFIGURATION
+
+Never hardcode secrets.
+
+Create environment variables for:
+
+```text
+Firebase client configuration
+Firebase server configuration
+LLM API key
+Analytics configuration
+Application URL
+Any future search provider configuration
+```
+
+Public Firebase client configuration may exist where Firebase architecture requires it, but all privileged credentials and server secrets must remain server-side.
+
+---
+
+# 87. DEPLOYMENT
+
+Target architecture:
+
+```text
+Git Repository
+      ↓
+Vercel
+      ↓
+Next.js Application
+      ↓
+Firebase
+ ├── Authentication
+ ├── Firestore
+ ├── Storage
+ └── Analytics
+```
+
+Deployment requirements:
+
+* Production environment variables configured
+* Firebase production project configured
+* Firestore rules deployed
+* Storage rules deployed
+* Database indexes configured
+* Build succeeds
+* Tests pass
+* No secrets committed
+* Production URL verified
+
+---
+
+# 88. IMPLEMENTATION METHOD
+
+Follow this exact order:
+
+```text
+1. Inspect existing repository
+2. Preserve useful existing functionality
+3. Establish architecture
+4. Establish Firebase configuration
+5. Establish data models
+6. Build design system
+7. Build authentication
+8. Build admin/data layer
+9. Build discovery
+10. Build search
+11. Build recommendation intelligence
+12. Build comparison
+13. Build workflows/stacks
+14. Build analytics
+15. Run complete QA
+16. Fix discovered issues
+17. Verify production build
+```
+
+After each major phase:
+
+* run the application;
+* run relevant tests;
+* verify routing;
+* verify Firebase integration;
+* verify that existing features remain functional.
+
+Never stack hacks on top of architectural conflicts.
+
+Resolve the architecture first.
+
+---
+
+# 89. ENGINEERING QUALITY RULES
+
+Do not create:
+
+* 2,000-line components
+* 2,000-line service files
+* Duplicated business logic
+* Duplicate UI implementations
+* Client-only authorization
+* Client-only critical calculations
+* Unvalidated AI output
+* Hardcoded production statistics
+* Fake loading behavior
+* Fake success states
+* Secret keys in client code
+* Entire database downloads
+
+Favor:
+
+* Small domain modules
+* Typed interfaces
+* Reusable services
+* Strong validation
+* Explicit error handling
+* Testable pure functions
+* Server-side business logic
+* Clear separation of concerns
+
+---
+
+# 90. PRODUCT DESIGN RULE
+
+AI Atlas should reduce cognitive load.
+
+Bad experience:
+
+> “Here are 500 AI tools.”
+
+Good experience:
+
+> “Based on what you told us, these 3 are the strongest options.”
+
+Then explain:
+
+* Why
+* Cost
+* Limitations
+* Best use case
+* Alternative
+* Workflow fit
+
+The product should help users decide.
+
+---
+
+# 91. FINAL BUILD INSTRUCTION
+
+Build AI Atlas as a **serious production-grade AI decision platform**.
+
+Do not optimize for:
+
+* flashy screenshots;
+* fake scale;
+* fake analytics;
+* fake tool counts;
+* decorative AI effects;
+* unnecessary complexity.
+
+Optimize for:
+
+**Correctness**
+
+**Data quality**
+
+**Security**
+
+**Performance**
+
+**Maintainability**
+
+**Recommendation quality**
+
+**Excellent UX**
+
+**Real Firebase-backed functionality**
+
+**Clear architecture**
+
+**Future scalability**
+
+The final product should feel like a premium technology platform where the user can describe an outcome instead of hunting through an enormous catalog.
+
+Every technical, data, AI, UX, and architectural decision must support one central outcome:
+
+> **The user tells AI Atlas what they want to accomplish. AI Atlas understands the goal, identifies the requirements, finds the strongest verified tools, explains the trade-offs, and builds the right workflow or AI stack.**
+
+That is AI Atlas.
+
+Build the foundation correctly now so it can evolve from an AI discovery product into a trustworthy **AI decision engine and knowledge graph** at scale.

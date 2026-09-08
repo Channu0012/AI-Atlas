@@ -26,12 +26,13 @@ export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
+    { href: "/plan", label: "AI Planner", icon: Sparkles, highlight: true },
     { href: "/tools", label: "Discover", icon: Compass },
     { href: "/categories", label: "Categories", icon: Layers },
     { href: "/workflows", label: "Workflows", icon: Workflow },
     { href: "/stacks", label: "Stacks", icon: Layers },
     { href: "/compare", label: "Compare", icon: Scale },
-    { href: "/ask", label: "AI Search", icon: Sparkles, highlight: true }
+    { href: "/ask", label: "AI Search", icon: Search }
   ];
 
   return (
@@ -45,9 +46,9 @@ export const Navbar: React.FC = () => {
           <div className="flex flex-col">
             <span className="text-base font-bold tracking-tight text-white flex items-center gap-2">
               AI ATLAS
-              <span className="inline-flex items-center gap-1 text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                100k+ Indexed
+              <span className="inline-flex items-center gap-1 text-[10px] font-mono px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
+                91 Verified · Planner Suite
               </span>
             </span>
           </div>

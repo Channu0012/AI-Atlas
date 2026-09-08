@@ -175,18 +175,18 @@ function ToolsDirectoryContent() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      {/* Header with 100,000+ High-Tech Atmosphere */}
+      {/* Header with Verified Flagships vs Open Model Registry */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 pb-6 border-b border-zinc-800">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-semibold text-emerald-400 mb-2">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-semibold text-indigo-400 mb-2">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>100,000+ AI Tools & Open Models Indexed</span>
+            <span>91 Audited Flagships · Connected Open Model Registry</span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Discover Verified AI Tools & Models
+            AI Directory & Model Registry
           </h1>
           <p className="text-xs sm:text-sm text-zinc-400 mt-1 max-w-xl">
-            Switch between our fact-checked flagship directory or search the open universe of 100,000+ AI models, open-weights releases, and developer tools.
+            Explore 91 deeply audited flagship tools with verified pricing and capability benchmarks, or search the connected Open Model Registry for open-weights models and pipelines.
           </p>
         </div>
 
@@ -201,7 +201,7 @@ function ToolsDirectoryContent() {
             }`}
           >
             <ShieldCheck className="w-3.5 h-3.5" />
-            <span>Verified Flagships ({tools.length})</span>
+            <span>Verified Flagships ({tools.length || 91})</span>
           </button>
           <button
             onClick={() => setCatalogMode("universe")}
@@ -212,7 +212,7 @@ function ToolsDirectoryContent() {
             }`}
           >
             <Globe className="w-3.5 h-3.5" />
-            <span>100,000+ AI Universe</span>
+            <span>Open Model Registry (Live)</span>
           </button>
         </div>
       </div>

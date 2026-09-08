@@ -324,3 +324,36 @@ export interface RecommendationFeedback {
   notes?: string;
   createdAt: string;
 }
+
+export interface RedundancyWarning {
+  capabilityId: string;
+  capabilityName: string;
+  overlappingToolNames: string[];
+  recommendation: string;
+  potentialMonthlySavings: number;
+}
+
+export interface PlanPhase {
+  phaseNumber: number;
+  title: string;
+  description: string;
+  requiredCapability: string;
+  primaryTool: Tool;
+  alternativeTool?: Tool;
+  estimatedCost: number;
+  isFreeTier: boolean;
+}
+
+export interface PlanResult {
+  goal: string;
+  skillLevel: SkillLevel;
+  targetBudget?: number;
+  phases: PlanPhase[];
+  totalEstimatedMonthlyCost: number;
+  isWithinBudget: boolean;
+  budgetDifference?: number;
+  redundancies: RedundancyWarning[];
+  summary: string;
+  blueprintMarkdown: string;
+}
+

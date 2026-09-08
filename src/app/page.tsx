@@ -4,6 +4,7 @@ import { Repository } from "@/lib/db/repository";
 import { GoalSearch } from "@/components/search/goal-search";
 import { DomainMatrix } from "@/components/home/domain-matrix";
 import { InteractiveUniverse } from "@/components/home/interactive-universe";
+import { GoalPlannerCard } from "@/components/planner/goal-planner-card";
 import { 
   Sparkles, 
   ArrowRight, 
@@ -32,14 +33,14 @@ export default async function HomePage() {
   return (
     <div className="w-full flex flex-col items-center bg-radial-ambient bg-grid-cyber">
       {/* Hero Section */}
-      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-20 text-center relative">
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center relative">
         {/* Animated Aurora Ambient Glows */}
         <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-indigo-600/15 via-purple-600/15 to-cyan-500/15 rounded-full blur-[120px] pointer-events-none -z-10 animate-pulse-glow" />
 
         {/* Top Ticker Badge */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-pill text-xs font-semibold text-indigo-300 mb-8 shadow-inner border border-indigo-500/30">
           <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
-          <span>100,000+ AI Tools & Open Models · 16 Deep Domains · Zero Hallucinated Pricing</span>
+          <span>91 Fact-Verified Flagships · 16 Deep Domains · Zero Hallucinated Pricing</span>
         </div>
 
         {/* Headline */}
@@ -59,15 +60,15 @@ export default async function HomePage() {
           <GoalSearch />
         </div>
 
-        {/* Universe Quick-Filter Pills */}
+        {/* Quick-Filter Pills */}
         <div className="mt-8 flex flex-wrap items-center justify-center gap-2 max-w-4xl mx-auto text-xs">
           <span className="text-zinc-500 font-medium mr-1">Popular Stacks:</span>
           <Link
-            href="/tools"
-            className="glass-pill px-3 py-1.5 rounded-full text-zinc-300 hover:text-white hover:border-indigo-500/40 flex items-center gap-1.5 transition"
+            href="/plan"
+            className="glass-pill px-3 py-1.5 rounded-full text-indigo-300 hover:text-white hover:border-indigo-500/40 flex items-center gap-1.5 transition border-indigo-500/30 bg-indigo-500/10 font-semibold"
           >
             <Sparkles className="w-3 h-3 text-indigo-400" />
-            <span>100k+ Universe</span>
+            <span>AI Goal Planner</span>
           </Link>
           <Link
             href="/tools?category=ai-coding"
@@ -107,14 +108,19 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Flagship Working AI Module: Interactive Goal & Stack Planner */}
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <GoalPlannerCard />
+      </section>
+
       {/* Real-Time Metrics & Guarantees Ribbon */}
       <section className="w-full border-y border-zinc-800/80 bg-zinc-950/70 backdrop-blur-md py-6 px-4">
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <div className="flex flex-col items-center">
             <span className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
-              100,000+
+              91 Flagships
             </span>
-            <span className="text-xs text-zinc-400 mt-1 font-medium">AI Tools & Models Indexed</span>
+            <span className="text-xs text-zinc-400 mt-1 font-medium">Hand-Verified Decision Catalog</span>
           </div>
           <div className="flex flex-col items-center">
             <span className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">

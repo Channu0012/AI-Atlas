@@ -16,7 +16,9 @@ import {
   Plus, 
   Sparkles,
   Lock,
-  Globe
+  Globe,
+  AlertTriangle,
+  TrendingDown
 } from "lucide-react";
 import { useAuth } from "@/features/auth/auth-context";
 
@@ -303,6 +305,29 @@ export const StackBuilder: React.FC<StackBuilderProps> = ({
               </div>
             ))}
           </div>
+
+          {/* Redundancy & Cost Optimization Banner */}
+          {costSummary.redundancies.length > 0 && (
+            <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/25 space-y-2.5">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-amber-400">
+                <AlertTriangle className="w-3.5 h-3.5 shrink-0" />
+                <span>Capability Overlap Detected</span>
+              </div>
+              {costSummary.potentialMonthlySavings > 0 && (
+                <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-semibold bg-emerald-500/10 px-2.5 py-1 rounded-lg border border-emerald-500/20">
+                  <TrendingDown className="w-3.5 h-3.5" />
+                  <span>Save up to ${costSummary.potentialMonthlySavings}/mo by consolidating</span>
+                </div>
+              )}
+              <div className="space-y-1.5">
+                {costSummary.redundancies.map((r, idx) => (
+                  <p key={idx} className="text-[11px] text-amber-200/90 leading-relaxed">
+                    • <strong className="text-amber-100">{r.capabilityName}:</strong> {r.recommendation}
+                  </p>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="pt-4 border-t border-zinc-800 space-y-2">
             <button

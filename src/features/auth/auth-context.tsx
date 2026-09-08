@@ -16,6 +16,8 @@ interface AuthContextType {
   user: UserProfile | null;
   loading: boolean;
   isAdmin: boolean;
+  isAuthenticated: boolean;
+  quickDemoAccess: () => void;
   signInWithGoogle: () => Promise<void>;
   signInWithEmail: (e: string, p: string) => Promise<void>;
   signUpWithEmail: (e: string, p: string, name?: string) => Promise<void>;
@@ -55,19 +57,25 @@ const AUTHORIZED_ADMIN_EMAIL = "channupatil@gmail.com";
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
   useEffect(() => {
-    // Load local storage saved user or default guest
+    // Check if user has previously completed authentication or is first visit
+    const isAuth = typeof window !== "undefined" ? localStorage.getItem("ai_atlas_authenticated") === "true" : false;
     const savedLocal = typeof window !== "undefined" ? localStorage.getItem("ai_atlas_user") : null;
-    if (savedLocal) {
+    
+    if (savedLocal && isAuth) {
       try {
         const parsed = JSON.parse(savedLocal);
         setUser(parsed);
+        setIsAuthenticated(true);
       } catch {
         setUser(DEFAULT_GUEST_USER);
+        setIsAuthenticated(false);
       }
     } else {
       setUser(DEFAULT_GUEST_USER);
+      setIsAuthenticated(false);
     }
 
     if (isFirebaseConfigured && auth) {
@@ -88,8 +96,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             updatedAt: new Date().toISOString()
           };
           setUser(profile);
+          setIsAuthenticated(true);
           if (typeof window !== "undefined") {
             localStorage.setItem("ai_atlas_user", JSON.stringify(profile));
+            localStorage.setItem("ai_atlas_authenticated", "true");
           }
         }
         setLoading(false);
@@ -99,6 +109,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setLoading(false);
     }
   }, []);
+
+  const quickDemoAccess = () => {
+    const demoUser: UserProfile = {
+      ...DEFAULT_GUEST_USER,
+      id: `explorer-${Date.now().toString().slice(-4)}`,
+      email: "explorer@ai-atlas.dev",
+      displayName: "Cosmic Explorer",
+      role: "user"
+    };
+    setUser(demoUser);
+    setIsAuthenticated(true);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("ai_atlas_user", JSON.stringify(demoUser));
+      localStorage.setItem("ai_atlas_authenticated", "true");
+    }
+  };
 
   const signInWithGoogle = async () => {
     if (isFirebaseConfigured && auth) {
@@ -113,7 +139,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         role: "user"
       };
       setUser(devUser);
-      localStorage.setItem("ai_atlas_user", JSON.stringify(devUser));
+      setIsAuthenticated(true);
+      if (typeof window !== "undefined") {
+        localStorage.setItem("ai_atlas_user", JSON.stringify(devUser));
+        localStorage.setItem("ai_atlas_authenticated", "true");
+      }
     }
   };
 
@@ -130,7 +160,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         role: isAuthorizedAdmin ? "admin" : "user"
       };
       setUser(devUser);
-      localStorage.setItem("ai_atlas_user", JSON.stringify(devUser));
+      setIsAuthenticated(true);
+      if (typeof window !== "undefined") {
+        localStorage.setItem("ai_atlas_user", JSON.stringify(devUser));
+        localStorage.setItem("ai_atlas_authenticated", "true");
+      }
     }
   };
 
@@ -146,7 +180,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         role: "user"
       };
       setUser(devUser);
-      localStorage.setItem("ai_atlas_user", JSON.stringify(devUser));
+      setIsAuthenticated(true);
+      if (typeof window !== "undefined") {
+        localStorage.setItem("ai_atlas_user", JSON.stringify(devUser));
+        localStorage.setItem("ai_atlas_authenticated", "true");
+      }
     }
   };
 
@@ -168,8 +206,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
 
       setUser(data.user);
+      setIsAuthenticated(true);
       if (typeof window !== "undefined") {
         localStorage.setItem("ai_atlas_user", JSON.stringify(data.user));
+        localStorage.setItem("ai_atlas_authenticated", "true");
       }
       return { success: true };
     } catch (err: any) {
@@ -187,8 +227,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       // ignore
     }
     setUser(DEFAULT_GUEST_USER);
+    setIsAuthenticated(false);
     if (typeof window !== "undefined") {
       localStorage.setItem("ai_atlas_user", JSON.stringify(DEFAULT_GUEST_USER));
+      localStorage.removeItem("ai_atlas_authenticated");
     }
   };
 
@@ -232,6 +274,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         user,
         loading,
         isAdmin,
+        isAuthenticated,
+        quickDemoAccess,
         signInWithGoogle,
         signInWithEmail,
         signUpWithEmail,

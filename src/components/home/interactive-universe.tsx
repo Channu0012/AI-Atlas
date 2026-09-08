@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Tool, Category } from "@/types";
 import { ToolCard } from "@/components/tools/tool-card";
+import { SmoothCategoryScroll } from "@/components/ui/smooth-category-scroll";
 import { 
   Flame, 
   Code2, 
@@ -66,8 +67,8 @@ export const InteractiveUniverse: React.FC<InteractiveUniverseProps> = ({ allToo
 
   return (
     <div className="w-full">
-      {/* Interactive Tab Switcher */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-4 scrollbar-none no-scrollbar">
+      {/* Interactive Tab Switcher with Smooth Category Scrolling */}
+      <SmoothCategoryScroll className="mb-6">
         {tabs.map(tab => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -86,7 +87,7 @@ export const InteractiveUniverse: React.FC<InteractiveUniverseProps> = ({ allToo
             </button>
           );
         })}
-      </div>
+      </SmoothCategoryScroll>
 
       {/* Tools Grid */}
       <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">

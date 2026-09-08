@@ -26,6 +26,7 @@ import {
   Cpu
 } from "lucide-react";
 import { recordSearchHistory } from "@/lib/search/search-history";
+import { SmoothCategoryScroll } from "@/components/ui/smooth-category-scroll";
 
 function ToolsDirectoryContent() {
   const searchParams = useSearchParams();
@@ -257,7 +258,7 @@ function ToolsDirectoryContent() {
       {catalogMode === "flagship" ? (
         <div>
           {/* Discovery Collections Horizontal Pills */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-6 scrollbar-none no-scrollbar">
+          <SmoothCategoryScroll className="mb-6">
             {DISCOVERY_COLLECTIONS.map((col) => {
               const isSelected = 
                 (!selectedCollection && col.id === "all") ||
@@ -284,7 +285,7 @@ function ToolsDirectoryContent() {
                 </button>
               );
             })}
-          </div>
+          </SmoothCategoryScroll>
 
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             {/* Desktop Filter Sidebar */}
@@ -542,13 +543,13 @@ function ToolsDirectoryContent() {
           </div>
 
           {/* Quick Model Architecture Chips */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none no-scrollbar text-xs">
-            <span className="text-zinc-500 font-medium mr-1">Trending Architectures:</span>
+          <SmoothCategoryScroll className="text-xs pb-2">
+            <span className="text-zinc-500 font-medium mr-1 shrink-0">Trending Architectures:</span>
             {["llama", "deepseek", "whisper", "flux", "mistral", "stable-diffusion", "qwen", "phi"].map(name => (
               <button
                 key={name}
                 onClick={() => setQuery(name)}
-                className={`px-3 py-1 rounded-full border transition cursor-pointer ${
+                className={`px-3 py-1 rounded-full border transition cursor-pointer whitespace-nowrap ${
                   query.toLowerCase() === name
                     ? "bg-purple-600 text-white border-purple-500"
                     : "bg-zinc-900/80 text-zinc-400 border-zinc-800 hover:text-white hover:border-zinc-700"
@@ -557,7 +558,7 @@ function ToolsDirectoryContent() {
                 {name}
               </button>
             ))}
-          </div>
+          </SmoothCategoryScroll>
 
           {/* Universe Tools Grid */}
           {universeLoading ? (

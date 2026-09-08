@@ -5,6 +5,7 @@ import { GoalSearch } from "@/components/search/goal-search";
 import { DomainMatrix } from "@/components/home/domain-matrix";
 import { InteractiveUniverse } from "@/components/home/interactive-universe";
 import { GoalPlannerCard } from "@/components/planner/goal-planner-card";
+import { SmoothCategoryScroll } from "@/components/ui/smooth-category-scroll";
 import { 
   Sparkles, 
   ArrowRight, 
@@ -60,51 +61,53 @@ export default async function HomePage() {
           <GoalSearch />
         </div>
 
-        {/* Quick-Filter Pills */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-2 max-w-4xl mx-auto text-xs">
-          <span className="text-zinc-500 font-medium mr-1">Popular Stacks:</span>
-          <Link
-            href="/plan"
-            className="glass-pill px-3 py-1.5 rounded-full text-indigo-300 hover:text-white hover:border-indigo-500/40 flex items-center gap-1.5 transition border-indigo-500/30 bg-indigo-500/10 font-semibold"
-          >
-            <Sparkles className="w-3 h-3 text-indigo-400" />
-            <span>AI Goal Planner</span>
-          </Link>
-          <Link
-            href="/tools?collection=developers"
-            className="glass-pill px-3 py-1.5 rounded-full text-zinc-300 hover:text-white hover:border-cyan-500/40 flex items-center gap-1.5 transition"
-          >
-            <Zap className="w-3 h-3 text-cyan-400" />
-            <span>Developer IDEs</span>
-          </Link>
-          <Link
-            href="/tools?collection=best-free"
-            className="glass-pill px-3 py-1.5 rounded-full text-zinc-300 hover:text-white hover:border-emerald-500/40 flex items-center gap-1.5 transition"
-          >
-            <Cpu className="w-3 h-3 text-emerald-400" />
-            <span>Best Free AI</span>
-          </Link>
-          <Link
-            href="/tools?category=ai-video"
-            className="glass-pill px-3 py-1.5 rounded-full text-zinc-300 hover:text-white hover:border-purple-500/40 flex items-center gap-1.5 transition"
-          >
-            <Sparkles className="w-3 h-3 text-purple-400" />
-            <span>Cinematic Video</span>
-          </Link>
-          <Link
-            href="/tools?collection=trending"
-            className="glass-pill px-3 py-1.5 rounded-full text-zinc-300 hover:text-white hover:border-sky-500/40 flex items-center gap-1.5 transition"
-          >
-            <Bot className="w-3 h-3 text-sky-400" />
-            <span>Trending Velocity</span>
-          </Link>
-          <Link
-            href="/tools?collection=top-100"
-            className="glass-pill px-3 py-1.5 rounded-full text-zinc-300 hover:text-white hover:border-amber-500/40 flex items-center gap-1.5 transition"
-          >
-            <DollarSign className="w-3 h-3 text-amber-400" />
-            <span>Top 100 Tools</span>
-          </Link>
+        {/* Quick-Filter Popular Stacks with Smooth Category Scrolling */}
+        <div className="mt-8 max-w-4xl mx-auto">
+          <SmoothCategoryScroll className="text-xs">
+            <span className="text-zinc-500 font-medium mr-1 shrink-0">Popular Stacks:</span>
+            <Link
+              href="/plan"
+              className="glass-pill px-3.5 py-1.5 rounded-full text-indigo-300 hover:text-white hover:border-indigo-500/40 flex items-center gap-1.5 transition border-indigo-500/30 bg-indigo-500/10 font-semibold whitespace-nowrap shrink-0"
+            >
+              <Sparkles className="w-3 h-3 text-indigo-400" />
+              <span>AI Goal Planner</span>
+            </Link>
+            <Link
+              href="/tools?collection=developers"
+              className="glass-pill px-3.5 py-1.5 rounded-full text-zinc-300 hover:text-white hover:border-cyan-500/40 flex items-center gap-1.5 transition whitespace-nowrap shrink-0"
+            >
+              <Zap className="w-3 h-3 text-cyan-400" />
+              <span>Developer IDEs</span>
+            </Link>
+            <Link
+              href="/tools?collection=best-free"
+              className="glass-pill px-3.5 py-1.5 rounded-full text-zinc-300 hover:text-white hover:border-emerald-500/40 flex items-center gap-1.5 transition whitespace-nowrap shrink-0"
+            >
+              <Cpu className="w-3 h-3 text-emerald-400" />
+              <span>Best Free AI</span>
+            </Link>
+            <Link
+              href="/tools?category=ai-video"
+              className="glass-pill px-3.5 py-1.5 rounded-full text-zinc-300 hover:text-white hover:border-purple-500/40 flex items-center gap-1.5 transition whitespace-nowrap shrink-0"
+            >
+              <Sparkles className="w-3 h-3 text-purple-400" />
+              <span>Cinematic Video</span>
+            </Link>
+            <Link
+              href="/tools?collection=trending"
+              className="glass-pill px-3.5 py-1.5 rounded-full text-zinc-300 hover:text-white hover:border-sky-500/40 flex items-center gap-1.5 transition whitespace-nowrap shrink-0"
+            >
+              <Bot className="w-3 h-3 text-sky-400" />
+              <span>Trending Velocity</span>
+            </Link>
+            <Link
+              href="/tools?collection=top-100"
+              className="glass-pill px-3.5 py-1.5 rounded-full text-zinc-300 hover:text-white hover:border-amber-500/40 flex items-center gap-1.5 transition whitespace-nowrap shrink-0"
+            >
+              <DollarSign className="w-3 h-3 text-amber-400" />
+              <span>Top 100 Tools</span>
+            </Link>
+          </SmoothCategoryScroll>
         </div>
       </section>
 
@@ -114,31 +117,47 @@ export default async function HomePage() {
       </section>
 
       {/* Real-Time Metrics & Guarantees Ribbon */}
-      <section className="w-full border-y border-zinc-800/80 bg-zinc-950/70 backdrop-blur-md py-6 px-4">
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          <div className="flex flex-col items-center">
-            <span className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
-              {publishedTools.length} Tools
+      <section className="w-full border-y border-zinc-800/80 bg-zinc-950/80 backdrop-blur-xl py-8 px-4 relative overflow-hidden">
+        <div className="absolute inset-0 bg-radial-ambient pointer-events-none opacity-50" />
+        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 relative z-10">
+          <div className="p-4 sm:p-5 rounded-2xl border border-zinc-800/80 bg-zinc-900/60 shadow-lg flex flex-col items-center text-center hover:border-indigo-500/40 transition">
+            <div className="w-8 h-8 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center mb-2">
+              <Sparkles className="w-4 h-4" />
+            </div>
+            <span className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400 font-mono">
+              {publishedTools.length}+ Tools
             </span>
-            <span className="text-xs text-zinc-400 mt-1 font-medium">Hand-Verified Decision Catalog</span>
+            <span className="text-xs text-zinc-400 mt-1 font-medium">Verified Decision Catalog</span>
           </div>
-          <div className="flex flex-col items-center">
-            <span className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-              {categories.filter(c => !c.parentId).length}
+
+          <div className="p-4 sm:p-5 rounded-2xl border border-zinc-800/80 bg-zinc-900/60 shadow-lg flex flex-col items-center text-center hover:border-purple-500/40 transition">
+            <div className="w-8 h-8 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-2">
+              <Layers className="w-4 h-4" />
+            </div>
+            <span className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 font-mono">
+              {categories.filter(c => !c.parentId).length} Domains
             </span>
             <span className="text-xs text-zinc-400 mt-1 font-medium">Global AI Sectors</span>
           </div>
-          <div className="flex flex-col items-center">
-            <span className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
-              0%
+
+          <div className="p-4 sm:p-5 rounded-2xl border border-zinc-800/80 bg-zinc-900/60 shadow-lg flex flex-col items-center text-center hover:border-emerald-500/40 transition">
+            <div className="w-8 h-8 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-2">
+              <ShieldCheck className="w-4 h-4" />
+            </div>
+            <span className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400 font-mono">
+              0% Hallucinated
             </span>
-            <span className="text-xs text-zinc-400 mt-1 font-medium">Hallucinated Pricing</span>
+            <span className="text-xs text-zinc-400 mt-1 font-medium">Verified Tier Pricing</span>
           </div>
-          <div className="flex flex-col items-center">
-            <span className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">
-              &lt; 50ms
+
+          <div className="p-4 sm:p-5 rounded-2xl border border-zinc-800/80 bg-zinc-900/60 shadow-lg flex flex-col items-center text-center hover:border-cyan-500/40 transition">
+            <div className="w-8 h-8 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center mb-2">
+              <Cpu className="w-4 h-4" />
+            </div>
+            <span className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-sky-400 font-mono">
+              Kie.ai Multimodal
             </span>
-            <span className="text-xs text-zinc-400 mt-1 font-medium">Weighted Sum Decision Engine</span>
+            <span className="text-xs text-zinc-400 mt-1 font-medium">Live Execution Layer</span>
           </div>
         </div>
       </section>

@@ -14,6 +14,9 @@ interface PhaseDefinition {
   title: string;
   description: string;
   capabilityId: string;
+  actionablePrompt?: string;
+  howToExecute?: string;
+  estimatedMinutes?: number;
 }
 
 export class GoalPlannerEngine {
@@ -75,7 +78,10 @@ export class GoalPlannerEngine {
         primaryTool,
         alternativeTool: altTool,
         estimatedCost,
-        isFreeTier: estimatedCost === 0
+        isFreeTier: estimatedCost === 0,
+        actionablePrompt: pDef.actionablePrompt,
+        howToExecute: pDef.howToExecute,
+        estimatedMinutes: pDef.estimatedMinutes || 20
       });
     }
 
@@ -83,6 +89,10 @@ export class GoalPlannerEngine {
     const totalEstimatedMonthlyCost = phases.reduce((sum, p) => sum + p.estimatedCost, 0);
     const isWithinBudget = budget !== undefined ? totalEstimatedMonthlyCost <= budget : true;
     const budgetDifference = budget !== undefined ? budget - totalEstimatedMonthlyCost : undefined;
+
+    // Total estimated hours to launch
+    const totalMinutes = phases.reduce((sum, p) => sum + (p.estimatedMinutes || 20), 0);
+    const estimatedHoursToLaunch = Math.max(1, Math.round((totalMinutes / 60) * 10) / 10);
 
     // 4. Overlap & Redundancy Detection
     const selectedTools = phases.map(p => p.primaryTool);
@@ -98,11 +108,11 @@ export class GoalPlannerEngine {
       redundancies
     );
 
-    const summary = `Generated a ${phases.length}-phase execution plan requiring an estimated $${totalEstimatedMonthlyCost}/mo.${
+    const summary = `Actionable ${phases.length}-step roadmap ready to launch in ~${estimatedHoursToLaunch} hours with an estimated $${totalEstimatedMonthlyCost}/mo cost.${
       budget !== undefined
         ? isWithinBudget
           ? ` Safely within your $${budget}/mo budget ($${budgetDifference} surplus).`
-          : ` Exceeds your $${budget}/mo budget by $${Math.abs(budgetDifference || 0)}. Consider switching to the recommended free alternatives.`
+          : ` Exceeds your $${budget}/mo budget by $${Math.abs(budgetDifference || 0)}. Switch to free alternatives to lower costs.`
         : ""
     }`;
 
@@ -116,43 +126,51 @@ export class GoalPlannerEngine {
       budgetDifference,
       redundancies,
       summary,
-      blueprintMarkdown
+      blueprintMarkdown,
+      estimatedHoursToLaunch
     };
   }
 
   /**
-   * Deconstruct the goal into sequential phases using domain patterns
+   * Deconstruct the goal into sequential phases with practical prompts and execution steps
    */
   private static extractPhaseDefinitions(goal: string): PhaseDefinition[] {
     const lower = goal.toLowerCase();
 
     // Pattern 1: YouTube / Video Creation
-    if (lower.includes("youtube") || lower.includes("video") || lower.includes("reel") || lower.includes("podcast")) {
+    if (lower.includes("youtube") || lower.includes("video") || lower.includes("reel") || lower.includes("podcast") || lower.includes("short")) {
       return [
         {
-          title: "Ideation & Trend Discovery",
-          description: "Analyze market interest, verify factual citations, and structure narrative outline.",
-          capabilityId: "web-research"
+          title: "Trend Research & Viral Angle",
+          description: "Identify high-performing topics and curiosity-driven hooks with proven viewer demand.",
+          capabilityId: "web-research",
+          howToExecute: "Ask the AI to uncover 3 breakout video angles with high click-through potential.",
+          actionablePrompt: `Act as a viral YouTube creator. Analyze current trends in "${goal}". Give me 3 high-converting title options and a 5-second opening hook that prevents viewers from scrolling away.`,
+          estimatedMinutes: 15
         },
         {
-          title: "Scriptwriting & Hook Optimization",
-          description: "Draft compelling high-retention script with clear 15-second opening hook.",
-          capabilityId: "text-generation"
+          title: "High-Retention Scriptwriting",
+          description: "Write an engaging script with visual pacing cues every 5-10 seconds to maximize watch time.",
+          capabilityId: "text-generation",
+          howToExecute: "Generate a complete script split into narration lines and visual scene cues.",
+          actionablePrompt: `Write a compelling 60-second video script for: "${goal}". Include timestamps, voice narration lines, and exact B-roll image descriptions for every 5 seconds.`,
+          estimatedMinutes: 20
         },
         {
-          title: "Voiceover & Audio Narration",
-          description: "Synthesize natural studio-grade voiceover with realistic emotional cadence.",
-          capabilityId: "text-to-speech"
+          title: "Studio Voiceover & Narration",
+          description: "Generate natural studio-quality voiceover with realistic emotional cadence.",
+          capabilityId: "text-to-speech",
+          howToExecute: "Paste the script narration into the voice engine and export high-bitrate MP3/WAV.",
+          actionablePrompt: `Select a conversational, confident narrator voice. Keep stability at 60% and clarity at 80% for natural human cadence.`,
+          estimatedMinutes: 10
         },
         {
-          title: "B-Roll & Visual Generation",
-          description: "Generate cinematic background clips and visual illustrations matching the script.",
-          capabilityId: "text-to-video"
-        },
-        {
-          title: "Video Assembly & Auto-Subtitles",
-          description: "Cut filler words, align visual cuts to voice, and burn in animated captions.",
-          capabilityId: "video-editing"
+          title: "B-Roll Generation & Auto-Editing",
+          description: "Generate cinematic visual clips matching the script beats, then auto-burn subtitles.",
+          capabilityId: "text-to-video",
+          howToExecute: "Generate short 4-second video clips for each scene, drop into editor, and enable auto-captions.",
+          actionablePrompt: `Cinematic hyper-realistic scene, 4K documentary lighting, cinematic motion, smooth camera tracking --ar 9:16 --v 6.0`,
+          estimatedMinutes: 25
         }
       ];
     }
@@ -161,107 +179,125 @@ export class GoalPlannerEngine {
     if (lower.includes("app") || lower.includes("website") || lower.includes("code") || lower.includes("software") || lower.includes("saas") || lower.includes("mvp")) {
       return [
         {
-          title: "Interactive UI & Layout Prototyping",
-          description: "Generate polished React frontend components and responsive styling.",
-          capabilityId: "ui-generation"
+          title: "Modern UI Component Prototyping",
+          description: "Generate responsive frontend layouts, interactive components, and clean design tokens.",
+          capabilityId: "ui-generation",
+          howToExecute: "Prompt the UI engine to construct the core page layout with dark mode aesthetics.",
+          actionablePrompt: `Build a modern, responsive React/Next.js dashboard for "${goal}". Include a hero metrics section, clean sidebar navigation, and interactive action buttons with Tailwind CSS.`,
+          estimatedMinutes: 25
         },
         {
-          title: "Full-Stack Implementation & Backend Logic",
-          description: "Build server API routes, database schemas, and complex business logic in your editor.",
-          capabilityId: "code-generation"
+          title: "Full-Stack Code Implementation",
+          description: "Implement database schema, authentication, and core business logic in your code editor.",
+          capabilityId: "code-generation",
+          howToExecute: "Use an AI-powered code editor to generate server actions and database handlers.",
+          actionablePrompt: `Write the complete TypeScript backend API route and database schema for "${goal}". Handle authentication, validate request inputs with Zod, and return typed responses.`,
+          estimatedMinutes: 40
         },
         {
-          title: "Automated Code Review & Bug Audits",
-          description: "Lint codebase for vulnerabilities, test coverage gaps, and performance bottlenecks.",
-          capabilityId: "code-review"
+          title: "Security, Performance & Bug Audit",
+          description: "Audit code for edge cases, missing error boundaries, and security vulnerabilities.",
+          capabilityId: "code-review",
+          howToExecute: "Run the code audit tool to catch memory leaks, unhandled promises, and SQL/XSS risks.",
+          actionablePrompt: `Review this codebase for production-readiness. Highlight security vulnerabilities, edge-case failure modes, and performance optimizations.`,
+          estimatedMinutes: 15
         },
         {
-          title: "Backend Workflows & Webhook Pipelines",
-          description: "Connect payment webhooks, database triggers, and third-party APIs.",
-          capabilityId: "automation"
+          title: "Automated Workflows & Integrations",
+          description: "Connect payment processing (Stripe), email delivery, and webhook notifications.",
+          capabilityId: "automation",
+          howToExecute: "Set up webhook handlers to automatically dispatch notifications on user actions.",
+          actionablePrompt: `Write a resilient webhook listener that processes payment events, updates user entitlement state, and triggers an onboarding email.`,
+          estimatedMinutes: 20
         }
       ];
     }
 
-    // Pattern 3: Academic Research / Study / Paper Synthesis
-    if (lower.includes("research") || lower.includes("study") || lower.includes("paper") || lower.includes("academic") || lower.includes("literature")) {
+    // Pattern 3: Academic Research / Writing / Analysis
+    if (lower.includes("research") || lower.includes("study") || lower.includes("paper") || lower.includes("academic") || lower.includes("write")) {
       return [
         {
-          title: "Paper Discovery & Semantic Search",
-          description: "Identify seminal peer-reviewed research papers with verified DOI citations.",
-          capabilityId: "web-research"
+          title: "Semantic Paper & Source Discovery",
+          description: "Search peer-reviewed literature, cross-reference empirical citations, and verify findings.",
+          capabilityId: "web-research",
+          howToExecute: "Query indexed academic papers and extract verifiable DOI citations.",
+          actionablePrompt: `Find the top peer-reviewed empirical studies published on "${goal}". Summarize their methodologies, sample sizes, and primary statistical findings.`,
+          estimatedMinutes: 20
         },
         {
-          title: "Document Deep Analysis & Data Extraction",
-          description: "Extract sample sizes, methodologies, and statistical outcomes from uploaded PDFs.",
-          capabilityId: "document-analysis"
+          title: "Deep Document & PDF Synthesis",
+          description: "Extract core arguments, contradictions, and data tables from key reference papers.",
+          capabilityId: "document-analysis",
+          howToExecute: "Upload reference PDFs to extract comparative matrices and key takeaway quotes.",
+          actionablePrompt: `Extract key empirical findings, limitations, and theoretical frameworks from this study. Format as a comparative bulleted summary.`,
+          estimatedMinutes: 25
         },
         {
-          title: "Literature Review Synthesis",
-          description: "Synthesize contrasting perspectives and draft manuscript sections.",
-          capabilityId: "text-generation"
+          title: "Drafting & Manuscript Structure",
+          description: "Draft polished narrative sections with academic rigor, proper transitions, and formal citations.",
+          capabilityId: "text-generation",
+          howToExecute: "Generate structured drafts with clear headings, literature review, and methodology.",
+          actionablePrompt: `Draft a structured literature review section analyzing "${goal}". Compare diverging perspectives and synthesize the current academic consensus with formal APA citations.`,
+          estimatedMinutes: 35
         }
       ];
     }
 
-    // Pattern 4: Marketing / Sales / Cold Outreach
-    if (lower.includes("marketing") || lower.includes("outreach") || lower.includes("sales") || lower.includes("leads") || lower.includes("email")) {
+    // Pattern 4: Marketing / Sales / Lead Generation
+    if (lower.includes("marketing") || lower.includes("outreach") || lower.includes("sales") || lower.includes("leads") || lower.includes("email") || lower.includes("business")) {
       return [
         {
-          title: "Data Enrichment & Prospect Signals",
-          description: "Scrape company intent signals, hiring indicators, and verified executive contact emails.",
-          capabilityId: "automation"
+          title: "Prospect Discovery & Lead Enrichment",
+          description: "Identify qualified accounts, verify decision-maker emails, and analyze buyer signals.",
+          capabilityId: "automation",
+          howToExecute: "Build a verified lead list targeting executives matching your ideal customer profile.",
+          actionablePrompt: `Extract verified decision-maker contacts for companies fitting "${goal}". Filter by verified deliverable email addresses and active buying signals.`,
+          estimatedMinutes: 20
         },
         {
-          title: "Context-Aware Pitch Generation",
-          description: "Generate 1-to-1 tailored value propositions matching the prospect's tech stack.",
-          capabilityId: "text-generation"
+          title: "Personalized Outreach Pitching",
+          description: "Generate tailored 3-sentence email sequences that get high reply rates.",
+          capabilityId: "text-generation",
+          howToExecute: "Craft personalized value propositions focused on their specific pain points.",
+          actionablePrompt: `Write a concise, high-converting 3-email cold outreach sequence for "${goal}". Keep emails under 90 words, focus on a single clear ROI metric, and end with a low-friction CTA.`,
+          estimatedMinutes: 15
         },
         {
-          title: "SEO & Content Optimization",
-          description: "Audit keywords, search intent, and on-page headings for maximum organic rank.",
-          capabilityId: "seo-optimization"
+          title: "Conversion Copy & Landing Page",
+          description: "Build high-converting landing page copy, objection handlers, and social proof sections.",
+          capabilityId: "seo-optimization",
+          howToExecute: "Write clear benefit-driven headlines that address customer objections.",
+          actionablePrompt: `Write high-converting website copy for "${goal}". Include a magnetic H1 headline, 3 transformation bullet points, social proof proof-points, and an irresistible call to action.`,
+          estimatedMinutes: 25
         }
       ];
     }
 
-    // Pattern 5: Local & Private Offline AI
-    if (lower.includes("local") || lower.includes("offline") || lower.includes("privacy") || lower.includes("private")) {
-      return [
-        {
-          title: "Local Offline Inference Engine",
-          description: "Serve quantized open-weights models locally without sending telemetry to cloud servers.",
-          capabilityId: "text-generation"
-        },
-        {
-          title: "Private Code Completion Extension",
-          description: "Connect local LLM endpoint directly to your IDE for private pair programming.",
-          capabilityId: "code-generation"
-        },
-        {
-          title: "Local Image & Media Generation",
-          description: "Run modular diffusion pipelines on your local GPU with node-based precision.",
-          capabilityId: "text-to-image"
-        }
-      ];
-    }
-
-    // Default 3-Phase Generic Knowledge Pipeline
+    // Default 3-Step Universal Action Plan
     return [
       {
-        title: "Phase 1: Research & Discovery",
-        description: "Gather background knowledge, competitor signals, and verified facts.",
-        capabilityId: "web-research"
+        title: "Step 1: Research & Discovery",
+        description: "Analyze the best practices, competitor benchmarks, and proven frameworks.",
+        capabilityId: "web-research",
+        howToExecute: "Uncover top benchmarks and proven shortcuts before creating assets.",
+        actionablePrompt: `Analyze the top 3 best practices for executing: "${goal}". Provide a concrete checklist of what works, what mistakes to avoid, and the fastest path to completion.`,
+        estimatedMinutes: 15
       },
       {
-        title: "Phase 2: Content & Asset Synthesis",
-        description: "Draft core deliverables, scripts, or application code.",
-        capabilityId: "text-generation"
+        title: "Step 2: Core Creation & Build",
+        description: "Generate the core deliverables, content, code, or creative assets.",
+        capabilityId: "text-generation",
+        howToExecute: "Prompt the AI to create your primary deliverable end-to-end.",
+        actionablePrompt: `Generate the complete foundational draft/build for: "${goal}". Ensure professional quality, clear organization, and ready-to-use output.`,
+        estimatedMinutes: 30
       },
       {
-        title: "Phase 3: Automation & Delivery",
-        description: "Automate delivery pipelines, scheduling, or operational integrations.",
-        capabilityId: "automation"
+        title: "Step 3: Polish, Automate & Launch",
+        description: "Refine final details, set up automated workflows, and launch.",
+        capabilityId: "automation",
+        howToExecute: "Package your project and set up automated delivery or distribution.",
+        actionablePrompt: `Create a step-by-step launch and distribution checklist for: "${goal}". Detail how to test, package, and present it to target users.`,
+        estimatedMinutes: 20
       }
     ];
   }
@@ -286,13 +322,19 @@ export class GoalPlannerEngine {
     md += `\n---\n\n## 🗺️ Implementation Phases\n\n`;
 
     phases.forEach(p => {
-      md += `### Phase ${p.phaseNumber}: ${p.title}\n`;
+      md += `### Step ${p.phaseNumber}: ${p.title} (${p.estimatedMinutes || 20} mins)\n`;
       md += `${p.description}\n\n`;
-      md += `- **Primary Tool:** [${p.primaryTool.name}](${p.primaryTool.website}) — ${p.primaryTool.pricing.model === "free" ? "Free" : `$${p.primaryTool.pricing.startingPrice}/mo`}\n`;
+      md += `**Tool to use:** [${p.primaryTool.name}](${p.primaryTool.website}) — ${p.primaryTool.pricing.model === "free" ? "Free" : `$${p.primaryTool.pricing.startingPrice}/mo`}\n`;
       if (p.alternativeTool) {
-        md += `- **Budget Alternative:** [${p.alternativeTool.name}](${p.alternativeTool.website}) (${p.alternativeTool.pricing.model === "free" || p.alternativeTool.pricing.freePlan ? "Free tier" : `$${p.alternativeTool.pricing.startingPrice}/mo`})\n`;
+        md += `*Free Alternative:* [${p.alternativeTool.name}](${p.alternativeTool.website}) (${p.alternativeTool.pricing.model === "free" || p.alternativeTool.pricing.freePlan ? "Free tier" : `$${p.alternativeTool.pricing.startingPrice}/mo`})\n`;
       }
-      md += `\n`;
+      if (p.howToExecute) {
+        md += `\n**How to execute:** ${p.howToExecute}\n`;
+      }
+      if (p.actionablePrompt) {
+        md += `\n**Prompt to copy & paste:**\n\`\`\`text\n${p.actionablePrompt}\n\`\`\`\n`;
+      }
+      md += `\n---\n\n`;
     });
 
     if (redundancies.length > 0) {
@@ -303,7 +345,7 @@ export class GoalPlannerEngine {
       md += `\n`;
     }
 
-    md += `---\n*Generated by AI Atlas Decision Engine · 100% Fact-Grounded Data*\n`;
+    md += `*Generated by AI Atlas Planner · 100% Fact-Grounded Data*\n`;
     return md;
   }
 }

@@ -361,6 +361,9 @@ export interface PlanPhase {
   alternativeTool?: Tool;
   estimatedCost: number;
   isFreeTier: boolean;
+  actionablePrompt?: string;
+  howToExecute?: string;
+  estimatedMinutes?: number;
 }
 
 export interface PlanResult {
@@ -374,5 +377,7 @@ export interface PlanResult {
   redundancies: RedundancyWarning[];
   summary: string;
   blueprintMarkdown: string;
+  estimatedHoursToLaunch?: number;
 }
+
 

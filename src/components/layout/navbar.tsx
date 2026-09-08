@@ -28,7 +28,7 @@ export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { href: "/plan", label: "AI Planner", icon: Sparkles, highlight: true },
+    { href: "/plan", label: "AI Planner", icon: Sparkles },
     { href: "/tools", label: "Discover", icon: Compass },
     { href: "/categories", label: "Categories", icon: Layers },
     { href: "/workflows", label: "Workflows", icon: Workflow },
@@ -65,24 +65,6 @@ export const Navbar: React.FC = () => {
             const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
             const Icon = link.icon;
 
-            if (link.highlight) {
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={cn(
-                    "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold tracking-tight transition-all duration-200 shadow-sm",
-                    isActive
-                      ? "bg-indigo-600 text-white shadow-indigo-500/30"
-                      : "bg-indigo-500/10 text-indigo-300 border border-indigo-500/25 hover:bg-indigo-500/20 hover:border-indigo-500/40 hover:text-white"
-                  )}
-                >
-                  <Icon className="w-3.5 h-3.5 text-indigo-400" />
-                  <span>{link.label}</span>
-                </Link>
-              );
-            }
-
             return (
               <Link
                 key={link.href}
@@ -94,7 +76,7 @@ export const Navbar: React.FC = () => {
                     : "text-zinc-400 hover:text-zinc-100 hover:bg-white/[0.04]"
                 )}
               >
-                <Icon className="w-3.5 h-3.5 text-zinc-400" />
+                <Icon className={cn("w-3.5 h-3.5", isActive ? "text-indigo-400" : "text-zinc-400")} />
                 <span>{link.label}</span>
               </Link>
             );
@@ -204,19 +186,13 @@ export const Navbar: React.FC = () => {
                   "flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-medium transition",
                   isActive
                     ? "text-white bg-white/[0.08] font-semibold"
-                    : "text-zinc-300 hover:bg-white/[0.04] hover:text-white",
-                  link.highlight && "text-indigo-400 font-semibold bg-indigo-500/10 border border-indigo-500/20"
+                    : "text-zinc-300 hover:bg-white/[0.04] hover:text-white"
                 )}
               >
                 <div className="flex items-center gap-3">
-                  <Icon className={cn("w-4 h-4", link.highlight ? "text-indigo-400" : "text-zinc-400")} />
+                  <Icon className={cn("w-4 h-4", isActive ? "text-indigo-400" : "text-zinc-400")} />
                   <span>{link.label}</span>
                 </div>
-                {link.highlight && (
-                  <span className="text-[10px] font-mono uppercase bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded-full">
-                    Recommended
-                  </span>
-                )}
               </Link>
             );
           })}

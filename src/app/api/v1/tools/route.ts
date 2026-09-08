@@ -7,10 +7,13 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const query = searchParams.get("q") || undefined;
     const categoryId = searchParams.get("category") || undefined;
+    const subcategoryId = searchParams.get("subcategory") || undefined;
     const capabilityId = searchParams.get("capability") || undefined;
     const pricingModel = searchParams.get("pricing") || undefined;
     const platform = searchParams.get("platform") || undefined;
     const difficulty = searchParams.get("difficulty") || undefined;
+    const targetUser = searchParams.get("targetUser") || undefined;
+    const collection = searchParams.get("collection") || undefined;
     const freePlanOnly = searchParams.get("freeOnly") === "true";
     const hasApi = searchParams.get("hasApi") === "true";
     const isOpenSource = searchParams.get("openSource") === "true";
@@ -22,10 +25,13 @@ export async function GET(req: NextRequest) {
     const result = await SearchService.search({
       query,
       categoryId,
+      subcategoryId,
       capabilityId,
       pricingModel,
       platform,
       difficulty,
+      targetUser,
+      collection,
       freePlanOnly,
       hasApi,
       isOpenSource,

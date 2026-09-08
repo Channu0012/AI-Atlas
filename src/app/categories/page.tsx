@@ -60,10 +60,10 @@ export default async function CategoriesPage() {
             <span>AI Atlas Taxonomy Engine</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            16 AI Domains & 28 Capabilities
+            {parents.length} AI Domains & {capabilities.length} Capabilities
           </h1>
           <p className="text-sm text-zinc-400 mt-2 max-w-2xl leading-relaxed">
-            Categories classify the technological domain where a tool belongs; capabilities define atomic execution tasks. Browse all 91+ verified tools mapped across both axes.
+            Categories classify the technological domain where a tool belongs; capabilities define atomic execution tasks. Browse all {tools.length} verified tools mapped across both axes.
           </p>
         </div>
 
@@ -72,7 +72,7 @@ export default async function CategoriesPage() {
             href="/tools"
             className="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition shadow-md shadow-indigo-600/20 flex items-center gap-1.5"
           >
-            <span>All 91 Tools</span>
+            <span>All {tools.length} Tools</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
@@ -190,7 +190,7 @@ export default async function CategoriesPage() {
             <span>Atomic Skill Breakdown</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            28 Atomic AI Capabilities
+            {capabilities.length} Atomic AI Capabilities
           </h2>
           <p className="text-xs sm:text-sm text-zinc-400 mt-1">
             Click any capability to immediately filter tools that can perform that exact task.

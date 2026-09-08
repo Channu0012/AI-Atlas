@@ -25,6 +25,7 @@ import {
   RefreshCw,
   Cpu
 } from "lucide-react";
+import { recordSearchHistory } from "@/lib/search/search-history";
 
 function ToolsDirectoryContent() {
   const searchParams = useSearchParams();
@@ -44,6 +45,7 @@ function ToolsDirectoryContent() {
 
   // Filters State
   const [query, setQuery] = useState(searchParams.get("q") || "");
+  const [selectedCollection, setSelectedCollection] = useState<string | undefined>(searchParams.get("collection") || undefined);
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(searchParams.get("category") || undefined);
   const [selectedPricing, setSelectedPricing] = useState<string | undefined>(undefined);
   const [selectedPlatform, setSelectedPlatform] = useState<string | undefined>(undefined);
@@ -51,7 +53,7 @@ function ToolsDirectoryContent() {
   const [hasApi, setHasApi] = useState(false);
   const [isOpenSource, setIsOpenSource] = useState(false);
   const [verifiedOnly, setVerifiedOnly] = useState(false);
-  const [sortBy, setSortBy] = useState<"relevance" | "verified" | "name" | "saves">("relevance");
+  const [sortBy, setSortBy] = useState<any>("relevance");
 
   // Multi-tool compare tracking
   const [comparingIds, setComparingIds] = useState<string[]>([]);
@@ -62,6 +64,7 @@ function ToolsDirectoryContent() {
     try {
       const params = new URLSearchParams();
       if (query.trim()) params.set("q", query.trim());
+      if (selectedCollection && selectedCollection !== "all") params.set("collection", selectedCollection);
       if (selectedCategory) params.set("category", selectedCategory);
       if (selectedPricing) params.set("pricing", selectedPricing);
       if (selectedPlatform) params.set("platform", selectedPlatform);
@@ -76,6 +79,9 @@ function ToolsDirectoryContent() {
       const json = await res.json();
       if (json.success) {
         setTools(json.data.tools);
+        if (query.trim()) {
+          recordSearchHistory(query.trim(), json.data.tools.length);
+        }
       }
     } catch (err) {
       console.warn("Failed to fetch flagship tools:", err);
@@ -130,6 +136,7 @@ function ToolsDirectoryContent() {
   }, [
     catalogMode,
     query,
+    selectedCollection,
     selectedCategory,
     selectedPricing,
     selectedPlatform,
@@ -142,6 +149,7 @@ function ToolsDirectoryContent() {
 
   const handleResetAll = () => {
     setQuery("");
+    setSelectedCollection(undefined);
     setSelectedCategory(undefined);
     setSelectedPricing(undefined);
     setSelectedPlatform(undefined);
@@ -164,14 +172,18 @@ function ToolsDirectoryContent() {
     }
   };
 
-  const quickFilterPills = [
-    { label: "All", category: undefined, openSource: false },
-    { label: "⚡ Coding & Dev", category: "ai-coding", openSource: false },
-    { label: "🎬 Video & Motion", category: "ai-video", openSource: false },
-    { label: "✨ 100% Free / Open Source", category: undefined, openSource: true },
-    { label: "🤖 Autonomous Agents", category: "autonomous-agents", openSource: false },
-    { label: "🔬 Research & Papers", category: "ai-research", openSource: false },
-    { label: "🎨 3D & Design", category: "ai-design-images", openSource: false }
+  const DISCOVERY_COLLECTIONS = [
+    { id: "all", label: "All Catalog", icon: "🌐" },
+    { id: "top-100", label: "Top 100", icon: "🏆" },
+    { id: "trending", label: "Trending", icon: "🔥" },
+    { id: "best-free", label: "Best Free", icon: "💚" },
+    { id: "best-value", label: "Best Value", icon: "💎" },
+    { id: "developers", label: "Developers", icon: "👨‍💻" },
+    { id: "students", label: "Students", icon: "🎓" },
+    { id: "startups", label: "Startups", icon: "🚀" },
+    { id: "creators", label: "Creators", icon: "🎨" },
+    { id: "business", label: "Business", icon: "💼" },
+    { id: "new-launches", label: "New Launches", icon: "✨" }
   ];
 
   return (
@@ -181,13 +193,13 @@ function ToolsDirectoryContent() {
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-semibold text-indigo-400 mb-2">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>91 Audited Flagships · Connected Open Model Registry</span>
+            <span>{tools.length > 0 ? `${tools.length} Verified Directory Tools` : "Verified AI Catalog"} · Open Model Ecosystem</span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            AI Directory & Model Registry
+            AI Directory & Discovery Engine
           </h1>
           <p className="text-xs sm:text-sm text-zinc-400 mt-1 max-w-xl">
-            Explore 91 deeply audited flagship tools with verified pricing and capability benchmarks, or search the connected Open Model Registry for open-weights models and pipelines.
+            Curated database of verified AI tools with audited capabilities, multi-factor collections, and full ecosystem coverage.
           </p>
         </div>
 
@@ -202,7 +214,7 @@ function ToolsDirectoryContent() {
             }`}
           >
             <ShieldCheck className="w-3.5 h-3.5" />
-            <span>Verified Flagships ({tools.length || 91})</span>
+            <span>Verified Tools ({tools.length})</span>
           </button>
           <button
             onClick={() => setCatalogMode("universe")}
@@ -244,33 +256,31 @@ function ToolsDirectoryContent() {
       {/* Main Grid: Sidebar Filters (Flagship) or Full Universe Explorer */}
       {catalogMode === "flagship" ? (
         <div>
-          {/* Quick Filter Horizontal Pills */}
+          {/* Discovery Collections Horizontal Pills */}
           <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-6 scrollbar-none no-scrollbar">
-            {quickFilterPills.map((pill, idx) => {
+            {DISCOVERY_COLLECTIONS.map((col) => {
               const isSelected = 
-                (pill.category === undefined && pill.openSource === false && selectedCategory === undefined && !isOpenSource) ||
-                (pill.category && selectedCategory === pill.category) ||
-                (pill.openSource && isOpenSource);
+                (!selectedCollection && col.id === "all") ||
+                (selectedCollection === col.id);
 
               return (
                 <button
-                  key={idx}
+                  key={col.id}
                   onClick={() => {
-                    if (pill.openSource) {
-                      setIsOpenSource(true);
-                      setSelectedCategory(undefined);
+                    if (col.id === "all") {
+                      setSelectedCollection(undefined);
                     } else {
-                      setIsOpenSource(false);
-                      setSelectedCategory(pill.category);
+                      setSelectedCollection(col.id);
                     }
                   }}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition cursor-pointer ${
+                  className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition cursor-pointer ${
                     isSelected
-                      ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/30"
+                      ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/30 border border-indigo-500"
                       : "glass-pill text-zinc-400 hover:text-zinc-200"
                   }`}
                 >
-                  {pill.label}
+                  <span>{col.icon}</span>
+                  <span>{col.label}</span>
                 </button>
               );
             })}
@@ -351,10 +361,15 @@ function ToolsDirectoryContent() {
                       onChange={(e) => setSortBy(e.target.value as any)}
                       className="bg-zinc-900 border border-zinc-800 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500"
                     >
-                      <option value="relevance">Popularity</option>
+                      <option value="relevance">Popularity / Relevance</option>
+                      <option value="top-100">Highest Reputation (Top 100)</option>
+                      <option value="trending">Trending Velocity</option>
+                      <option value="best-free">Best Free / Open Source</option>
+                      <option value="best-value">Best Value (Breadth / Price)</option>
+                      <option value="newest">Recently Launched</option>
                       <option value="verified">Recently Verified</option>
                       <option value="saves">Community Saves</option>
-                      <option value="name">Alphabetical</option>
+                      <option value="name">Alphabetical (A–Z)</option>
                     </select>
                   </div>
                 </div>

@@ -40,7 +40,7 @@ export default async function HomePage() {
         {/* Top Ticker Badge */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-pill text-xs font-semibold text-indigo-300 mb-8 shadow-inner border border-indigo-500/30">
           <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
-          <span>91 Fact-Verified Flagships · 16 Deep Domains · Zero Hallucinated Pricing</span>
+          <span>{publishedTools.length} Fact-Verified Tools · {categories.filter(c => !c.parentId).length} Deep Domains · Zero Hallucinated Pricing</span>
         </div>
 
         {/* Headline */}
@@ -71,18 +71,18 @@ export default async function HomePage() {
             <span>AI Goal Planner</span>
           </Link>
           <Link
-            href="/tools?category=ai-coding"
+            href="/tools?collection=developers"
             className="glass-pill px-3 py-1.5 rounded-full text-zinc-300 hover:text-white hover:border-cyan-500/40 flex items-center gap-1.5 transition"
           >
             <Zap className="w-3 h-3 text-cyan-400" />
             <span>Developer IDEs</span>
           </Link>
           <Link
-            href="/tools?openSource=true"
+            href="/tools?collection=best-free"
             className="glass-pill px-3 py-1.5 rounded-full text-zinc-300 hover:text-white hover:border-emerald-500/40 flex items-center gap-1.5 transition"
           >
             <Cpu className="w-3 h-3 text-emerald-400" />
-            <span>100% Offline Local AI</span>
+            <span>Best Free AI</span>
           </Link>
           <Link
             href="/tools?category=ai-video"
@@ -92,18 +92,18 @@ export default async function HomePage() {
             <span>Cinematic Video</span>
           </Link>
           <Link
-            href="/tools?category=autonomous-agents"
+            href="/tools?collection=trending"
             className="glass-pill px-3 py-1.5 rounded-full text-zinc-300 hover:text-white hover:border-sky-500/40 flex items-center gap-1.5 transition"
           >
             <Bot className="w-3 h-3 text-sky-400" />
-            <span>Computer-Use Agents</span>
+            <span>Trending Velocity</span>
           </Link>
           <Link
-            href="/tools?pricing=free"
+            href="/tools?collection=top-100"
             className="glass-pill px-3 py-1.5 rounded-full text-zinc-300 hover:text-white hover:border-amber-500/40 flex items-center gap-1.5 transition"
           >
             <DollarSign className="w-3 h-3 text-amber-400" />
-            <span>Free Tier Tools</span>
+            <span>Top 100 Tools</span>
           </Link>
         </div>
       </section>
@@ -118,13 +118,13 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <div className="flex flex-col items-center">
             <span className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
-              91 Flagships
+              {publishedTools.length} Tools
             </span>
             <span className="text-xs text-zinc-400 mt-1 font-medium">Hand-Verified Decision Catalog</span>
           </div>
           <div className="flex flex-col items-center">
             <span className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-              16
+              {categories.filter(c => !c.parentId).length}
             </span>
             <span className="text-xs text-zinc-400 mt-1 font-medium">Global AI Sectors</span>
           </div>
@@ -152,7 +152,7 @@ export default async function HomePage() {
               <span>Full Taxonomy Navigation</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              16 AI Domains. Zero Blind Spots.
+              {categories.filter(c => !c.parentId).length} AI Domains. Zero Blind Spots.
             </h2>
             <p className="mt-2 text-sm text-zinc-400 max-w-xl">
               From terminal agents and diffusion engines to local offline LLMs and legal discovery — navigate every corner of modern artificial intelligence.

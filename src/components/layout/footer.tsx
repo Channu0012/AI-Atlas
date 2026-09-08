@@ -12,16 +12,13 @@ export const Footer: React.FC = () => {
             <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-white/10 ring-1 ring-white/5 bg-black shrink-0">
               <Image
                 src="/images/ai-atlas-logo.png"
-                alt="AI Atlas Brand Emblem"
+                alt="AI Atlas"
                 fill
                 sizes="32px"
                 className="object-cover"
               />
             </div>
-            <div className="flex flex-col">
-              <span className="text-sm font-extrabold text-white tracking-[0.16em] uppercase">AI ATLAS</span>
-              <span className="text-[8px] font-semibold text-zinc-400 tracking-[0.22em] uppercase">Explore a Brighter You</span>
-            </div>
+            <span className="text-base font-extrabold text-white tracking-wider">AI Atlas</span>
           </div>
           <p className="text-xs text-zinc-400 leading-relaxed">
             The decision engine for AI tools. Describe what you want to accomplish, and AI Atlas finds the verified tools and builds the right workflow for you.

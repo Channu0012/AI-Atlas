@@ -195,3 +195,12 @@ body {
   animation: cosmicOrbit 8s linear infinite;
 }
 
+/* Suppress Next.js developer indicator badges ("N" logo at bottom) */
+nextjs-portal,
+[data-nextjs-toast],
+[data-nextjs-route-announcer],
+#__next-build-watcher,
+div[data-next-badge] {
+  display: none !important;
+}
+

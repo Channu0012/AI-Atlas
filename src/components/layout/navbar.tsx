@@ -33,8 +33,7 @@ export const Navbar: React.FC = () => {
     { href: "/categories", label: "Categories", icon: Layers },
     { href: "/workflows", label: "Workflows", icon: Workflow },
     { href: "/stacks", label: "Stacks", icon: Layers },
-    { href: "/compare", label: "Compare", icon: Scale },
-    { href: "/ask", label: "AI Search", icon: Search }
+    { href: "/compare", label: "Compare", icon: Scale }
   ];
 
   return (
@@ -43,32 +42,21 @@ export const Navbar: React.FC = () => {
       <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-        {/* Brand Logo & Tagline */}
+        {/* Brand Logo & Name */}
         <Link href="/" className="flex items-center gap-3 group shrink-0">
-          <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden shadow-lg shadow-indigo-500/20 border border-white/10 ring-1 ring-white/5 bg-black shrink-0 transition-transform duration-300 group-hover:scale-105 group-hover:ring-indigo-500/30">
+          <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden shadow-lg shadow-indigo-500/20 border border-white/10 ring-1 ring-white/5 bg-black shrink-0 transition-transform duration-300 group-hover:scale-105">
             <Image
               src="/images/ai-atlas-logo.png"
-              alt="AI Atlas Brand Emblem"
+              alt="AI Atlas"
               fill
               priority
               sizes="40px"
               className="object-cover"
             />
           </div>
-          <div className="flex flex-col">
-            <div className="flex items-center gap-2">
-              <span className="text-[15px] sm:text-base font-extrabold tracking-[0.16em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-100 to-indigo-200">
-                AI ATLAS
-              </span>
-              <span className="hidden xl:inline-flex items-center gap-1 text-[10px] font-mono px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
-                <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
-                Intelligence Hub
-              </span>
-            </div>
-            <span className="text-[8.5px] sm:text-[9px] font-semibold tracking-[0.22em] text-zinc-400 group-hover:text-indigo-300 transition-colors uppercase leading-tight">
-              Explore a Brighter You
-            </span>
-          </div>
+          <span className="text-[17px] sm:text-lg font-extrabold tracking-tight text-white group-hover:text-indigo-200 transition-colors">
+            AI Atlas
+          </span>
         </Link>
 
         {/* Desktop Navigation Links */}

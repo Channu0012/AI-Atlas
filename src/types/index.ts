@@ -44,6 +44,20 @@ export interface ToolMetrics {
   ratingCount?: number;
 }
 
+export interface ToolRankingSignals {
+  qualityScore?: number;
+  reliabilityScore?: number;
+  popularityScore?: number;
+  recencyScore?: number;
+  trendingScore?: number;
+  valueScore?: number;
+  reputationScore?: number;
+  velocityScore?: number;
+  recentTrafficVelocity?: number;
+}
+
+export type TrustBadge = "verified" | "community" | "ai-explained" | "recently-verified";
+
 export interface Tool {
   id: string;
   name: string;
@@ -57,6 +71,7 @@ export interface Tool {
   };
   logo?: string;
   categoryIds: string[];
+  subcategoryIds?: string[];
   capabilityIds: string[];
   useCaseIds: string[];
   targetUsers: string[];
@@ -76,6 +91,10 @@ export interface Tool {
   supportedLanguages: string[];
   verification: ToolVerification;
   metrics: ToolMetrics;
+  rankingSignals?: ToolRankingSignals;
+  dataCompletenessScore?: number;
+  trustBadge?: TrustBadge;
+  launchDate?: string;
   status: ToolStatus;
   createdAt: string;
   updatedAt: string;

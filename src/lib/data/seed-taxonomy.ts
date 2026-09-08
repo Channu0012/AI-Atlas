@@ -1,48 +1,118 @@
 import { Category, Capability, UseCase, Workflow } from "@/types";
 
 export const SEED_CATEGORIES: Category[] = [
-  // 1. AI Coding & Developer Tools
+  // 1. AI Assistants & Chatbots
+  {
+    id: "cat-chatbots",
+    name: "AI Assistants & Chatbots",
+    slug: "ai-assistants",
+    description: "General intelligence copilots, conversational models, and everyday task assistants.",
+    sortOrder: 1,
+    icon: "Bot",
+    status: "active",
+    createdAt: "2025-01-01T00:00:00.000Z",
+    updatedAt: "2025-01-01T00:00:00.000Z",
+  },
+  {
+    id: "cat-chatbot-general",
+    name: "General AI Assistants",
+    slug: "general-assistants",
+    description: "Multimodal frontier chat assistants for ideation, analysis, and reasoning.",
+    parentId: "cat-chatbots",
+    sortOrder: 11,
+    status: "active",
+    createdAt: "2025-01-01T00:00:00.000Z",
+    updatedAt: "2025-01-01T00:00:00.000Z",
+  },
+
+  // 2. Coding & Development
   {
     id: "cat-coding",
-    name: "AI Coding & Development",
+    name: "Coding & Development",
     slug: "ai-coding",
     description: "AI code editors, terminal agents, automated refactoring, and code review.",
-    sortOrder: 1,
+    sortOrder: 2,
     icon: "Code2",
     status: "active",
     createdAt: "2025-01-01T00:00:00.000Z",
     updatedAt: "2025-01-01T00:00:00.000Z",
   },
   {
-    id: "cat-code-agents",
-    name: "Developer Agents & IDEs",
-    slug: "developer-agents",
-    description: "Autonomous and semi-autonomous coding IDEs and terminal agents.",
+    id: "cat-code-generators",
+    name: "AI Code Generators",
+    slug: "code-generators",
+    description: "Prompt-to-code synthesis, snippet scaffolding, and boilerplate generation.",
     parentId: "cat-coding",
-    sortOrder: 11,
+    sortOrder: 21,
     status: "active",
     createdAt: "2025-01-01T00:00:00.000Z",
     updatedAt: "2025-01-01T00:00:00.000Z",
   },
   {
-    id: "cat-code-generation",
-    name: "Full-Stack App Builders",
-    slug: "app-builders",
-    description: "Prompt-to-application platforms and UI generators.",
+    id: "cat-code-agents",
+    name: "Coding Assistants & IDEs",
+    slug: "developer-agents",
+    description: "Autonomous and semi-autonomous coding IDEs and terminal agents.",
     parentId: "cat-coding",
-    sortOrder: 12,
+    sortOrder: 22,
+    status: "active",
+    createdAt: "2025-01-01T00:00:00.000Z",
+    updatedAt: "2025-01-01T00:00:00.000Z",
+  },
+  {
+    id: "cat-code-review",
+    name: "Code Review & Refactoring",
+    slug: "code-review",
+    description: "Automated PR reviews, security scanning, and architectural refactoring.",
+    parentId: "cat-coding",
+    sortOrder: 23,
     status: "active",
     createdAt: "2025-01-01T00:00:00.000Z",
     updatedAt: "2025-01-01T00:00:00.000Z",
   },
 
-  // 2. AI Video & Motion
+  // 3. Image Generation & Editing
+  {
+    id: "cat-image",
+    name: "Image Generation & Editing",
+    slug: "ai-image",
+    description: "Photorealistic image generation, vector SVGs, inpainting, and product photography.",
+    sortOrder: 3,
+    icon: "Palette",
+    status: "active",
+    createdAt: "2025-01-01T00:00:00.000Z",
+    updatedAt: "2025-01-01T00:00:00.000Z",
+  },
+  {
+    id: "cat-text-to-image",
+    name: "Text-to-Image Generators",
+    slug: "text-to-image",
+    description: "Frontier visual diffusion models synthesizing illustrations, concept art, and photorealism.",
+    parentId: "cat-image",
+    sortOrder: 31,
+    status: "active",
+    createdAt: "2025-01-01T00:00:00.000Z",
+    updatedAt: "2025-01-01T00:00:00.000Z",
+  },
+  {
+    id: "cat-image-edit",
+    name: "Image Editing & Inpainting",
+    slug: "image-editing",
+    description: "Generative fill, object removal, background replacement, and style transfer.",
+    parentId: "cat-image",
+    sortOrder: 32,
+    status: "active",
+    createdAt: "2025-01-01T00:00:00.000Z",
+    updatedAt: "2025-01-01T00:00:00.000Z",
+  },
+
+  // 4. Video Generation & Editing
   {
     id: "cat-video",
-    name: "AI Video & Motion",
+    name: "Video Generation & Editing",
     slug: "ai-video",
-    description: "Text-to-video, cinematic generation, automated editing, and AI avatars.",
-    sortOrder: 2,
+    description: "Text-to-video, cinematic motion, automated editing, lip-sync, and AI avatars.",
+    sortOrder: 4,
     icon: "Video",
     status: "active",
     createdAt: "2025-01-01T00:00:00.000Z",
@@ -54,7 +124,7 @@ export const SEED_CATEGORIES: Category[] = [
     slug: "video-generation",
     description: "Generative video models synthesizing cinematic scenes from text and images.",
     parentId: "cat-video",
-    sortOrder: 21,
+    sortOrder: 41,
     status: "active",
     createdAt: "2025-01-01T00:00:00.000Z",
     updatedAt: "2025-01-01T00:00:00.000Z",
@@ -65,30 +135,30 @@ export const SEED_CATEGORIES: Category[] = [
     slug: "video-editing",
     description: "Transcription-based cutting, auto-subtitles, and social reel repurposing.",
     parentId: "cat-video",
-    sortOrder: 22,
+    sortOrder: 42,
     status: "active",
     createdAt: "2025-01-01T00:00:00.000Z",
     updatedAt: "2025-01-01T00:00:00.000Z",
   },
   {
     id: "cat-video-avatar",
-    name: "AI Avatars & Dubbing",
+    name: "AI Avatars & Lip Sync",
     slug: "video-avatars",
     description: "Photorealistic human presenters with lip-sync translation across 150+ languages.",
     parentId: "cat-video",
-    sortOrder: 23,
+    sortOrder: 43,
     status: "active",
     createdAt: "2025-01-01T00:00:00.000Z",
     updatedAt: "2025-01-01T00:00:00.000Z",
   },
 
-  // 3. AI Audio, Voice & Music
+  // 5. Music, Audio & Voice
   {
     id: "cat-audio",
-    name: "AI Audio & Voice",
+    name: "Music, Audio & Voice",
     slug: "ai-audio-voice",
-    description: "Realistic text-to-speech, custom voice cloning, and generative music tracks.",
-    sortOrder: 3,
+    description: "Realistic text-to-speech, custom voice cloning, and generative music synthesis.",
+    sortOrder: 5,
     icon: "Mic",
     status: "active",
     createdAt: "2025-01-01T00:00:00.000Z",
@@ -100,55 +170,29 @@ export const SEED_CATEGORIES: Category[] = [
     slug: "ai-music",
     description: "Full song synthesis with vocals, instrumentation, and stem separation.",
     parentId: "cat-audio",
-    sortOrder: 31,
-    status: "active",
-    createdAt: "2025-01-01T00:00:00.000Z",
-    updatedAt: "2025-01-01T00:00:00.000Z",
-  },
-
-  // 4. AI Design, Images & 3D
-  {
-    id: "cat-design",
-    name: "AI Design & Images",
-    slug: "ai-design-images",
-    description: "Photorealistic image generation, vector SVGs, 3D assets, and graphic design.",
-    sortOrder: 4,
-    icon: "Palette",
+    sortOrder: 51,
     status: "active",
     createdAt: "2025-01-01T00:00:00.000Z",
     updatedAt: "2025-01-01T00:00:00.000Z",
   },
   {
-    id: "cat-3d",
-    name: "3D & Spatial AI",
-    slug: "3d-spatial",
-    description: "Text-to-3D mesh generation, NeRFs, and game-ready 3D models.",
-    parentId: "cat-design",
-    sortOrder: 41,
+    id: "cat-tts",
+    name: "Voice Cloning & TTS",
+    slug: "voice-cloning-tts",
+    description: "Expressive text-to-speech and custom timbre voice cloning.",
+    parentId: "cat-audio",
+    sortOrder: 52,
     status: "active",
     createdAt: "2025-01-01T00:00:00.000Z",
     updatedAt: "2025-01-01T00:00:00.000Z",
   },
 
-  // 5. AI Research, Science & Citations
-  {
-    id: "cat-research",
-    name: "AI Research & Science",
-    slug: "ai-research",
-    description: "Cited live search engines, scientific paper synthesis, and deep RAG analyzers.",
-    sortOrder: 5,
-    icon: "Search",
-    status: "active",
-    createdAt: "2025-01-01T00:00:00.000Z",
-    updatedAt: "2025-01-01T00:00:00.000Z",
-  },
-
-  // 6. AI Writing & Reasoning
+  // 6. Writing & Content
   {
     id: "cat-writing",
-    name: "AI Writing & Reasoning",
-    slug: "ai-writing-chat",
-    description: "Frontier conversational intelligence, deep reasoning, drafting, and copywriting.",
+    name: "Writing & Content",
+    slug: "ai-writing-content",
+    description: "Frontier copywriting, long-form publishing, SEO articles, and brand tone editors.",
     sortOrder: 6,
     icon: "FileText",
     status: "active",
@@ -156,38 +200,38 @@ export const SEED_CATEGORIES: Category[] = [
     updatedAt: "2025-01-01T00:00:00.000Z",
   },
 
-  // 7. AI Automation & Workflows
+  // 7. Search & Research
   {
-    id: "cat-automation",
-    name: "AI Automation & Workflows",
-    slug: "ai-automation",
-    description: "Visual logic routers, webhook triggers, and automated API pipelines.",
+    id: "cat-research",
+    name: "Search & Research",
+    slug: "ai-search-research",
+    description: "Cited live search engines, scientific paper synthesis, and deep literature explorers.",
     sortOrder: 7,
-    icon: "Workflow",
+    icon: "Search",
     status: "active",
     createdAt: "2025-01-01T00:00:00.000Z",
     updatedAt: "2025-01-01T00:00:00.000Z",
   },
 
-  // 8. Autonomous Agents & Computer Use
+  // 8. Education & Students
   {
-    id: "cat-agents",
-    name: "Autonomous Agents & Computer Use",
-    slug: "autonomous-agents",
-    description: "OS-level automation, screen interaction, browser copilots, and multi-agent coordination.",
+    id: "cat-education",
+    name: "Education & Students",
+    slug: "ai-education",
+    description: "Personalized learning tutors, language conversation practice, and automated study aids.",
     sortOrder: 8,
-    icon: "Bot",
+    icon: "GraduationCap",
     status: "active",
     createdAt: "2025-01-01T00:00:00.000Z",
     updatedAt: "2025-01-01T00:00:00.000Z",
   },
 
-  // 9. AI Productivity & Workspace
+  // 9. Business & Productivity
   {
     id: "cat-productivity",
-    name: "AI Productivity & Office",
-    slug: "ai-productivity",
-    description: "Presentation generators, meeting intelligence, note synthesis, and smart docs.",
+    name: "Business & Productivity",
+    slug: "ai-business-productivity",
+    description: "Presentation generators, meeting intelligence, note synthesis, and smart spreadsheets.",
     sortOrder: 9,
     icon: "Sparkles",
     status: "active",
@@ -195,12 +239,12 @@ export const SEED_CATEGORIES: Category[] = [
     updatedAt: "2025-01-01T00:00:00.000Z",
   },
 
-  // 10. AI Marketing, Sales & SEO
+  // 10. Marketing & SEO
   {
     id: "cat-marketing",
-    name: "AI Marketing & Sales",
-    slug: "ai-marketing",
-    description: "Ad creative generation, SEO optimization, social scheduling, and lead outreach.",
+    name: "Marketing & SEO",
+    slug: "ai-marketing-seo",
+    description: "Ad creative generation, SEO keyword auditing, campaign strategy, and content scoring.",
     sortOrder: 10,
     icon: "TrendingUp",
     status: "active",
@@ -208,38 +252,38 @@ export const SEED_CATEGORIES: Category[] = [
     updatedAt: "2025-01-01T00:00:00.000Z",
   },
 
-  // 11. Local & Open Source AI
+  // 11. Design & UI/UX
   {
-    id: "cat-opensource",
-    name: "Local & Open Source AI",
-    slug: "local-open-source",
-    description: "Run private LLMs, diffusion models, and speech models 100% offline on your hardware.",
+    id: "cat-design",
+    name: "Design & UI/UX",
+    slug: "ai-design-ui",
+    description: "UI/UX component generators, vector graphics, wireframing, and 3D spatial design.",
     sortOrder: 11,
-    icon: "Cpu",
+    icon: "Layers",
     status: "active",
     createdAt: "2025-01-01T00:00:00.000Z",
     updatedAt: "2025-01-01T00:00:00.000Z",
   },
 
-  // 12. Data Science & Machine Learning
+  // 12. Automation & AI Agents
   {
-    id: "cat-datascience",
-    name: "Data Science & SQL AI",
-    slug: "data-science-ai",
-    description: "Automated statistical analysis, Python data notebooks, text-to-SQL, and predictive modeling.",
+    id: "cat-automation",
+    name: "Automation & AI Agents",
+    slug: "ai-automation-agents",
+    description: "Autonomous OS agents, browser operators, webhook routers, and multi-agent coordination.",
     sortOrder: 12,
-    icon: "Database",
+    icon: "Workflow",
     status: "active",
     createdAt: "2025-01-01T00:00:00.000Z",
     updatedAt: "2025-01-01T00:00:00.000Z",
   },
 
-  // 13. Customer Support & Conversational AI
+  // 13. Sales & CRM
   {
-    id: "cat-support",
-    name: "Customer Support & CX",
-    slug: "customer-support-ai",
-    description: "Autonomous resolution bots, helpdesk copilots, and multi-channel ticket triaging.",
+    id: "cat-sales-crm",
+    name: "Sales & CRM",
+    slug: "ai-sales-crm",
+    description: "Lead enrichment, autonomous email sequences, conversation intelligence, and CRM sync.",
     sortOrder: 13,
     icon: "Headphones",
     status: "active",
@@ -247,40 +291,92 @@ export const SEED_CATEGORIES: Category[] = [
     updatedAt: "2025-01-01T00:00:00.000Z",
   },
 
-  // 14. Education & Tutoring
+  // 14. Email & Communication
   {
-    id: "cat-education",
-    name: "Education & Tutoring AI",
-    slug: "ai-education",
-    description: "Personalized learning tutors, language conversation practice, and automated exam generation.",
+    id: "cat-email",
+    name: "Email & Communication",
+    slug: "ai-email",
+    description: "Smart email triage, autonomous drafting, and team communication copilots.",
     sortOrder: 14,
-    icon: "GraduationCap",
+    icon: "Mail",
     status: "active",
     createdAt: "2025-01-01T00:00:00.000Z",
     updatedAt: "2025-01-01T00:00:00.000Z",
   },
 
-  // 15. Finance, Legal & Compliance
+  // 15. Documents & PDF
   {
-    id: "cat-finance-legal",
-    name: "Legal & Finance AI",
-    slug: "legal-finance-ai",
-    description: "Contract clause review, litigation discovery, financial filings analysis, and compliance monitoring.",
+    id: "cat-documents",
+    name: "Documents & PDF",
+    slug: "ai-documents-pdf",
+    description: "Chat with PDFs, contract clause analysis, deep document OCR, and table extraction.",
     sortOrder: 15,
-    icon: "Scale",
+    icon: "FileCheck",
     status: "active",
     createdAt: "2025-01-01T00:00:00.000Z",
     updatedAt: "2025-01-01T00:00:00.000Z",
   },
 
-  // 16. Media Enhancement & Upscaling
+  // 16. Data & Analytics
   {
-    id: "cat-upscaling",
-    name: "Media Enhancement & Upscaling",
-    slug: "media-enhancement",
-    description: "AI resolution upscaling, frame interpolation, voice isolation, and noise suppression.",
+    id: "cat-datascience",
+    name: "Data & Analytics",
+    slug: "ai-data-analytics",
+    description: "Text-to-SQL, automated data visualization, Python data science copilots, and BI.",
     sortOrder: 16,
-    icon: "Maximize2",
+    icon: "Database",
+    status: "active",
+    createdAt: "2025-01-01T00:00:00.000Z",
+    updatedAt: "2025-01-01T00:00:00.000Z",
+  },
+
+  // 17. Website & App Builders
+  {
+    id: "cat-builders",
+    name: "Website & App Builders",
+    slug: "ai-website-app-builders",
+    description: "Prompt-to-application platforms, automated landing page generators, and SaaS builders.",
+    sortOrder: 17,
+    icon: "Globe",
+    status: "active",
+    createdAt: "2025-01-01T00:00:00.000Z",
+    updatedAt: "2025-01-01T00:00:00.000Z",
+  },
+
+  // 18. No-Code Tools
+  {
+    id: "cat-nocode",
+    name: "No-Code Tools",
+    slug: "ai-no-code",
+    description: "Visual logic builders, drag-and-drop workflow platforms, and citizen developer tools.",
+    sortOrder: 18,
+    icon: "Sliders",
+    status: "active",
+    createdAt: "2025-01-01T00:00:00.000Z",
+    updatedAt: "2025-01-01T00:00:00.000Z",
+  },
+
+  // 19. Security & Developer Infrastructure
+  {
+    id: "cat-security-infra",
+    name: "Security & Developer Infrastructure",
+    slug: "ai-security-infra",
+    description: "LLMOps observability, prompt injection firewalls, guardrails, and model gateways.",
+    sortOrder: 19,
+    icon: "Shield",
+    status: "active",
+    createdAt: "2025-01-01T00:00:00.000Z",
+    updatedAt: "2025-01-01T00:00:00.000Z",
+  },
+
+  // 20. Other Specialized AI
+  {
+    id: "cat-specialized",
+    name: "Other Specialized AI",
+    slug: "specialized-ai",
+    description: "Domain-specific intelligence across healthcare, legal discovery, finance, and 3D spatial tech.",
+    sortOrder: 20,
+    icon: "Cpu",
     status: "active",
     createdAt: "2025-01-01T00:00:00.000Z",
     updatedAt: "2025-01-01T00:00:00.000Z",

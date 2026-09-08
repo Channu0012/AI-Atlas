@@ -12,7 +12,8 @@ import {
   PlusCircle, 
   LogOut, 
   ExternalLink, 
-  LayoutDashboard
+  LayoutDashboard,
+  UploadCloud
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -82,6 +83,19 @@ export default function AdminLayout({
               >
                 <Layers className="w-3.5 h-3.5" />
                 Manage Tools
+              </Link>
+
+              <Link
+                href="/admin/import"
+                className={cn(
+                  "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition",
+                  pathname === "/admin/import"
+                    ? "bg-amber-500/15 text-amber-300 border border-amber-500/30"
+                    : "text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900"
+                )}
+              >
+                <UploadCloud className="w-3.5 h-3.5" />
+                Bulk Import
               </Link>
 
               <Link

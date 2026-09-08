@@ -24,6 +24,14 @@ export const metadata: Metadata = {
     title: "AI Atlas — Find the Right AI for Any Job",
     description: "Decision engine that connects your goal to verified AI tools and multi-step workflows.",
     type: "website"
+  },
+  icons: {
+    icon: [
+      { url: "/images/ai-atlas-logo.png", type: "image/png" },
+      { url: "/favicon.ico" }
+    ],
+    shortcut: "/images/ai-atlas-logo.png",
+    apple: "/images/ai-atlas-logo.png"
   }
 };
 

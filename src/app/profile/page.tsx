@@ -13,6 +13,7 @@ import {
   Save, 
   Check 
 } from "lucide-react";
+import { SearchHistorySection } from "@/components/search/search-history-section";
 
 export default function ProfilePage() {
   const { user, signOut, switchRoleForDev } = useAuth();
@@ -175,6 +176,9 @@ export default function ProfilePage() {
               </button>
             </div>
           </div>
+
+          {/* User Search History & Controls (PRD §36 & §37) */}
+          <SearchHistorySection />
         </div>
       </div>
     </div>

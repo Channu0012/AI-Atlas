@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Tool } from "@/types";
 import { ToolCard } from "@/components/tools/tool-card";
+import { ToolGridSkeleton } from "@/components/ui/skeletons";
 import { useAuth } from "@/features/auth/auth-context";
 import { Bookmark, ArrowRight, Compass } from "lucide-react";
 
@@ -49,11 +50,7 @@ export default function SavedToolsPage() {
       </div>
 
       {loading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="h-64 rounded-2xl border border-zinc-800/60 bg-zinc-900/40 animate-pulse" />
-          ))}
-        </div>
+        <ToolGridSkeleton count={3} />
       ) : tools.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {tools.map(tool => (

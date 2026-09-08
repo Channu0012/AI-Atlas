@@ -4,6 +4,7 @@ import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Tool } from "@/types";
 import { ComparisonMatrix } from "@/components/compare/comparison-matrix";
+import { ComparisonMatrixSkeleton } from "@/components/ui/skeletons";
 import { Scale, Plus, Search } from "lucide-react";
 
 function CompareContent() {
@@ -122,7 +123,7 @@ function CompareContent() {
       </div>
 
       {loading ? (
-        <div className="p-12 text-center text-zinc-500">Loading comparison...</div>
+        <ComparisonMatrixSkeleton />
       ) : (
         <ComparisonMatrix tools={selectedTools} onRemoveTool={handleRemoveTool} />
       )}
@@ -132,7 +133,7 @@ function CompareContent() {
 
 export default function ComparePage() {
   return (
-    <Suspense fallback={<div className="p-12 text-center text-zinc-500">Loading compare view...</div>}>
+    <Suspense fallback={<ComparisonMatrixSkeleton />}>
       <CompareContent />
     </Suspense>
   );

@@ -26,6 +26,7 @@ import {
   Cpu,
   Key
 } from "lucide-react";
+import { PlanBlueprintSkeleton, Skeleton } from "@/components/ui/skeletons";
 
 interface GoalPlannerCardProps {
   initialGoal?: string;
@@ -407,8 +408,24 @@ export const GoalPlannerCard: React.FC<GoalPlannerCardProps> = ({
         </button>
       </form>
 
+      {/* In-Place Blueprint Generation Skeleton */}
+      {loading && (
+        <div className="space-y-6 pt-6 border-t border-zinc-800/80 animate-in fade-in duration-300">
+          <div className="p-4 rounded-2xl bg-indigo-500/10 border border-indigo-500/25 text-indigo-300 text-xs font-semibold flex flex-wrap items-center justify-between gap-3 shadow-inner">
+            <div className="flex items-center gap-2.5">
+              <Sparkles className="w-4 h-4 text-cyan-400 animate-spin" />
+              <span>Analyzing Objectives, Calculating Constraints & Modeling Multi-Tool Phases...</span>
+            </div>
+            <span className="text-[10px] font-mono text-indigo-400 px-2 py-0.5 rounded-full bg-indigo-500/20 border border-indigo-500/30">
+              Deterministic Engine
+            </span>
+          </div>
+          <PlanBlueprintSkeleton />
+        </div>
+      )}
+
       {/* Plan Results View */}
-      {planResult && (
+      {planResult && !loading && (
         <div className="space-y-6 pt-6 border-t border-zinc-800/80 animate-in fade-in duration-300">
           {/* Executive Plan Summary Banner */}
           <div className="p-5 rounded-2xl bg-zinc-900/90 border border-zinc-800 shadow-xl space-y-3">
@@ -638,8 +655,28 @@ export const GoalPlannerCard: React.FC<GoalPlannerCardProps> = ({
             </Link>
           </div>
 
+          {/* Multimodal Solution Synthesis Skeleton */}
+          {generatingSolution && (
+            <div className="p-6 rounded-2xl bg-zinc-950 border border-cyan-500/30 shadow-2xl space-y-4 animate-in fade-in duration-300">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center">
+                  <RefreshCw className="w-4 h-4 text-cyan-400 animate-spin" />
+                </div>
+                <div>
+                  <h5 className="text-sm font-bold text-white">Synthesizing Working Artifact via Kie.ai API</h5>
+                  <p className="text-xs text-zinc-400">Executing multimodal pipeline, assembling deliverables, and verifying output...</p>
+                </div>
+              </div>
+              <div className="space-y-2 pt-2">
+                <Skeleton className="w-full h-4 rounded" />
+                <Skeleton className="w-5/6 h-4 rounded" />
+                <Skeleton className="w-2/3 h-4 rounded" />
+              </div>
+            </div>
+          )}
+
           {/* Kie.ai Live Solution Deliverable Viewer */}
-          {solutionDeliverable && (
+          {solutionDeliverable && !generatingSolution && (
             <div className="p-6 rounded-2xl bg-zinc-950 border border-cyan-500/30 shadow-2xl space-y-4 animate-in fade-in duration-300">
               <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-zinc-800">
                 <div className="flex items-center gap-2">

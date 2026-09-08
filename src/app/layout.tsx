@@ -4,6 +4,7 @@ import "./globals.css";
 import { AuthProvider } from "@/features/auth/auth-context";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { NavigationProgressBar } from "@/components/ui/navigation-progress-bar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,6 +39,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-zinc-950 text-zinc-100 font-sans selection:bg-indigo-500 selection:text-white">
         <AuthProvider>
+          <NavigationProgressBar />
           <Navbar />
           <main className="flex-1 w-full">
             {children}

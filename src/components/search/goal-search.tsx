@@ -18,6 +18,7 @@ export const GoalSearch: React.FC<GoalSearchProps> = ({
 }) => {
   const router = useRouter();
   const [query, setQuery] = useState(initialQuery);
+  const [isSearching, setIsSearching] = useState(false);
 
   const shortcuts = [
     { label: "Build a Website", prompt: "I want to build a modern website with clean UI" },
@@ -31,12 +32,14 @@ export const GoalSearch: React.FC<GoalSearchProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!query.trim()) return;
+    if (!query.trim() || isSearching) return;
+    setIsSearching(true);
     router.push(`/ask?q=${encodeURIComponent(query.trim())}`);
   };
 
   const handleShortcutClick = (prompt: string) => {
     setQuery(prompt);
+    setIsSearching(true);
     router.push(`/ask?q=${encodeURIComponent(prompt)}`);
   };
 
@@ -45,7 +48,7 @@ export const GoalSearch: React.FC<GoalSearchProps> = ({
       <form onSubmit={handleSubmit} className="relative group">
         <div className="relative flex items-center rounded-2xl border-2 border-zinc-800 bg-zinc-900/90 shadow-2xl shadow-indigo-950/20 focus-within:border-indigo-500/80 focus-within:ring-4 focus-within:ring-indigo-500/10 transition-all p-2 sm:p-2.5">
           <div className="pl-3 pr-2 text-indigo-400">
-            <Sparkles className="w-5 h-5 animate-pulse" />
+            <Sparkles className={cn("w-5 h-5", isSearching ? "animate-spin text-cyan-400" : "animate-pulse")} />
           </div>
 
           <input
@@ -54,21 +57,33 @@ export const GoalSearch: React.FC<GoalSearchProps> = ({
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Tell us what you want to accomplish... (e.g., I want to launch a YouTube channel with ₹2,000 budget)"
             autoFocus={autoFocus}
-            className="flex-1 bg-transparent px-2 text-sm sm:text-base text-zinc-100 placeholder-zinc-500 focus:outline-none min-w-0"
+            disabled={isSearching}
+            className="flex-1 bg-transparent px-2 text-sm sm:text-base text-zinc-100 placeholder-zinc-500 focus:outline-none min-w-0 disabled:opacity-70"
           />
 
           <button
             type="submit"
-            disabled={!query.trim()}
+            disabled={!query.trim() || isSearching}
             className={cn(
               "shrink-0 inline-flex items-center gap-1.5 px-4 sm:px-5 py-2.5 rounded-xl font-semibold text-xs sm:text-sm text-white shadow-md transition",
-              query.trim()
+              isSearching
+                ? "bg-gradient-to-r from-indigo-600 to-cyan-600 shadow-indigo-500/30 cursor-wait animate-pulse"
+                : query.trim()
                 ? "bg-indigo-600 hover:bg-indigo-500 cursor-pointer"
                 : "bg-zinc-800 text-zinc-400 cursor-not-allowed"
             )}
           >
-            <span>Find My AI Stack</span>
-            <ArrowRight className="w-4 h-4 hidden sm:inline-block" />
+            {isSearching ? (
+              <>
+                <Sparkles className="w-4 h-4 animate-spin text-cyan-300" />
+                <span>Connecting Universe...</span>
+              </>
+            ) : (
+              <>
+                <span>Find My AI Stack</span>
+                <ArrowRight className="w-4 h-4 hidden sm:inline-block" />
+              </>
+            )}
           </button>
         </div>
       </form>

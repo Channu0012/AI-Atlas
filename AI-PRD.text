@@ -1,0 +1,1841 @@
+# AI ATLAS — 1,000+ AI TOOLS EXPANSION PRD
+
+## 1. OBJECTIVE
+
+Expand AI Atlas into a structured, high-quality AI tool discovery platform containing an initial target of **1,000 real AI tools** across major categories.
+
+Do not simply add 1,000 cards.
+
+The goal is to create a system where every tool is:
+
+* Structured
+* Categorized
+* Searchable
+* Filterable
+* Verifiable
+* Comparable
+* Recommendation-ready
+* Connected to capabilities and use cases
+* Useful for AI Stack generation
+
+The final experience should help users answer:
+
+> **“What AI tool should I use for my specific goal?”**
+
+rather than:
+
+> **“Here are 1,000 AI tools. Good luck.”**
+
+---
+
+# 2. MOST IMPORTANT PRODUCT RULE
+
+**Quality > quantity.**
+
+Do not create fake tools, fabricated information, copied fictional pricing, fake reviews, fake ratings, or invented statistics to reach 1,000.
+
+The target is:
+
+**1,000 real tools**
+
+not:
+
+**1,000 database records pretending to be real tools.**
+
+Every published tool must have enough verified information to be useful.
+
+---
+
+# 3. INITIAL DISCOVERY SECTIONS
+
+Create these major discovery sections on the website:
+
+1. ⭐ Top 100
+2. 🔥 Trending
+3. 🆓 Best Free
+4. 💰 Best Value
+5. 👨‍💻 Best for Developers
+6. 🎓 Best for Students
+7. 🚀 Best for Startups
+8. 🎨 Best for Creators
+9. 🏢 Best for Business
+10. 🆕 Recently Launched
+
+These must be **dynamic database-driven collections**.
+
+Do not hardcode a list of tools into these sections.
+
+---
+
+# 4. CATEGORY TARGET
+
+Use the following initial category allocation as the planned target:
+
+| Category                                |    Target |
+| --------------------------------------- | --------: |
+| 🤖 AI Assistants & Chatbots             |        60 |
+| 💻 Coding & Development                 |       100 |
+| 🎨 Image Generation & Editing           |       100 |
+| 🎬 Video Generation & Editing           |        80 |
+| 🎵 Music, Audio & Voice                 |        60 |
+| ✍️ Writing & Content                    |        70 |
+| 🔎 Search & Research                    |        60 |
+| 📚 Education & Students                 |        50 |
+| 📊 Business & Productivity              |        70 |
+| 📣 Marketing & SEO                      |        70 |
+| 🎨 Design & UI/UX                       |        50 |
+| ⚙️ Automation & AI Agents               |        60 |
+| 🧑‍💼 Sales & CRM                       |        40 |
+| 📧 Email & Communication                |        30 |
+| 📄 Documents & PDF                      |        30 |
+| 🧠 Data & Analytics                     |        30 |
+| 🖥️ Website/App Builders                |        40 |
+| 🧑‍💻 No-Code Tools                     |        20 |
+| 🛡️ Security & Developer Infrastructure |        20 |
+| 🎯 Other Specialized AI                 |        20 |
+| **TOTAL**                               | **1,000** |
+
+Treat these as **targets**, not fake guaranteed counts.
+
+If a category has only 42 genuinely useful verified tools, do not invent 18 more just to reach 60.
+
+---
+
+# 5. CATEGORY ARCHITECTURE
+
+Do not treat categories as flat labels.
+
+Use hierarchical taxonomy.
+
+Example:
+
+```text
+Coding & Development
+ ├── AI Code Generators
+ ├── Coding Assistants
+ ├── Code Review
+ ├── Debugging
+ ├── Developer Agents
+ ├── Testing
+ ├── DevOps
+ └── API Development
+```
+
+Example:
+
+```text
+Image Generation & Editing
+ ├── Text-to-Image
+ ├── Image Editing
+ ├── Background Removal
+ ├── Product Images
+ ├── Upscaling
+ ├── Design Generation
+ └── Image-to-Image
+```
+
+Example:
+
+```text
+Video
+ ├── Text-to-Video
+ ├── Image-to-Video
+ ├── Video Editing
+ ├── AI Avatars
+ ├── Lip Sync
+ ├── Video Upscaling
+ └── Shorts/Reels
+```
+
+The hierarchy must be database-driven.
+
+---
+
+# 6. EACH TOOL MUST HAVE MULTIPLE CLASSIFICATIONS
+
+Every tool should be connected to:
+
+### Category
+
+Where the tool belongs.
+
+### Capabilities
+
+What it can actually do.
+
+### Use Cases
+
+Why a user might use it.
+
+### Target Users
+
+Who it is intended for.
+
+### Platforms
+
+Where it works.
+
+### Pricing
+
+How it is monetized.
+
+### Difficulty
+
+How difficult it is to use.
+
+Example:
+
+```text
+Tool:
+Example AI
+
+Category:
+Video Generation
+
+Capabilities:
+text-to-video
+image-to-video
+video-editing
+
+Use Cases:
+youtube
+instagram-reels
+marketing-video
+
+Target Users:
+creators
+marketers
+startups
+
+Platforms:
+web
+
+Pricing:
+freemium
+
+Difficulty:
+beginner
+```
+
+This structure is critical for recommendations.
+
+---
+
+# 7. TOOL DATA REQUIREMENTS
+
+Every tool record should contain as many of these fields as legitimately available:
+
+```ts
+{
+  id,
+  name,
+  slug,
+  tagline,
+  description,
+  website,
+
+  company: {
+    name,
+    website
+  },
+
+  logo,
+
+  categoryIds: [],
+  subcategoryIds: [],
+  capabilityIds: [],
+  useCaseIds: [],
+
+  targetUsers: [],
+
+  features: [],
+
+  pricing: {
+    model,
+    freePlan,
+    freeTrial,
+    startingPrice,
+    currency,
+    billingPeriod
+  },
+
+  platforms: {
+    web,
+    ios,
+    android,
+    windows,
+    mac,
+    linux
+  },
+
+  api: {
+    available
+  },
+
+  openSource,
+
+  difficulty,
+
+  strengths: [],
+  limitations: [],
+  integrations: [],
+  supportedLanguages: [],
+
+  verification: {
+    status,
+    websiteChecked,
+    pricingChecked,
+    featuresChecked,
+    lastVerifiedAt,
+    pricingCheckedAt,
+    featuresCheckedAt,
+    websiteCheckedAt,
+    verificationNotes
+  },
+
+  rankingSignals: {
+    qualityScore,
+    reliabilityScore,
+    popularityScore,
+    recencyScore
+  },
+
+  status,
+  createdAt,
+  updatedAt
+}
+```
+
+Do not add data merely to fill fields.
+
+Unknown information should remain unknown.
+
+---
+
+# 8. TOOL QUALITY SCORE
+
+Create an internal quality model.
+
+Possible factors:
+
+```text
+Data completeness
+Verification freshness
+Website availability
+Feature reliability
+User feedback
+Review quality
+Popularity signals
+Recency
+```
+
+Do not make one arbitrary score the permanent truth.
+
+Keep these factors separate so the recommendation engine can use them intelligently.
+
+---
+
+# 9. TOP 100 SYSTEM
+
+Build a dynamic **Top 100** page.
+
+Do not manually enter rankings.
+
+Create a ranking pipeline based on legitimate signals such as:
+
+* Recommendation relevance
+* Verified quality
+* Reliability
+* User engagement
+* Save rate
+* Outbound interest
+* Review quality where sufficient
+* Recency
+* Data confidence
+
+Do not allow raw traffic alone to determine the ranking.
+
+Avoid creating a popularity loop where already-popular tools automatically become more popular.
+
+Use ranking diversification.
+
+---
+
+# 10. TRENDING SYSTEM
+
+Trending should be based on actual recent activity.
+
+Potential signals:
+
+* Recent searches
+* Recent tool views
+* Recommendation clicks
+* Saves
+* Outbound clicks
+* Growth compared with previous period
+* Recently added tools
+
+Calculate a normalized trending score.
+
+Example conceptual model:
+
+```text
+Trending =
+recentGrowth
++ engagementGrowth
++ searchGrowth
++ recommendationGrowth
+```
+
+Use time windows such as:
+
+* 24 hours
+* 7 days
+* 30 days
+
+Do not fabricate trending data.
+
+---
+
+# 11. BEST FREE SYSTEM
+
+Create a dynamic **Best Free** collection.
+
+A tool can appear only when its database data supports free availability.
+
+Distinguish between:
+
+* Completely free
+* Free plan
+* Free trial
+* Freemium
+* Open source
+
+Do not label a free trial as “free forever.”
+
+---
+
+# 12. BEST VALUE SYSTEM
+
+Value should consider:
+
+* Capability breadth
+* Price
+* Free allowance
+* Quality
+* Reliability
+* Ease of use
+
+A cheap tool is not automatically good value.
+
+Calculate value relative to user needs.
+
+---
+
+# 13. PERSONA-BASED COLLECTIONS
+
+Create dynamic rankings for:
+
+### Developers
+
+Prioritize:
+
+* Coding capability
+* API
+* Developer workflows
+* Integrations
+* Technical quality
+* Platform compatibility
+
+### Students
+
+Prioritize:
+
+* Affordability
+* Education use cases
+* Ease of use
+* Research
+* Writing
+* Study support
+
+### Startups
+
+Prioritize:
+
+* Cost
+* Speed
+* Automation
+* Product development
+* Marketing
+* Business workflows
+
+### Creators
+
+Prioritize:
+
+* Video
+* Image
+* Audio
+* Content
+* Social workflows
+* Ease of use
+
+### Business
+
+Prioritize:
+
+* Productivity
+* Automation
+* Sales
+* CRM
+* Analytics
+* Collaboration
+* Security
+
+These collections must use the same core recommendation engine with different preference weights.
+
+---
+
+# 14. RECENTLY LAUNCHED
+
+Create a **Recently Launched** section.
+
+Store:
+
+```text
+launchDate
+addedToAtlasAt
+```
+
+Sort primarily by legitimate launch/availability data.
+
+If launch date is unavailable:
+
+Do not invent one.
+
+Differentiate:
+
+**Recently Launched**
+
+from
+
+**Recently Added to AI Atlas**
+
+These are not the same thing.
+
+---
+
+# 15. FILTER SYSTEM
+
+The main discovery experience needs powerful filters.
+
+Filters:
+
+### Category
+
+### Capability
+
+### Pricing
+
+* Free
+* Freemium
+* Paid
+* Custom
+
+### Platform
+
+* Web
+* iOS
+* Android
+* Windows
+* Mac
+* Linux
+
+### Skill
+
+* Beginner
+* Intermediate
+* Professional
+
+### API
+
+* Yes
+* No
+
+### Open Source
+
+* Yes
+* No
+
+### Target User
+
+* Student
+* Creator
+* Developer
+* Startup
+* Business
+* Researcher
+* Marketer
+
+### Other
+
+* Free trial
+* Verified
+* Recently launched
+
+Filters must operate server-side.
+
+---
+
+# 16. SEARCH EXPERIENCE
+
+Users should be able to search:
+
+```text
+"video editor"
+"AI for coding"
+"free AI for students"
+"AI for startup"
+"best AI voice generator"
+"AI research tools"
+```
+
+Search should understand:
+
+* Tool name
+* Category
+* Capability
+* Use case
+* User type
+* Pricing
+* Platform
+
+Normalize natural-language queries before retrieval.
+
+---
+
+# 17. NATURAL-LANGUAGE SEARCH
+
+Connect the 1,000-tool database to the AI recommendation engine.
+
+Example:
+
+User:
+
+> “I need free AI tools to make YouTube videos on my phone.”
+
+System extracts:
+
+```text
+Goal:
+youtube video creation
+
+Budget:
+free
+
+Platform:
+mobile
+
+Capabilities:
+script
+voice
+video
+thumbnail
+
+User:
+creator
+```
+
+Then:
+
+```text
+Retrieve
+→ Filter
+→ Score
+→ Rank
+→ Explain
+```
+
+The user should NOT receive 100 tools.
+
+Return the strongest 3–8 choices depending on confidence and goal complexity.
+
+---
+
+# 18. RECOMMENDATION QUALITY
+
+The 1,000 tools should increase the **candidate pool**, not the number of recommendations.
+
+The experience should remain:
+
+> 1,000+ possible tools → 3–8 highly relevant choices
+
+This is the central competitive advantage of AI Atlas.
+
+---
+
+# 19. CATEGORY PAGE UX
+
+Every category page should contain:
+
+### Header
+
+Category title + description.
+
+### Top tools
+
+Best tools for the category.
+
+### Popular capabilities
+
+Capability chips.
+
+### Subcategories
+
+Browse deeper.
+
+### Filters
+
+Dynamic filtering.
+
+### Recommended for you
+
+Personalized tools for signed-in users.
+
+### Related workflows
+
+Connect tools to workflows.
+
+### Related use cases
+
+Connect category to real goals.
+
+---
+
+# 20. TOOL CARD DESIGN
+
+Every card should show only useful information.
+
+Include:
+
+* Logo
+* Tool name
+* One-line description
+* Category
+* Pricing badge
+* Verification badge
+* Main capabilities
+* Best-for tag
+* Rating only when legitimate data exists
+* Save
+* Compare
+
+Avoid overcrowding.
+
+The card must answer:
+
+**What is it?**
+
+**What does it do?**
+
+**Who is it for?**
+
+**How much does it cost?**
+
+---
+
+# 21. TOOL DETAIL PAGE
+
+The tool page becomes the central knowledge page.
+
+Show:
+
+* Tool overview
+* Verified information
+* Capabilities
+* Use cases
+* Pricing
+* Platforms
+* API
+* Integrations
+* Strengths
+* Limitations
+* Best for
+* Not ideal for
+* Alternatives
+* Related workflows
+* Related tools
+* Reviews
+* Verification information
+
+Add:
+
+**Find the best alternative**
+
+and
+
+**Build a workflow using this tool**
+
+---
+
+# 22. TOOL RELATIONSHIPS
+
+Do not make tools isolated records.
+
+Create meaningful relationships:
+
+```text
+Tool
+ ↕
+Capability
+ ↕
+Use Case
+ ↕
+Workflow
+ ↕
+Alternative
+ ↕
+Related Tool
+```
+
+Example:
+
+```text
+Video Tool A
+→ text-to-video
+→ YouTube
+→ Creator workflow
+→ Alternative B
+→ Thumbnail Tool C
+→ Voice Tool D
+```
+
+This makes AI Atlas increasingly intelligent as the database grows.
+
+---
+
+# 23. WORKFLOW CONNECTION
+
+Every major category should have useful workflows.
+
+Examples:
+
+### Video
+
+```text
+Research
+→ Script
+→ Voice
+→ Video
+→ Thumbnail
+→ Editing
+→ Publishing
+```
+
+### Startup
+
+```text
+Research
+→ Strategy
+→ Branding
+→ Website
+→ Development
+→ Marketing
+→ Support
+→ Analytics
+```
+
+### Student
+
+```text
+Research
+→ Notes
+→ Summarize
+→ Study
+→ Practice
+→ Revision
+```
+
+Tools must be mapped to relevant workflow stages.
+
+---
+
+# 24. STACK GENERATION
+
+When users request a large outcome, use the 1,000-tool database to create an AI stack.
+
+Example:
+
+> “I want to run my startup with AI.”
+
+Generate:
+
+```text
+Research Tool
+Business Planning Tool
+Design Tool
+Coding Tool
+Website Tool
+Marketing Tool
+CRM Tool
+Automation Tool
+Analytics Tool
+```
+
+For every selection show:
+
+* Tool
+* Role
+* Reason
+* Price
+* Alternative
+* Difficulty
+* Verification
+
+Calculate total cost only from valid pricing data.
+
+---
+
+# 25. DATABASE SEEDING STRATEGY
+
+Do not blindly generate all 1,000 records at once.
+
+Build the database in controlled batches.
+
+Recommended order:
+
+```text
+Batch 1
+Core high-demand tools
+
+Batch 2
+Coding + Development
+
+Batch 3
+Image + Video
+
+Batch 4
+Business + Marketing
+
+Batch 5
+Research + Education
+
+Batch 6
+Audio + Writing
+
+Batch 7
+Automation + Agents
+
+Batch 8
+Design + Website/App builders
+
+Batch 9
+Sales + CRM + Documents
+
+Batch 10
+Specialized tools
+```
+
+After each batch:
+
+* Validate
+* Deduplicate
+* Verify
+* Classify
+* Test search
+* Test recommendations
+
+---
+
+# 26. DUPLICATE PREVENTION
+
+Before inserting any tool:
+
+Compare:
+
+* Domain
+* Name
+* Company
+* Description
+* Existing tool aliases
+* Capabilities
+* Semantic similarity where available
+
+Potential duplicate → admin review.
+
+Never create duplicate entries simply because the same product appears in multiple categories.
+
+A tool can belong to multiple categories without being duplicated.
+
+---
+
+# 27. DATA INGESTION
+
+Architect for two approaches:
+
+### Admin entry
+
+Manual tool creation/update.
+
+### Future automated ingestion
+
+```text
+Discovery
+→ Extraction
+→ Classification
+→ Duplicate detection
+→ Validation
+→ Admin review
+→ Publication
+```
+
+Do not build a massive crawler for the first implementation.
+
+---
+
+# 28. ADMIN TOOL IMPORT
+
+Create an admin-friendly bulk import system.
+
+Support:
+
+* CSV/JSON import
+* Validation preview
+* Duplicate detection
+* Error reporting
+* Category mapping
+* Capability mapping
+* Publish/draft selection
+
+Important:
+
+**Bulk import must never bypass verification.**
+
+Imported records should initially enter:
+
+`draft` or `pending`
+
+unless the workflow explicitly identifies them as already verified.
+
+---
+
+# 29. ADMIN DATA QUALITY DASHBOARD
+
+Show:
+
+* Total tools
+* Tools by category
+* Missing descriptions
+* Missing pricing
+* Missing logos
+* Missing capability mapping
+* Missing use cases
+* Unverified tools
+* Old verification records
+* Broken websites
+* Potential duplicates
+
+This allows the database to become progressively better.
+
+---
+
+# 30. DATA COMPLETENESS SCORE
+
+Add an internal data completeness score.
+
+Example:
+
+```text
+Identity       15%
+Description    15%
+Categories     10%
+Capabilities   15%
+Use cases      10%
+Pricing        10%
+Platforms      5%
+Verification   20%
+```
+
+Use this score internally for data-quality management.
+
+Do not automatically show it to users unless useful.
+
+---
+
+# 31. VERIFICATION PRIORITY
+
+Not every tool needs equal review priority.
+
+Prioritize:
+
+1. Top-used tools
+2. Frequently recommended tools
+3. Popular search results
+4. High-traffic tools
+5. Tools with reported incorrect data
+6. Old verification records
+7. Tools with changing pricing
+
+This makes the verification operation scalable.
+
+---
+
+# 32. RECOMMENDATION DATA REQUIREMENTS
+
+The recommendation system must use the enlarged tool database.
+
+Candidate retrieval should support:
+
+```text
+category
+subcategory
+capability
+use case
+target user
+budget
+pricing
+platform
+API
+open-source
+difficulty
+quality
+reliability
+recency
+```
+
+Then:
+
+```text
+Candidate Retrieval
+↓
+Hard Constraint Filtering
+↓
+Weighted Scoring
+↓
+Ranking
+↓
+Diversification
+↓
+Explanation
+```
+
+---
+
+# 33. RESULT DIVERSIFICATION
+
+Avoid returning five nearly identical tools.
+
+Example:
+
+If ten tools perform the same job almost identically:
+
+Return:
+
+* Best Overall
+* Best Free
+* Best Quality
+* Best for Beginners
+* Best Alternative
+
+only when actual differences exist.
+
+The goal is useful choice diversity.
+
+---
+
+# 34. USER-SPECIFIC RESULTS
+
+When authenticated, personalize results based on:
+
+* Skill level
+* Budget preference
+* Platforms
+* Interests
+* Preferred categories
+* Free/open-source preference
+* Previous saves
+* Explicit recommendation feedback
+
+Never use personal information that is unnecessary for recommendations.
+
+---
+
+# 35. AI EXPLANATION RULE
+
+The LLM receives only structured verified information.
+
+Example input:
+
+```text
+Tool:
+Example AI
+
+Verified facts:
+- freemium
+- web
+- text-to-video
+- beginner
+- API unavailable
+```
+
+Then explanation can say:
+
+> Recommended because it supports text-to-video, works on the web, and is suitable for beginners.
+
+It cannot suddenly claim:
+
+> “It has the world's best video quality.”
+
+unless the source data actually supports that statement.
+
+---
+
+# 36. SEARCH HISTORY
+
+For authenticated users, allow users to revisit previous searches.
+
+Display:
+
+* Query
+* Date
+* Recommendation summary
+* Saved tools
+* Generated stack where available
+
+Do not save unnecessary sensitive user information.
+
+---
+
+# 37. SEARCH HISTORY UX
+
+When reopening history:
+
+Show an elegant branded loading state while fetching data.
+
+Use:
+
+* Skeleton cards
+* Smooth transitions
+* Loading placeholders
+
+Never leave the interface frozen.
+
+---
+
+# 38. GLOBAL LOADING SYSTEM
+
+Apply the same principle throughout the 1,000-tool experience.
+
+Loading states for:
+
+* Search
+* Filters
+* Tool pages
+* Categories
+* Recommendations
+* Comparison
+* Workflows
+* Stacks
+* Search history
+* Profile
+* Admin tables
+
+The application should feel like one coherent premium product.
+
+---
+
+# 39. PERFORMANCE FOR 1,000+ TOOLS
+
+1,000 tools should NOT mean 1,000 documents downloaded into the browser.
+
+Use:
+
+* Pagination
+* Server-side filtering
+* Server-side sorting
+* Search indexes where required
+* Lazy loading
+* Optimized images
+* Caching
+* Cursor-based pagination where appropriate
+
+Only retrieve what is needed.
+
+---
+
+# 40. FIRESTORE CONSIDERATIONS
+
+Design indexes for common queries.
+
+Potential query dimensions:
+
+```text
+status
+categoryIds
+capabilityIds
+pricing.model
+pricing.freePlan
+difficulty
+verification.status
+platforms.web
+api.available
+openSource
+createdAt
+```
+
+Do not create unnecessary indexes for every possible combination.
+
+Monitor actual query requirements.
+
+---
+
+# 41. SEARCH PERFORMANCE
+
+Do not query Firestore separately for every filter combination when avoidable.
+
+Create a clean search abstraction:
+
+```ts
+searchTools({
+  query,
+  categories,
+  capabilities,
+  pricing,
+  platforms,
+  userType,
+  difficulty,
+  apiRequired,
+  openSourceOnly,
+  page
+})
+```
+
+Keep this independent from the UI.
+
+---
+
+# 42. SEO STRATEGY
+
+Create indexable pages for:
+
+* Tool
+* Category
+* Subcategory
+* Use case
+* Workflow
+* Comparison
+
+Examples:
+
+```text
+/tools/chat-tool
+/categories/video-generation
+/categories/coding/code-review
+/use-cases/youtube-content
+/workflows/startup-launch
+```
+
+Do not create thousands of low-value SEO pages.
+
+Only index pages with genuine information.
+
+---
+
+# 43. HOMEPAGE INTEGRATION
+
+Update homepage to showcase the larger database without making the page overwhelming.
+
+Suggested sections:
+
+```text
+Hero
+↓
+Popular Goals
+↓
+Top AI Tools
+↓
+Trending
+↓
+Best Free
+↓
+Explore Categories
+↓
+Popular Workflows
+↓
+Recently Launched
+↓
+AI Stack Builder CTA
+```
+
+Use horizontal carousels or compact grids where appropriate.
+
+Do not show 100 cards on the homepage.
+
+---
+
+# 44. EXPLORE PAGE
+
+Create an advanced discovery experience:
+
+`/tools`
+
+Layout:
+
+```text
+Search
+↓
+Quick Filters
+↓
+Category Navigation
+↓
+Tool Results
+↓
+Sort
+↓
+Pagination
+```
+
+Sort options:
+
+* Relevance
+* Popular
+* Trending
+* Newest
+* Best Rated where valid
+* Best Free
+* Best Value
+
+---
+
+# 45. CATEGORY LANDING PAGE
+
+Create `/categories` as a visually strong taxonomy explorer.
+
+Show all major categories with:
+
+* Icon
+* Category name
+* Description
+* Real tool count
+* Popular subcategories
+
+Tool counts must come from actual database queries.
+
+---
+
+# 46. CATEGORY COUNT RULE
+
+Never display:
+
+> “100 tools”
+
+simply because 100 was the target.
+
+Display the actual number of published tools:
+
+> **87 tools**
+
+when the database contains 87.
+
+If the system has 100 verified tools, then show 100.
+
+---
+
+# 47. TOP 100 RULE
+
+If fewer than 100 tools meet the ranking criteria:
+
+Display the real number.
+
+Do not invent missing ranks.
+
+Example:
+
+> Top 73
+
+is better than fake tools filling positions 74–100.
+
+---
+
+# 48. TRUST BADGES
+
+Create visual distinctions:
+
+### Verified
+
+Verified information.
+
+### Community Submitted
+
+Submitted by users but not fully verified.
+
+### AI Explained
+
+Explanation generated by AI.
+
+### Sponsored
+
+Paid placement, if introduced.
+
+### Recently Verified
+
+Verification performed recently.
+
+These labels must be understandable and not misleading.
+
+---
+
+# 49. MONETIZATION ARCHITECTURE
+
+Keep monetization separate from recommendation relevance.
+
+Potential future:
+
+* Affiliate links
+* Sponsored placement
+* Premium tools
+* Business profiles
+
+Never allow payment to silently alter organic recommendation scores.
+
+---
+
+# 50. ANALYTICS FOR 1,000 TOOLS
+
+Track:
+
+* Tool impressions
+* Tool views
+* Tool saves
+* Tool comparisons
+* Outbound clicks
+* Recommendation appearances
+* Recommendation clicks
+* Category views
+* Search queries
+* Search no-results
+* Tool feedback
+
+This data should help improve both ranking and database coverage.
+
+---
+
+# 51. SEARCH GAP ENGINE
+
+Use search data to discover missing tools.
+
+For example:
+
+If users repeatedly search:
+
+> “AI legal document analyzer”
+
+and results are weak:
+
+Admin dashboard should report:
+
+```text
+High-demand search gap detected
+
+Query:
+AI legal document analyzer
+
+Result quality:
+Low
+
+Potential action:
+Add/verify tools in this capability.
+```
+
+This turns user behavior into a database growth engine.
+
+---
+
+# 52. CATEGORY GAP ENGINE
+
+Identify categories where:
+
+* Searches are high
+* Results are low
+* User satisfaction is low
+
+Use this to prioritize future tool ingestion.
+
+---
+
+# 53. RECOMMENDATION FEEDBACK LOOP
+
+When users report:
+
+* Not Relevant
+* Wrong Budget
+* Wrong Capability
+* Too Difficult
+
+store the feedback.
+
+Use it to detect:
+
+* Bad tool classifications
+* Bad pricing data
+* Bad ranking
+* Missing capabilities
+* Poor user intent extraction
+
+Do not automatically change rankings from one feedback event.
+
+Use aggregated evidence.
+
+---
+
+# 54. ADMIN BULK OPERATIONS
+
+Support:
+
+* Bulk category assignment
+* Bulk capability assignment
+* Bulk status update
+* Bulk verification
+* Bulk archive
+* Bulk export
+* Bulk import
+
+Every destructive/admin operation should include confirmation where appropriate.
+
+Record important actions in audit logs.
+
+---
+
+# 55. ADMIN SEARCH
+
+Admins should be able to search tools by:
+
+* Name
+* Domain
+* Company
+* Category
+* Capability
+* Verification status
+* Publication status
+
+This becomes increasingly important once the database grows.
+
+---
+
+# 56. DATABASE SCALABILITY
+
+The architecture must support:
+
+```text
+1,000 tools
+→ 5,000 tools
+→ 10,000 tools
+→ much larger dataset
+```
+
+Do not build the UI or query system around exactly 1,000 records.
+
+1,000 is the initial data target, not the architectural limit.
+
+---
+
+# 57. DATA MIGRATION SAFETY
+
+When changing tool schemas:
+
+* Use migration scripts where required.
+* Never silently destroy existing fields.
+* Validate old and new structures.
+* Test recommendation queries after migration.
+
+---
+
+# 58. QUALITY GATES
+
+A tool must not become published simply because it exists in the database.
+
+Minimum publication requirements should include appropriate verification/quality checks such as:
+
+* Valid name
+* Valid website
+* Meaningful description
+* Category
+* At least one capability
+* Appropriate pricing status
+* Appropriate verification state
+
+Exact requirements can be configurable for different publishing workflows.
+
+---
+
+# 59. MVP OF THIS EXPANSION
+
+First deliver:
+
+1. 1,000-tool-ready schema
+2. Category hierarchy
+3. Capability system
+4. Use-case mapping
+5. Tool cards
+6. Tool pages
+7. `/tools`
+8. `/categories`
+9. Search
+10. Filters
+11. Top 100
+12. Trending
+13. Best Free
+14. Best Value
+15. Persona collections
+16. Recently Launched
+17. Recommendation integration
+18. Admin bulk import
+19. Verification system
+20. Data-quality dashboard
+
+Do not build every future feature simultaneously.
+
+---
+
+# 60. PHASED EXECUTION PLAN
+
+## Phase 1
+
+Prepare schema and taxonomy.
+
+## Phase 2
+
+Import the first high-quality tool dataset.
+
+## Phase 3
+
+Validate and deduplicate.
+
+## Phase 4
+
+Build discovery UI.
+
+## Phase 5
+
+Connect recommendation engine.
+
+## Phase 6
+
+Build ranking collections.
+
+## Phase 7
+
+Build admin data-quality tooling.
+
+## Phase 8
+
+Expand toward 1,000 verified tools.
+
+## Phase 9
+
+Run complete QA and recommendation-quality testing.
+
+---
+
+# 61. QA REQUIREMENTS
+
+Test:
+
+### Data
+
+* Duplicate tools
+* Missing information
+* Invalid links
+* Wrong categories
+* Wrong capabilities
+* Wrong pricing
+
+### Search
+
+* Exact search
+* Partial search
+* Natural-language search
+* No results
+* Filters
+* Pagination
+
+### Recommendations
+
+* Free-only
+* API required
+* Android required
+* Open-source only
+* Beginner
+* Student
+* Developer
+* Startup
+* Creator
+
+### UI
+
+* Desktop
+* Tablet
+* Mobile
+* Long tool names
+* Missing logos
+* Missing pricing
+* Large result sets
+
+### Performance
+
+* 1,000+ records
+* Fast filters
+* Search latency
+* Image loading
+* Firebase reads
+
+---
+
+# 62. FINAL SUCCESS CRITERIA
+
+The expansion is successful when:
+
+* AI Atlas can contain 1,000+ real tools.
+* Every tool is structured.
+* Tools can belong to multiple relevant categories without duplication.
+* Search can discover tools by goal and capability.
+* Filters work server-side.
+* Top 100 is dynamically calculated.
+* Trending is data-driven.
+* Best Free is data-driven.
+* Best Value is intelligently ranked.
+* Persona rankings are dynamically scored.
+* Recently Launched uses legitimate dates.
+* Recommendations use the complete database.
+* Recommendations remain selective rather than overwhelming.
+* Tool pages contain trustworthy information.
+* Admins can import and manage tools efficiently.
+* Duplicate detection works.
+* Verification works.
+* Database gaps can be identified.
+* No fake production information is presented.
+* The website remains fast and responsive.
+
+---
+
+# 63. FINAL DEVELOPMENT DIRECTIVE TO ANTIGRAVITY
+
+**Think before implementing. Do not simply add 1,000 cards.**
+
+First inspect the existing AI Atlas architecture, identify what already exists, then design the cleanest data, taxonomy, search, recommendation, ranking, and admin architecture needed to support 1,000+ tools without creating technical debt.
+
+Build the system so that the **database becomes the intelligence layer** of AI Atlas.
+
+Every tool should connect logically to categories, capabilities, use cases, users, workflows, alternatives, and recommendations.
+
+Use the supplied category targets as the initial roadmap, but never fabricate data to satisfy those numbers.
+
+Make the user experience extremely useful:
+
+> **User tells AI Atlas what they need → AI Atlas understands → searches 1,000+ structured tools → applies constraints → ranks intelligently → returns only the strongest choices → explains why → offers alternatives → builds a workflow/stack when useful.**
+
+The website should feel less like a directory and more like an **AI operating system for finding the right tools**.
+
+Before completing the implementation, run a full product, UI, data, performance, security, and recommendation-quality QA pass and fix all issues found.
+
+**Do not declare success because the UI looks good. Declare success only when the complete system actually works.**

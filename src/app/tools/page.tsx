@@ -8,6 +8,7 @@ import { ToolCard } from "@/components/tools/tool-card";
 import { FilterPanel } from "@/components/tools/filter-panel";
 import { EmptyState } from "@/components/ui/empty-state";
 import { VerificationBadge } from "@/components/ui/verification-badge";
+import { ToolGridSkeleton } from "@/components/ui/skeletons";
 import { 
   Search, 
   SlidersHorizontal, 
@@ -400,11 +401,7 @@ function ToolsDirectoryContent() {
 
               {/* Tools Grid or List View */}
               {loading ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {Array.from({ length: 6 }).map((_, i) => (
-                    <div key={i} className="h-64 rounded-2xl border border-zinc-800/60 bg-zinc-900/40 animate-pulse p-6" />
-                  ))}
-                </div>
+                <ToolGridSkeleton count={6} />
               ) : tools.length > 0 ? (
                 viewMode === "grid" ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

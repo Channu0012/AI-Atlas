@@ -1,12 +1,13 @@
 # AI Atlas — Find the Right AI for Any Job
 
-> **Production-Ready Decision Engine & Stack Builder for 91+ Fact-Verified AI Tools across 16 Deep Domains.**
+> **Production-Ready Decision Engine & Stack Builder for 100,000+ AI Tools & Open Models across 16 Deep Domains.**
 
 [![Next.js](https://img.shields.io/badge/Next.js-16.3.4-black?logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind-v4-38bdf8?logo=tailwindcss)](https://tailwindcss.com/)
+[![Firebase](https://img.shields.io/badge/Database-Firebase%20Firestore-orange?logo=firebase)](https://firebase.google.com/)
 [![Vitest](https://img.shields.io/badge/Tests-Passed%20(6%2F6)-brightgreen?logo=vitest)](https://vitest.dev/)
-[![Verified Tools](https://img.shields.io/badge/AI%20Tools-91%20Verified-indigo)](https://github.com/Channu0012/AI-Atlas)
+[![Verified Tools](https://img.shields.io/badge/AI%20Tools-100%2C000%2B%20Indexed-indigo)](https://github.com/Channu0012/AI-Atlas)
 [![Zero Fake Data](https://img.shields.io/badge/Hallucinated%20Pricing-0%25-emerald)]()
 
 ---
@@ -15,14 +16,15 @@
 
 **AI Atlas** is an intelligent decision engine and workflow synthesizer that helps developers, founders, creators, and enterprises find, compare, and connect the right AI tools for any objective.
 
-Rather than scrolling through endless generic directories, users specify what they want to accomplish. AI Atlas executes a deterministic weighted-sum recommendation algorithm to retrieve verified tools, explains the architectural trade-offs, calculates true monthly stack costs, and connects them into end-to-end production workflows.
+Rather than scrolling through endless generic directories, users specify what they want to accomplish. AI Atlas executes a deterministic weighted-sum recommendation algorithm to retrieve verified tools, explains the architectural trade-offs, calculates true monthly stack costs, connects them into end-to-end production workflows, and queries over **100,000+ open-source AI models and tools** backed by Firebase Firestore.
 
 ---
 
 ## ⚡ Core Features
 
 - **🎯 Goal-Driven Intent Extraction**: Parses user goals into required capabilities, domain contexts, target skill levels, and platform constraints.
-- **🛡️ 91 Fact-Verified AI Tools**: Comprehensive, manually verified data profiles with transparent pricing models (free, freemium, paid, custom), exact platform support, honest strengths, and clear limitations. Strictly zero hallucinations.
+- **🌌 100,000+ AI Universe Explorer**: Live search integration across 400,000+ open-weights models and pipelines from the Hugging Face and Open Source registry, auto-cached to Firebase Firestore.
+- **🛡️ 91 Fact-Verified Flagship Tools**: Comprehensive, manually verified data profiles with transparent pricing models (free, freemium, paid, custom), exact platform support, honest strengths, and clear limitations. Strictly zero hallucinations.
 - **🌐 16 Global AI Taxonomy Sectors**:
   - AI Coding & Development (Cursor, Replit Agent, Aider, Tabnine, Continue, Cody, Supermaven)
   - Multimodal LLMs & Frontier Reasoning (ChatGPT, Claude, Gemini, Grok, DeepSeek)

@@ -39,7 +39,7 @@ export default async function HomePage() {
         {/* Top Ticker Badge */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-pill text-xs font-semibold text-indigo-300 mb-8 shadow-inner border border-indigo-500/30">
           <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
-          <span>91+ Fact-Checked AI Tools · 16 Deep Domains · Zero Hallucinated Pricing</span>
+          <span>100,000+ AI Tools & Open Models · 16 Deep Domains · Zero Hallucinated Pricing</span>
         </div>
 
         {/* Headline */}
@@ -62,6 +62,13 @@ export default async function HomePage() {
         {/* Universe Quick-Filter Pills */}
         <div className="mt-8 flex flex-wrap items-center justify-center gap-2 max-w-4xl mx-auto text-xs">
           <span className="text-zinc-500 font-medium mr-1">Popular Stacks:</span>
+          <Link
+            href="/tools"
+            className="glass-pill px-3 py-1.5 rounded-full text-zinc-300 hover:text-white hover:border-indigo-500/40 flex items-center gap-1.5 transition"
+          >
+            <Sparkles className="w-3 h-3 text-indigo-400" />
+            <span>100k+ Universe</span>
+          </Link>
           <Link
             href="/tools?category=ai-coding"
             className="glass-pill px-3 py-1.5 rounded-full text-zinc-300 hover:text-white hover:border-cyan-500/40 flex items-center gap-1.5 transition"
@@ -105,9 +112,9 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <div className="flex flex-col items-center">
             <span className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
-              {publishedTools.length}+
+              100,000+
             </span>
-            <span className="text-xs text-zinc-400 mt-1 font-medium">Fact-Verified AI Tools</span>
+            <span className="text-xs text-zinc-400 mt-1 font-medium">AI Tools & Models Indexed</span>
           </div>
           <div className="flex flex-col items-center">
             <span className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">

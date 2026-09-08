@@ -34,7 +34,6 @@ export const Footer: React.FC = () => {
           <ul className="space-y-2 text-xs">
             <li><Link href="/ask" className="hover:text-white transition">Natural Language AI Search</Link></li>
             <li><Link href="/tools" className="hover:text-white transition">Verified Tool Directory</Link></li>
-            <li><Link href="/categories" className="hover:text-white transition">Taxonomy & Categories</Link></li>
             <li><Link href="/use-cases" className="hover:text-white transition">Use Cases</Link></li>
           </ul>
         </div>

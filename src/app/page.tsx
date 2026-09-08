@@ -178,10 +178,10 @@ export default async function HomePage() {
             </p>
           </div>
           <Link
-            href="/categories"
+            href="/tools"
             className="mt-4 md:mt-0 inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition group"
           >
-            <span>Explore All Categories</span>
+            <span>Explore All in Discover</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>

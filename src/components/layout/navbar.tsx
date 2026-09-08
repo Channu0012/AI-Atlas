@@ -30,7 +30,6 @@ export const Navbar: React.FC = () => {
   const navLinks = [
     { href: "/plan", label: "AI Planner", icon: Sparkles },
     { href: "/tools", label: "Discover", icon: Compass },
-    { href: "/categories", label: "Categories", icon: Layers },
     { href: "/workflows", label: "Workflows", icon: Workflow },
     { href: "/stacks", label: "Stacks", icon: Layers },
     { href: "/compare", label: "Compare", icon: Scale }

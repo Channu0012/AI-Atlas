@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Sparkles, ShieldCheck } from "lucide-react";
 
 export const Footer: React.FC = () => {
@@ -7,11 +8,20 @@ export const Footer: React.FC = () => {
     <footer className="w-full border-t border-zinc-800/80 bg-zinc-950 text-zinc-400 py-12 px-4 sm:px-6 lg:px-8 mt-auto">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
         <div className="space-y-4 md:col-span-1">
-          <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg bg-indigo-600 flex items-center justify-center text-white">
-              <Sparkles className="w-3.5 h-3.5" />
+          <div className="flex items-center gap-2.5">
+            <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-white/10 ring-1 ring-white/5 bg-black shrink-0">
+              <Image
+                src="/images/ai-atlas-logo.png"
+                alt="AI Atlas Brand Emblem"
+                fill
+                sizes="32px"
+                className="object-cover"
+              />
             </div>
-            <span className="text-base font-bold text-white tracking-tight">AI ATLAS</span>
+            <div className="flex flex-col">
+              <span className="text-sm font-extrabold text-white tracking-[0.16em] uppercase">AI ATLAS</span>
+              <span className="text-[8px] font-semibold text-zinc-400 tracking-[0.22em] uppercase">Explore a Brighter You</span>
+            </div>
           </div>
           <p className="text-xs text-zinc-400 leading-relaxed">
             The decision engine for AI tools. Describe what you want to accomplish, and AI Atlas finds the verified tools and builds the right workflow for you.

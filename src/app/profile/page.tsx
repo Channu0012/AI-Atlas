@@ -85,43 +85,6 @@ export default function ProfilePage() {
               </span>
             </Link>
 
-            {user?.role === "admin" && (
-              <Link
-                href="/admin"
-                className="flex items-center justify-between p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 hover:bg-amber-500/20 transition"
-              >
-                <div className="flex items-center gap-2 text-xs font-bold">
-                  <ShieldCheck className="w-4 h-4" />
-                  <span>Admin Control Center</span>
-                </div>
-                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-500/20">
-                  ADMIN
-                </span>
-              </Link>
-            )}
-          </div>
-
-          {/* Role switcher for Dev / QA validation */}
-          <div className="p-4 rounded-xl border border-zinc-800 bg-zinc-950/60 text-xs">
-            <span className="text-zinc-500 font-semibold block mb-2">Role Switcher (QA & Testing)</span>
-            <div className="flex gap-2">
-              <button
-                onClick={() => switchRoleForDev("admin")}
-                className={`flex-1 py-1 rounded text-[11px] font-semibold transition ${
-                  user?.role === "admin" ? "bg-amber-500 text-black font-bold" : "bg-zinc-800 text-zinc-400"
-                }`}
-              >
-                Admin
-              </button>
-              <button
-                onClick={() => switchRoleForDev("user")}
-                className={`flex-1 py-1 rounded text-[11px] font-semibold transition ${
-                  user?.role === "user" ? "bg-indigo-600 text-white" : "bg-zinc-800 text-zinc-400"
-                }`}
-              >
-                Standard User
-              </button>
-            </div>
           </div>
         </div>
 

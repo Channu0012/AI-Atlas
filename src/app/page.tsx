@@ -218,18 +218,18 @@ export default async function HomePage() {
 
       {/* Feature Teasers: Stacks & Comparison */}
       <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-zinc-800/60">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {/* Stack Builder Teaser */}
-          <div className="p-8 rounded-3xl glass-panel relative overflow-hidden flex flex-col justify-between group">
+          <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl glass-panel relative overflow-hidden flex flex-col justify-between group">
             <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl -z-10 group-hover:bg-indigo-500/20 transition-all" />
             <div>
               <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center mb-6">
                 <Layers className="w-6 h-6" />
               </div>
-              <h3 className="text-2xl font-bold text-white tracking-tight">
+              <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
                 AI Stack Builder & Cost Calculator
               </h3>
-              <p className="mt-3 text-sm text-zinc-400 leading-relaxed">
+              <p className="mt-3 text-xs sm:text-sm text-zinc-400 leading-relaxed">
                 Design custom AI tool combinations for your startup or production workflow. Calculate exact monthly expenditure, detect feature overlap redundancies, and export clean invoices.
               </p>
             </div>
@@ -245,16 +245,16 @@ export default async function HomePage() {
           </div>
 
           {/* Compare Duel Teaser */}
-          <div className="p-8 rounded-3xl glass-panel relative overflow-hidden flex flex-col justify-between group">
+          <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl glass-panel relative overflow-hidden flex flex-col justify-between group">
             <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl -z-10 group-hover:bg-cyan-500/20 transition-all" />
             <div>
               <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center mb-6">
                 <Scale className="w-6 h-6" />
               </div>
-              <h3 className="text-2xl font-bold text-white tracking-tight">
+              <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
                 Side-by-Side Tool Comparison
               </h3>
-              <p className="mt-3 text-sm text-zinc-400 leading-relaxed">
+              <p className="mt-3 text-xs sm:text-sm text-zinc-400 leading-relaxed">
                 Compare Claude 3.5 Sonnet vs. ChatGPT vs. Gemini, or Cursor vs. Windsurf vs. Replit Agent across pricing, strengths, weaknesses, API access, and verified enterprise security.
               </p>
             </div>
@@ -274,7 +274,7 @@ export default async function HomePage() {
       {/* Workflow Spotlight */}
       {featuredWorkflow && (
         <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-zinc-800/60">
-          <div className="p-8 sm:p-10 rounded-3xl glass-card border-indigo-500/30 glow-border-indigo flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div className="p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl glass-card border-indigo-500/30 glow-border-indigo flex flex-col lg:flex-row items-center justify-between gap-8">
             <div className="max-w-2xl">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-semibold text-indigo-400 mb-3">
                 <WorkflowIcon className="w-3.5 h-3.5" />

@@ -72,8 +72,8 @@ export const GoalSearch: React.FC<GoalSearchProps> = ({
       {/* Search Container: Morphs from compact logo button into full search HUD */}
       <div 
         className={cn(
-          "transition-all duration-500 ease-out",
-          isExpanded ? "w-full max-w-3xl" : "w-auto"
+          "w-full transition-all duration-500 ease-out flex justify-center",
+          isExpanded ? "max-w-3xl px-2 sm:px-0" : "max-w-xs"
         )}
       >
         {!isExpanded ? (
@@ -81,15 +81,19 @@ export const GoalSearch: React.FC<GoalSearchProps> = ({
           <div className="flex flex-col items-center gap-2.5">
             <button
               type="button"
-              onClick={handleLogoClick}
+              onClick={() => {
+                setIsHovered(true);
+                setIsFocused(true);
+                setTimeout(() => inputRef.current?.focus(), 150);
+              }}
               aria-label="Open AI Atlas Search"
-              className="group relative flex items-center justify-center p-3 sm:p-3.5 rounded-2xl bg-zinc-950/90 hover:bg-zinc-900 border-2 border-indigo-500/50 hover:border-cyan-400 shadow-[0_0_35px_rgba(99,102,241,0.4)] hover:shadow-[0_0_50px_rgba(34,211,238,0.6)] backdrop-blur-2xl transition-all duration-300 transform hover:scale-110 cursor-pointer"
+              className="group relative flex items-center justify-center p-3 sm:p-3.5 rounded-2xl bg-zinc-950/90 hover:bg-zinc-900 border-2 border-indigo-500/50 hover:border-cyan-400 shadow-[0_0_35px_rgba(99,102,241,0.4)] hover:shadow-[0_0_50px_rgba(34,211,238,0.6)] backdrop-blur-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer"
             >
               {/* Pulsing ambient glow */}
               <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-indigo-600 via-cyan-500 to-purple-600 opacity-40 group-hover:opacity-75 blur-md transition duration-500 animate-pulse" />
 
               {/* Logo container */}
-              <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-xl overflow-hidden border border-white/20 ring-1 ring-white/20 bg-black flex items-center justify-center shadow-2xl shrink-0">
+              <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-xl overflow-hidden border border-white/20 ring-1 ring-white/20 bg-black flex items-center justify-center shadow-2xl shrink-0">
                 <Image
                   src="/images/ai-atlas-logo.png"
                   alt="AI Atlas"
@@ -102,14 +106,14 @@ export const GoalSearch: React.FC<GoalSearchProps> = ({
               </div>
 
               {/* Search Badge Attached to Logo Button */}
-              <div className="absolute -bottom-1.5 -right-1.5 w-7 h-7 rounded-xl bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center border-2 border-black shadow-lg group-hover:rotate-12 transition-transform duration-300">
-                <Search className="w-3.5 h-3.5 text-white" />
+              <div className="absolute -bottom-1 -right-1 sm:-bottom-1.5 sm:-right-1.5 w-6 h-6 sm:w-7 sm:h-7 rounded-xl bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center border-2 border-black shadow-lg group-hover:rotate-12 transition-transform duration-300">
+                <Search className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white" />
               </div>
             </button>
 
             {/* Subtle floating hint */}
-            <span className="text-[11px] font-mono tracking-widest text-indigo-300/70 uppercase flex items-center gap-1">
-              <Zap className="w-3 h-3 text-cyan-400 animate-pulse" /> Hover or Click to Search
+            <span className="text-[10px] sm:text-[11px] font-mono tracking-widest text-indigo-300/70 uppercase flex items-center gap-1 text-center">
+              <Zap className="w-3 h-3 text-cyan-400 animate-pulse" /> Tap or Hover to Search
             </span>
           </div>
         ) : (
@@ -118,13 +122,13 @@ export const GoalSearch: React.FC<GoalSearchProps> = ({
             onSubmit={handleSubmit} 
             className="w-full relative group animate-fade-in"
           >
-            <div className="relative flex items-center rounded-2xl border-2 border-indigo-500 bg-zinc-950/95 shadow-[0_0_40px_rgba(99,102,241,0.3)] ring-4 ring-indigo-500/10 transition-all p-2 sm:p-2.5 backdrop-blur-2xl">
+            <div className="relative flex items-center rounded-2xl border-2 border-indigo-500 bg-zinc-950/95 shadow-[0_0_40px_rgba(99,102,241,0.3)] ring-4 ring-indigo-500/10 transition-all p-1.5 sm:p-2.5 backdrop-blur-2xl">
               {/* Logo Button inside search bar (click opens /ask) */}
               <button
                 type="button"
                 onClick={handleLogoClick}
                 title="Open Search Page"
-                className="relative w-9 h-9 rounded-xl overflow-hidden border border-white/20 ring-1 ring-white/10 bg-black shrink-0 ml-1 cursor-pointer hover:scale-105 transition-transform"
+                className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-xl overflow-hidden border border-white/20 ring-1 ring-white/10 bg-black shrink-0 ml-1 cursor-pointer hover:scale-105 active:scale-95 transition-transform"
               >
                 <Image
                   src="/images/ai-atlas-logo.png"
@@ -135,8 +139,8 @@ export const GoalSearch: React.FC<GoalSearchProps> = ({
                 />
               </button>
 
-              <div className="pl-3 pr-2 text-cyan-400">
-                <Sparkles className={cn("w-4 h-4", isSearching ? "animate-spin text-cyan-300" : "animate-pulse")} />
+              <div className="pl-2 sm:pl-3 pr-1.5 sm:pr-2 text-cyan-400 shrink-0">
+                <Sparkles className={cn("w-3.5 h-3.5 sm:w-4 sm:h-4", isSearching ? "animate-spin text-cyan-300" : "animate-pulse")} />
               </div>
 
               <input
@@ -146,17 +150,17 @@ export const GoalSearch: React.FC<GoalSearchProps> = ({
                 onChange={(e) => setQuery(e.target.value)}
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
-                placeholder="Describe what you want to achieve... (e.g., launch a YouTube channel with ₹2,000 budget)"
+                placeholder="Describe your goal... (e.g., launch a YouTube channel or SaaS app)"
                 autoFocus={autoFocus || isFocused}
                 disabled={isSearching}
-                className="flex-1 bg-transparent px-2 text-sm sm:text-base text-zinc-100 placeholder-zinc-500 focus:outline-none min-w-0 disabled:opacity-70 font-medium"
+                className="flex-1 bg-transparent px-1.5 sm:px-2 text-xs sm:text-base text-zinc-100 placeholder-zinc-500 focus:outline-none min-w-0 disabled:opacity-70 font-medium"
               />
 
               <button
                 type="submit"
                 disabled={isSearching}
                 className={cn(
-                  "shrink-0 inline-flex items-center gap-1.5 px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-white shadow-md transition cursor-pointer",
+                  "shrink-0 inline-flex items-center gap-1 sm:gap-1.5 px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl font-bold text-xs sm:text-sm text-white shadow-md transition cursor-pointer active:scale-95",
                   isSearching
                     ? "bg-gradient-to-r from-indigo-600 to-cyan-600 shadow-indigo-500/30 cursor-wait animate-pulse"
                     : query.trim()
@@ -166,27 +170,28 @@ export const GoalSearch: React.FC<GoalSearchProps> = ({
               >
                 {isSearching ? (
                   <>
-                    <Sparkles className="w-4 h-4 animate-spin text-cyan-300" />
-                    <span>Connecting Universe...</span>
+                    <Sparkles className="w-3.5 h-3.5 animate-spin text-cyan-300" />
+                    <span className="hidden sm:inline">Connecting...</span>
                   </>
                 ) : (
                   <>
-                    <span>{query.trim() ? "Find My AI Stack" : "Open Search Page"}</span>
-                    <ArrowRight className="w-4 h-4 hidden sm:inline-block" />
+                    <span className="hidden sm:inline">{query.trim() ? "Find My AI Stack" : "Open Search"}</span>
+                    <span className="sm:hidden">{query.trim() ? "Search" : "Go"}</span>
+                    <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   </>
                 )}
               </button>
             </div>
 
             {/* Popular goal shortcuts */}
-            <div className="mt-3.5 flex flex-wrap items-center justify-center gap-2 animate-fade-in">
-              <span className="text-xs text-zinc-500 font-medium mr-1">Popular goals:</span>
+            <div className="mt-3 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 animate-fade-in px-1">
+              <span className="text-[11px] sm:text-xs text-zinc-500 font-medium mr-1 hidden sm:inline">Popular goals:</span>
               {shortcuts.map(s => (
                 <button
                   key={s.label}
                   type="button"
                   onClick={() => handleShortcutClick(s.prompt)}
-                  className="text-xs px-3 py-1 rounded-full bg-zinc-900/90 hover:bg-zinc-800 border border-zinc-800 hover:border-indigo-500/40 text-zinc-300 transition hover:text-white cursor-pointer shadow-sm"
+                  className="text-[10px] sm:text-xs px-2.5 sm:px-3 py-1 rounded-full bg-zinc-900/90 hover:bg-zinc-800 border border-zinc-800 hover:border-indigo-500/40 text-zinc-300 transition hover:text-white cursor-pointer shadow-sm active:scale-95"
                 >
                   {s.label}
                 </button>

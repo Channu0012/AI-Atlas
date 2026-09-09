@@ -198,6 +198,27 @@ export const Navbar: React.FC = () => {
 
           <div className="pt-3 mt-3 border-t border-zinc-800/80 space-y-1.5">
             <Link
+              href="/saved-tools"
+              onClick={() => setMobileMenuOpen(false)}
+              className={cn(
+                "flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-medium transition",
+                pathname === "/saved-tools"
+                  ? "text-white bg-white/[0.08] font-semibold"
+                  : "text-zinc-300 hover:bg-white/[0.04] hover:text-white"
+              )}
+            >
+              <div className="flex items-center gap-3">
+                <Bookmark className={cn("w-4 h-4", pathname === "/saved-tools" ? "text-indigo-400" : "text-zinc-400")} />
+                <span>Saved Bookmarks</span>
+              </div>
+              {user?.savedToolIds && user.savedToolIds.length > 0 && (
+                <span className="px-2 py-0.5 rounded-full text-xs font-mono bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                  {user.savedToolIds.length}
+                </span>
+              )}
+            </Link>
+
+            <Link
               href="/submit-tool"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-zinc-300 hover:bg-white/[0.04] hover:text-white"

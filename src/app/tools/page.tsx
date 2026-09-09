@@ -205,28 +205,28 @@ function ToolsDirectoryContent() {
         </div>
 
         {/* Catalog Mode Switcher */}
-        <div className="flex items-center p-1 rounded-2xl bg-zinc-900 border border-zinc-800 shadow-inner">
+        <div className="flex items-center p-1 rounded-2xl bg-zinc-900 border border-zinc-800 shadow-inner w-full sm:w-auto">
           <button
             onClick={() => setCatalogMode("flagship")}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition cursor-pointer ${
+            className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl text-xs font-bold transition cursor-pointer ${
               catalogMode === "flagship"
                 ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/30"
                 : "text-zinc-400 hover:text-white"
             }`}
           >
-            <ShieldCheck className="w-3.5 h-3.5" />
+            <ShieldCheck className="w-3.5 h-3.5 shrink-0" />
             <span>Verified Tools ({tools.length})</span>
           </button>
           <button
             onClick={() => setCatalogMode("universe")}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition cursor-pointer ${
+            className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl text-xs font-bold transition cursor-pointer ${
               catalogMode === "universe"
                 ? "bg-gradient-to-r from-purple-600 to-cyan-600 text-white shadow-md shadow-purple-600/30"
                 : "text-zinc-400 hover:text-white"
             }`}
           >
-            <Globe className="w-3.5 h-3.5" />
-            <span>Open Model Registry (Live)</span>
+            <Globe className="w-3.5 h-3.5 shrink-0" />
+            <span>Open Models (Live)</span>
           </button>
         </div>
       </div>
@@ -347,30 +347,30 @@ function ToolsDirectoryContent() {
                   {/* Mobile Filter Toggle */}
                   <button
                     onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
-                    className="lg:hidden inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-zinc-900 border border-zinc-800 text-xs text-zinc-300 font-medium"
+                    className="lg:hidden inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-zinc-900 border border-zinc-800 text-xs text-zinc-300 font-medium shrink-0"
                   >
                     <SlidersHorizontal className="w-3.5 h-3.5" />
-                    Filters
+                    <span>Filters</span>
                   </button>
 
                   {/* Sort selector */}
-                  <div className="flex items-center gap-2 text-xs text-zinc-400">
-                    <ArrowUpDown className="w-3.5 h-3.5" />
-                    <span>Sort:</span>
+                  <div className="flex items-center gap-1.5 sm:gap-2 text-xs text-zinc-400 min-w-0">
+                    <ArrowUpDown className="w-3.5 h-3.5 shrink-0 hidden sm:inline" />
+                    <span className="hidden sm:inline shrink-0">Sort:</span>
                     <select
                       value={sortBy}
                       onChange={(e) => setSortBy(e.target.value as any)}
-                      className="bg-zinc-900 border border-zinc-800 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500"
+                      className="bg-zinc-900 border border-zinc-800 rounded-lg px-2 sm:px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500 max-w-[140px] sm:max-w-none truncate"
                     >
-                      <option value="relevance">Popularity / Relevance</option>
-                      <option value="top-100">Highest Reputation (Top 100)</option>
-                      <option value="trending">Trending Velocity</option>
-                      <option value="best-free">Best Free / Open Source</option>
-                      <option value="best-value">Best Value (Breadth / Price)</option>
+                      <option value="relevance">Popularity</option>
+                      <option value="top-100">Top 100</option>
+                      <option value="trending">Trending</option>
+                      <option value="best-free">Best Free</option>
+                      <option value="best-value">Best Value</option>
                       <option value="newest">Recently Launched</option>
                       <option value="verified">Recently Verified</option>
-                      <option value="saves">Community Saves</option>
-                      <option value="name">Alphabetical (A–Z)</option>
+                      <option value="saves">Most Saved</option>
+                      <option value="name">A–Z</option>
                     </select>
                   </div>
                 </div>

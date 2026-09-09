@@ -313,18 +313,18 @@ export const GoalPlannerCard: React.FC<GoalPlannerCardProps> = ({
   const progressPercent = totalSteps > 0 ? Math.round((completedCount / totalSteps) * 100) : 0;
 
   return (
-    <div className="rounded-3xl border border-indigo-500/30 bg-gradient-to-b from-zinc-900/95 via-zinc-950 to-black p-6 sm:p-8 shadow-2xl shadow-indigo-950/40 space-y-6 relative overflow-hidden backdrop-blur-2xl">
+    <div className="rounded-3xl border border-indigo-500/30 bg-gradient-to-b from-zinc-900/95 via-zinc-950 to-black p-4 sm:p-8 shadow-2xl shadow-indigo-950/40 space-y-6 relative overflow-hidden backdrop-blur-2xl">
       {/* Background glow effects */}
       <div className="absolute top-0 right-1/4 -z-10 h-64 w-[380px] rounded-full bg-indigo-600/10 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-1/4 -z-10 h-64 w-[380px] rounded-full bg-cyan-600/10 blur-[120px] pointer-events-none" />
 
       {/* Header */}
-      <div className="text-center space-y-2 max-w-2xl mx-auto">
+      <div className="text-center space-y-2 max-w-2xl mx-auto px-2">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold">
           <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
           <span>Crazy Simple AI Action Planner</span>
         </div>
-        <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+        <h2 className="text-xl sm:text-3xl font-black text-white tracking-tight">
           What do you want to achieve?
         </h2>
         <p className="text-xs sm:text-sm text-zinc-400">
@@ -334,20 +334,20 @@ export const GoalPlannerCard: React.FC<GoalPlannerCardProps> = ({
 
       {/* Main Input Box */}
       <form onSubmit={handleGenerate} className="space-y-4 max-w-3xl mx-auto">
-        <div className="relative flex flex-col sm:flex-row items-stretch gap-2.5 rounded-2xl border-2 border-indigo-500/50 hover:border-indigo-500 bg-zinc-950 p-2 shadow-xl focus-within:border-cyan-400 focus-within:ring-4 focus-within:ring-cyan-500/10 transition-all">
+        <div className="relative flex flex-col sm:flex-row items-stretch gap-2 rounded-2xl border-2 border-indigo-500/50 hover:border-indigo-500 bg-zinc-950 p-1.5 sm:p-2 shadow-xl focus-within:border-cyan-400 focus-within:ring-4 focus-within:ring-cyan-500/10 transition-all">
           <input
             type="text"
             value={goal}
             onChange={(e) => setGoal(e.target.value)}
             placeholder="e.g. Launch a faceless YouTube channel with $0 budget, or build a SaaS app..."
             disabled={loading}
-            className="flex-1 bg-transparent px-4 py-2.5 text-sm sm:text-base text-white placeholder-zinc-500 focus:outline-none min-w-0"
+            className="flex-1 bg-transparent px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-base text-white placeholder-zinc-500 focus:outline-none min-w-0"
           />
 
           <button
             type="submit"
             disabled={loading}
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold text-sm tracking-wide shadow-lg shadow-indigo-600/30 transition cursor-pointer disabled:opacity-50 shrink-0"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold text-xs sm:text-sm tracking-wide shadow-lg shadow-indigo-600/30 transition cursor-pointer disabled:opacity-50 shrink-0 active:scale-95"
           >
             {loading ? (
               <>
@@ -364,9 +364,9 @@ export const GoalPlannerCard: React.FC<GoalPlannerCardProps> = ({
         </div>
 
         {/* Clean, Simple Filter Row */}
-        <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-zinc-400 px-1">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-zinc-400 px-1">
           {/* Quick Budget selector */}
-          <div className="flex items-center gap-1.5">
+          <div className="flex flex-wrap items-center gap-1.5">
             <span className="text-zinc-500 font-medium">Budget:</span>
             {[
               { label: "Any", val: undefined },
@@ -379,7 +379,7 @@ export const GoalPlannerCard: React.FC<GoalPlannerCardProps> = ({
                 type="button"
                 onClick={() => setBudget(b.val)}
                 className={cn(
-                  "px-2.5 py-1 rounded-lg border transition cursor-pointer text-[11px] font-medium",
+                  "px-2.5 py-1 rounded-lg border transition cursor-pointer text-[10px] sm:text-[11px] font-medium active:scale-95",
                   budget === b.val
                     ? "bg-indigo-600 text-white border-indigo-500 font-semibold"
                     : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white"
@@ -391,10 +391,10 @@ export const GoalPlannerCard: React.FC<GoalPlannerCardProps> = ({
           </div>
 
           {/* Quick Skill selector */}
-          <div className="flex items-center gap-1.5">
+          <div className="flex flex-wrap items-center gap-1.5">
             <span className="text-zinc-500 font-medium">Skill:</span>
             {[
-              { id: "beginner", label: "Beginner (No-code)" },
+              { id: "beginner", label: "Beginner" },
               { id: "intermediate", label: "Intermediate" },
               { id: "professional", label: "Pro" }
             ].map(s => (
@@ -403,7 +403,7 @@ export const GoalPlannerCard: React.FC<GoalPlannerCardProps> = ({
                 type="button"
                 onClick={() => setSkillLevel(s.id as SkillLevel)}
                 className={cn(
-                  "px-2.5 py-1 rounded-lg border transition cursor-pointer text-[11px] font-medium",
+                  "px-2.5 py-1 rounded-lg border transition cursor-pointer text-[10px] sm:text-[11px] font-medium active:scale-95",
                   skillLevel === s.id
                     ? "bg-cyan-600 text-white border-cyan-500 font-semibold"
                     : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white"
@@ -425,11 +425,11 @@ export const GoalPlannerCard: React.FC<GoalPlannerCardProps> = ({
 
       {/* 1-Click Popular Goal Cards (Crazy Simple & Fast!) */}
       <div className="space-y-2.5 max-w-3xl mx-auto pt-2">
-        <span className="text-xs font-bold uppercase tracking-wider text-zinc-500 block">
+        <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-zinc-500 block px-1">
           Or tap a popular 1-click playbook:
         </span>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-2.5">
           {QUICK_GOAL_PRESETS.map(preset => {
             const Icon = preset.icon;
             const isSelected = goal === preset.goal;
@@ -439,25 +439,25 @@ export const GoalPlannerCard: React.FC<GoalPlannerCardProps> = ({
                 type="button"
                 onClick={() => handlePresetSelect(preset)}
                 className={cn(
-                  "p-3 rounded-2xl border text-left transition-all duration-200 flex flex-col justify-between group cursor-pointer",
+                  "p-2.5 sm:p-3 rounded-2xl border text-left transition-all duration-200 flex flex-col justify-between group cursor-pointer active:scale-95",
                   isSelected
                     ? "bg-indigo-950/70 border-indigo-500 shadow-md scale-[1.02]"
                     : "bg-zinc-900/60 border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900"
                 )}
               >
-                <div className="space-y-1.5">
-                  <div className={cn("w-7 h-7 rounded-xl border flex items-center justify-center", preset.color)}>
-                    <Icon className="w-3.5 h-3.5" />
+                <div className="space-y-1 sm:space-y-1.5">
+                  <div className={cn("w-6 h-6 sm:w-7 sm:h-7 rounded-xl border flex items-center justify-center", preset.color)}>
+                    <Icon className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                   </div>
-                  <h4 className="text-xs font-bold text-white group-hover:text-cyan-300 transition line-clamp-1">
+                  <h4 className="text-[11px] sm:text-xs font-bold text-white group-hover:text-cyan-300 transition line-clamp-1">
                     {preset.title}
                   </h4>
-                  <p className="text-[10px] text-zinc-400 line-clamp-1 leading-tight">
+                  <p className="text-[9px] sm:text-[10px] text-zinc-400 line-clamp-1 leading-tight">
                     {preset.desc}
                   </p>
                 </div>
 
-                <div className="mt-2 pt-1.5 border-t border-zinc-800/80 flex items-center justify-between text-[9px] font-mono text-zinc-500">
+                <div className="mt-2 pt-1.5 border-t border-zinc-800/80 flex items-center justify-between text-[8px] sm:text-[9px] font-mono text-zinc-500">
                   <span>{preset.time}</span>
                   <span className="text-emerald-400 font-bold">{preset.cost}</span>
                 </div>
@@ -487,20 +487,20 @@ export const GoalPlannerCard: React.FC<GoalPlannerCardProps> = ({
       {planResult && !loading && (
         <div className="space-y-6 pt-4 border-t border-zinc-800/80 animate-fade-in max-w-3xl mx-auto">
           {/* Action Plan Summary Bar */}
-          <div className="p-5 sm:p-6 rounded-3xl bg-zinc-900/90 border border-indigo-500/40 shadow-xl space-y-4">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-zinc-800">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-zinc-900/90 border border-indigo-500/40 shadow-xl space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-zinc-800">
               <div>
-                <span className="text-[11px] font-mono text-cyan-400 uppercase tracking-wider font-bold flex items-center gap-1.5">
+                <span className="text-[10px] sm:text-[11px] font-mono text-cyan-400 uppercase tracking-wider font-bold flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
                   Action Plan Ready
                 </span>
-                <h3 className="text-lg sm:text-xl font-bold text-white mt-1">
+                <h3 className="text-base sm:text-xl font-bold text-white mt-1">
                   {planResult.phases.length}-Step Execution Roadmap
                 </h3>
               </div>
 
               {/* Progress Indicator */}
-              <div className="flex items-center gap-3 bg-zinc-950 px-4 py-2 rounded-xl border border-zinc-800">
+              <div className="flex items-center justify-between sm:justify-start gap-3 bg-zinc-950 px-3.5 py-1.5 sm:py-2 rounded-xl border border-zinc-800">
                 <span className="text-xs text-zinc-400">Progress:</span>
                 <span className="text-xs font-mono font-bold text-cyan-400">{completedCount}/{totalSteps} Done</span>
                 <div className="w-16 h-2 bg-zinc-800 rounded-full overflow-hidden">
@@ -513,39 +513,39 @@ export const GoalPlannerCard: React.FC<GoalPlannerCardProps> = ({
             </div>
 
             {/* Quick Metrics Bar */}
-            <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center">
-              <div className="p-2.5 rounded-xl bg-zinc-950 border border-zinc-800/80">
-                <span className="text-[10px] uppercase font-mono text-zinc-500 block">Time to Launch</span>
-                <span className="text-sm sm:text-base font-bold text-white flex items-center justify-center gap-1 mt-0.5">
-                  <Clock className="w-3.5 h-3.5 text-cyan-400" />
-                  ~{planResult.estimatedHoursToLaunch || 2} Hours
+            <div className="grid grid-cols-3 gap-1.5 sm:gap-4 text-center">
+              <div className="p-2 sm:p-2.5 rounded-xl bg-zinc-950 border border-zinc-800/80">
+                <span className="text-[9px] sm:text-[10px] uppercase font-mono text-zinc-500 block truncate">Time to Launch</span>
+                <span className="text-xs sm:text-base font-bold text-white flex items-center justify-center gap-1 mt-0.5">
+                  <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-cyan-400 shrink-0" />
+                  <span>~{planResult.estimatedHoursToLaunch || 2}h</span>
                 </span>
               </div>
 
-              <div className="p-2.5 rounded-xl bg-zinc-950 border border-zinc-800/80">
-                <span className="text-[10px] uppercase font-mono text-zinc-500 block">Estimated Cost</span>
-                <span className="text-sm sm:text-base font-bold text-emerald-400 flex items-center justify-center gap-1 mt-0.5">
-                  <DollarSign className="w-3.5 h-3.5" />
-                  {planResult.totalEstimatedMonthlyCost === 0 ? "100% Free" : `$${planResult.totalEstimatedMonthlyCost}/mo`}
+              <div className="p-2 sm:p-2.5 rounded-xl bg-zinc-950 border border-zinc-800/80">
+                <span className="text-[9px] sm:text-[10px] uppercase font-mono text-zinc-500 block truncate">Estimated Cost</span>
+                <span className="text-xs sm:text-base font-bold text-emerald-400 flex items-center justify-center gap-1 mt-0.5">
+                  <DollarSign className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
+                  <span className="truncate">{planResult.totalEstimatedMonthlyCost === 0 ? "Free" : `$${planResult.totalEstimatedMonthlyCost}/mo`}</span>
                 </span>
               </div>
 
-              <div className="p-2.5 rounded-xl bg-zinc-950 border border-zinc-800/80">
-                <span className="text-[10px] uppercase font-mono text-zinc-500 block">Tools Needed</span>
-                <span className="text-sm sm:text-base font-bold text-indigo-300 flex items-center justify-center gap-1 mt-0.5">
-                  <Layers className="w-3.5 h-3.5 text-indigo-400" />
-                  {planResult.phases.length} Verified Tools
+              <div className="p-2 sm:p-2.5 rounded-xl bg-zinc-950 border border-zinc-800/80">
+                <span className="text-[9px] sm:text-[10px] uppercase font-mono text-zinc-500 block truncate">Tools Needed</span>
+                <span className="text-xs sm:text-base font-bold text-indigo-300 flex items-center justify-center gap-1 mt-0.5">
+                  <Layers className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-indigo-400 shrink-0" />
+                  <span>{planResult.phases.length} Tools</span>
                 </span>
               </div>
             </div>
 
             {/* Quick Actions */}
-            <div className="flex flex-wrap items-center justify-between gap-2.5 pt-2">
-              <div className="flex flex-wrap items-center gap-2">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pt-2">
+              <div className="flex items-center gap-2">
                 <button
                   type="button"
                   onClick={handleCopyBlueprint}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-zinc-950 hover:bg-zinc-800 border border-zinc-800 text-xs font-medium text-zinc-300 transition cursor-pointer"
+                  className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-xl bg-zinc-950 hover:bg-zinc-800 border border-zinc-800 text-xs font-medium text-zinc-300 transition cursor-pointer active:scale-95"
                 >
                   {copiedBlueprint ? (
                     <>
@@ -564,12 +564,12 @@ export const GoalPlannerCard: React.FC<GoalPlannerCardProps> = ({
                   type="button"
                   onClick={handleSaveStack}
                   disabled={savingStack}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-zinc-950 hover:bg-zinc-800 border border-zinc-800 text-xs font-medium text-zinc-300 transition cursor-pointer disabled:opacity-50"
+                  className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-xl bg-zinc-950 hover:bg-zinc-800 border border-zinc-800 text-xs font-medium text-zinc-300 transition cursor-pointer disabled:opacity-50 active:scale-95"
                 >
                   {savedSuccess ? (
                     <>
                       <Check className="w-3.5 h-3.5 text-emerald-400" />
-                      <span>Saved to Stacks!</span>
+                      <span>Saved!</span>
                     </>
                   ) : (
                     <>
@@ -584,17 +584,17 @@ export const GoalPlannerCard: React.FC<GoalPlannerCardProps> = ({
                 type="button"
                 onClick={handleGenerateLiveDeliverable}
                 disabled={generatingDeliverable}
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white text-xs font-bold transition shadow-sm cursor-pointer disabled:opacity-50"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-3.5 py-2 sm:py-1.5 rounded-xl bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white text-xs font-bold transition shadow-sm cursor-pointer disabled:opacity-50 active:scale-95"
               >
                 {generatingDeliverable ? (
                   <>
                     <RefreshCw className="w-3.5 h-3.5 animate-spin" />
-                    <span>Generating Deliverable...</span>
+                    <span>Generating...</span>
                   </>
                 ) : (
                   <>
                     <Sparkles className="w-3.5 h-3.5 text-cyan-200" />
-                    <span>⚡ Generate Deliverable with Kie.ai</span>
+                    <span>⚡ Generate with Kie.ai</span>
                   </>
                 )}
               </button>
@@ -603,7 +603,7 @@ export const GoalPlannerCard: React.FC<GoalPlannerCardProps> = ({
 
           {/* STEP-BY-STEP ACTIONABLE ROADMAP */}
           <div className="space-y-4">
-            <h4 className="text-xs font-extrabold uppercase tracking-wider text-zinc-400 flex items-center gap-2">
+            <h4 className="text-xs font-extrabold uppercase tracking-wider text-zinc-400 flex items-center gap-2 px-1">
               <Zap className="w-3.5 h-3.5 text-indigo-400" />
               <span>Step-by-Step Execution Guide</span>
             </h4>
@@ -617,7 +617,7 @@ export const GoalPlannerCard: React.FC<GoalPlannerCardProps> = ({
                   <div
                     key={phase.phaseNumber}
                     className={cn(
-                      "p-5 rounded-2xl border transition-all duration-200 space-y-3 relative",
+                      "p-4 sm:p-5 rounded-2xl border transition-all duration-200 space-y-3 relative",
                       isDone
                         ? "bg-zinc-950/60 border-emerald-500/40 opacity-80"
                         : "bg-zinc-900/70 border-zinc-800 hover:border-indigo-500/40"
@@ -625,13 +625,13 @@ export const GoalPlannerCard: React.FC<GoalPlannerCardProps> = ({
                   >
                     {/* Step Title and Checkbox */}
                     <div className="flex items-start justify-between gap-3">
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
                         {/* Interactive Mark as Done Checkbox */}
                         <button
                           type="button"
                           onClick={() => handleToggleStep(phase.phaseNumber)}
                           className={cn(
-                            "w-6 h-6 rounded-lg border flex items-center justify-center transition cursor-pointer shrink-0",
+                            "w-6 h-6 rounded-lg border flex items-center justify-center transition cursor-pointer shrink-0 active:scale-90",
                             isDone
                               ? "bg-emerald-500 border-emerald-400 text-black font-bold"
                               : "border-zinc-700 bg-zinc-950 text-zinc-500 hover:border-indigo-500"
@@ -640,27 +640,27 @@ export const GoalPlannerCard: React.FC<GoalPlannerCardProps> = ({
                           {isDone ? <Check className="w-3.5 h-3.5" /> : <span className="text-[10px] font-mono">{phase.phaseNumber}</span>}
                         </button>
 
-                        <div>
-                          <h5 className={cn("text-sm font-bold transition", isDone ? "line-through text-zinc-500" : "text-white")}>
+                        <div className="min-w-0">
+                          <h5 className={cn("text-xs sm:text-sm font-bold transition truncate", isDone ? "line-through text-zinc-500" : "text-white")}>
                             {phase.title}
                           </h5>
-                          <p className="text-xs text-zinc-400 mt-0.5">
+                          <p className="text-[11px] sm:text-xs text-zinc-400 mt-0.5 line-clamp-2">
                             {phase.howToExecute || phase.description}
                           </p>
                         </div>
                       </div>
 
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-950 border border-zinc-800 text-zinc-400 shrink-0">
+                      <span className="text-[9px] sm:text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-950 border border-zinc-800 text-zinc-400 shrink-0">
                         ⏱️ ~{phase.estimatedMinutes || 20}m
                       </span>
                     </div>
 
                     {/* Tool Recommendation Pill */}
-                    <div className="p-3 rounded-xl bg-zinc-950 border border-zinc-800/80 flex items-center justify-between gap-3">
+                    <div className="p-3 rounded-xl bg-zinc-950 border border-zinc-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
                       <div className="flex items-center gap-2.5 min-w-0">
                         <ToolLogo name={phase.primaryTool.name} logoUrl={phase.primaryTool.logo} size="sm" />
                         <div className="min-w-0">
-                          <div className="flex items-center gap-1.5">
+                          <div className="flex items-center gap-1.5 flex-wrap">
                             <Link
                               href={`/tools/${phase.primaryTool.slug}`}
                               className="text-xs font-bold text-white hover:text-cyan-300 transition truncate"
@@ -675,12 +675,12 @@ export const GoalPlannerCard: React.FC<GoalPlannerCardProps> = ({
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-2 shrink-0">
+                      <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
                         <a
                           href={phase.primaryTool.website}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-indigo-600/20 hover:bg-indigo-600/40 border border-indigo-500/30 text-indigo-300 text-xs font-semibold transition"
+                          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-indigo-600/20 hover:bg-indigo-600/40 border border-indigo-500/30 text-indigo-300 text-xs font-semibold transition active:scale-95"
                         >
                           <span>Open Tool</span>
                           <ExternalLink className="w-3 h-3" />
@@ -688,7 +688,7 @@ export const GoalPlannerCard: React.FC<GoalPlannerCardProps> = ({
                       </div>
                     </div>
 
-                    {/* Actionable Copyable Prompt (Crazy Useful!) */}
+                    {/* Actionable Copyable Prompt (Crazy Useful & Mobile Safe!) */}
                     {phase.actionablePrompt && (
                       <div className="space-y-1.5">
                         <div className="flex items-center justify-between text-[11px] text-zinc-400">
@@ -699,12 +699,12 @@ export const GoalPlannerCard: React.FC<GoalPlannerCardProps> = ({
                           <button
                             type="button"
                             onClick={() => handleCopyPrompt(phase.phaseNumber, phase.actionablePrompt)}
-                            className="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-300 font-medium transition cursor-pointer"
+                            className="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-300 font-medium transition cursor-pointer active:scale-95"
                           >
                             {isPromptCopied ? (
                               <>
                                 <Check className="w-3 h-3 text-emerald-400" />
-                                <span className="text-emerald-400">Copied to Clipboard!</span>
+                                <span className="text-emerald-400 font-semibold">Copied!</span>
                               </>
                             ) : (
                               <>
@@ -715,7 +715,7 @@ export const GoalPlannerCard: React.FC<GoalPlannerCardProps> = ({
                           </button>
                         </div>
 
-                        <div className="p-3 rounded-xl bg-zinc-950/90 border border-zinc-800/80 text-xs font-mono text-zinc-300 leading-relaxed overflow-x-auto select-all">
+                        <div className="p-2.5 sm:p-3 rounded-xl bg-zinc-950/90 border border-zinc-800/80 text-[11px] sm:text-xs font-mono text-zinc-300 leading-relaxed overflow-x-auto break-words whitespace-pre-wrap select-all max-w-full">
                           {phase.actionablePrompt}
                         </div>
                       </div>
@@ -723,16 +723,16 @@ export const GoalPlannerCard: React.FC<GoalPlannerCardProps> = ({
 
                     {/* Free Alternative swap link */}
                     {phase.alternativeTool && (
-                      <div className="pt-2 border-t border-zinc-800/60 flex items-center justify-between text-[11px] text-zinc-500">
-                        <span>
+                      <div className="pt-2 border-t border-zinc-800/60 flex flex-wrap items-center justify-between gap-1 text-[10px] sm:text-[11px] text-zinc-500">
+                        <span className="truncate">
                           Alternative: <strong className="text-zinc-300">{phase.alternativeTool.name}</strong> ({phase.alternativeTool.pricing.model === "free" ? "Free" : `$${phase.alternativeTool.pricing.startingPrice || 0}/mo`})
                         </span>
                         <button
                           type="button"
                           onClick={() => handleSwapTool(idx)}
-                          className="text-cyan-400 hover:text-cyan-300 transition font-medium cursor-pointer"
+                          className="text-cyan-400 hover:text-cyan-300 transition font-medium cursor-pointer shrink-0"
                         >
-                          Swap to Alternative ⇄
+                          Swap ⇄
                         </button>
                       </div>
                     )}

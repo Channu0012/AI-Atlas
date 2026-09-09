@@ -21,20 +21,20 @@ export const WorkflowStepper: React.FC<WorkflowStepperProps> = ({ workflow, tool
 
         return (
           <div key={step.id} className="relative">
-            <div className="p-6 rounded-2xl border border-zinc-800 bg-zinc-900/60 shadow-lg relative z-10">
-              <div className="flex items-start justify-between gap-4 mb-3">
-                <div className="flex items-center gap-3">
-                  <span className="w-7 h-7 rounded-full bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 flex items-center justify-center text-xs font-bold font-mono">
+            <div className="p-4 sm:p-6 rounded-2xl border border-zinc-800 bg-zinc-900/60 shadow-lg relative z-10">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-4 mb-3">
+                <div className="flex items-center gap-3 min-w-0">
+                  <span className="w-7 h-7 rounded-full bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 flex items-center justify-center text-xs font-bold font-mono shrink-0">
                     {step.order}
                   </span>
-                  <h3 className="text-base font-bold text-white">
+                  <h3 className="text-sm sm:text-base font-bold text-white truncate">
                     {step.title}
                   </h3>
                 </div>
 
                 <div className="flex flex-wrap gap-1">
                   {step.requiredCapabilities.map(cap => (
-                    <span key={cap} className="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-400 border border-zinc-700">
+                    <span key={cap} className="text-[10px] sm:text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-400 border border-zinc-700">
                       {cap.replace(/-/g, " ")}
                     </span>
                   ))}

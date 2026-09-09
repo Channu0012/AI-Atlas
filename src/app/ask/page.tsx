@@ -210,19 +210,19 @@ function AskContent() {
         </p>
 
         <form onSubmit={handleSearchSubmit} className="relative group">
-          <div className="relative flex items-center rounded-2xl border-2 border-zinc-800 bg-zinc-900/90 shadow-2xl focus-within:border-indigo-500/80 focus-within:ring-4 focus-within:ring-indigo-500/10 transition-all p-2 sm:p-2.5">
-            <Search className="w-5 h-5 text-zinc-400 ml-3 shrink-0" />
+          <div className="relative flex items-center rounded-2xl border-2 border-zinc-800 bg-zinc-900/90 shadow-2xl focus-within:border-indigo-500/80 focus-within:ring-4 focus-within:ring-indigo-500/10 transition-all p-1.5 sm:p-2.5">
+            <Search className="w-4 sm:w-5 h-4 sm:h-5 text-zinc-400 ml-2.5 sm:ml-3 shrink-0" />
             <input
               type="text"
               value={inputQuery}
               onChange={(e) => setInputQuery(e.target.value)}
               placeholder="e.g. I want to launch an automated YouTube channel with ₹2,000 budget and AI video editing..."
-              className="flex-1 bg-transparent px-3 text-sm sm:text-base text-zinc-100 placeholder-zinc-500 focus:outline-none min-w-0"
+              className="flex-1 bg-transparent px-2.5 sm:px-3 text-xs sm:text-base text-zinc-100 placeholder-zinc-500 focus:outline-none min-w-0"
             />
             <button
               type="submit"
               disabled={loading}
-              className="shrink-0 px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white text-xs sm:text-sm font-semibold transition shadow-md shadow-indigo-600/30 cursor-pointer disabled:opacity-50"
+              className="shrink-0 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white text-xs sm:text-sm font-semibold transition shadow-md shadow-indigo-600/30 cursor-pointer disabled:opacity-50"
             >
               {loading ? "Synthesizing..." : "Analyze Goal"}
             </button>
@@ -253,7 +253,7 @@ function AskContent() {
       {data && !loading && (
         <div className="space-y-10 animate-fade-in">
           {/* Executive Holographic HUD Banner */}
-          <div className="p-6 sm:p-8 rounded-3xl border border-indigo-500/40 bg-gradient-to-b from-zinc-900/90 via-zinc-950 to-zinc-950 shadow-2xl shadow-indigo-950/50 relative overflow-hidden backdrop-blur-2xl">
+          <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-indigo-500/40 bg-gradient-to-b from-zinc-900/90 via-zinc-950 to-zinc-950 shadow-2xl shadow-indigo-950/50 relative overflow-hidden backdrop-blur-2xl">
             {/* Ambient Lighting */}
             <div className="absolute top-0 right-0 w-96 h-64 bg-indigo-500/15 rounded-full blur-3xl pointer-events-none -z-10" />
             <div className="absolute bottom-0 left-0 w-96 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
@@ -388,7 +388,7 @@ function AskContent() {
           </div>
 
           {/* VISUAL MULTI-TOOL PIPELINE FLOW (CRAZY NEW FEATURE!) */}
-          <div className="p-6 sm:p-8 rounded-3xl border border-zinc-800/80 bg-zinc-950/60 shadow-xl space-y-5">
+          <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-zinc-800/80 bg-zinc-950/60 shadow-xl space-y-5">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
                 <div className="inline-flex items-center gap-2 text-xs font-bold text-indigo-400 uppercase tracking-wider mb-1">

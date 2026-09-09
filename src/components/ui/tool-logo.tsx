@@ -23,7 +23,7 @@ export const ToolLogo: React.FC<ToolLogoProps> = ({
     sm: "w-7 h-7 text-xs",
     md: "w-10 h-10 text-sm font-semibold",
     lg: "w-14 h-14 text-base font-bold",
-    xl: "w-18 h-18 text-xl font-bold"
+    xl: "w-16 h-16 sm:w-20 sm:h-20 text-lg sm:text-xl font-bold"
   };
 
   const initial = name.charAt(0).toUpperCase();

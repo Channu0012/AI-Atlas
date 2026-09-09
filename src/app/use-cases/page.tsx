@@ -27,7 +27,7 @@ export default async function UseCasesPage() {
         {useCases.map(uc => (
           <div
             key={uc.id}
-            className="p-6 rounded-2xl border border-zinc-800 bg-zinc-900/60 flex flex-col justify-between"
+            className="p-5 sm:p-6 rounded-2xl border border-zinc-800 bg-zinc-900/60 flex flex-col justify-between"
           >
             <div>
               <div className="flex items-center justify-between mb-3">
@@ -56,7 +56,7 @@ export default async function UseCasesPage() {
               </div>
             </div>
 
-            <div className="flex items-center justify-between pt-4 border-t border-zinc-800 text-xs">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pt-4 border-t border-zinc-800 text-xs">
               <Link
                 href={`/ask?q=${encodeURIComponent(uc.name)}`}
                 className="inline-flex items-center gap-1.5 text-indigo-400 hover:text-indigo-300 font-semibold transition"

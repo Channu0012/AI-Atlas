@@ -65,7 +65,7 @@ export const FilterPanel: React.FC<FilterPanelProps> = ({
         <h4 className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2.5">
           Category
         </h4>
-        <div className="space-y-1">
+        <div className="space-y-1 max-h-56 overflow-y-auto pr-1">
           <button
             onClick={() => onSelectCategory(undefined)}
             className={cn(

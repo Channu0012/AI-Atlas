@@ -100,14 +100,14 @@ export const MandatoryAuthGate: React.FC = () => {
 
   return (
     <div className={cn(
-      "fixed inset-0 z-[99999] flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/85 backdrop-blur-2xl transition-all duration-700",
+      "fixed inset-0 z-[99999] overflow-y-auto bg-black/85 backdrop-blur-2xl transition-all duration-700 p-4 sm:p-6 flex min-h-full items-center justify-center py-8 sm:py-12",
       unlockedAnimation && "opacity-0 pointer-events-none scale-105"
     )}>
       {/* Background Animated Aurora Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-indigo-600/20 via-purple-600/20 to-cyan-500/20 rounded-full blur-[140px] pointer-events-none animate-pulse-glow" />
 
       {/* Futuristic Cosmic Modal */}
-      <div className="relative w-full max-w-md rounded-3xl border border-indigo-500/30 bg-zinc-950/95 p-6 sm:p-8 shadow-2xl shadow-indigo-950/50 backdrop-blur-3xl overflow-hidden my-auto">
+      <div className="relative w-full max-w-md rounded-2xl sm:rounded-3xl border border-indigo-500/30 bg-zinc-950/95 p-5 sm:p-8 shadow-2xl shadow-indigo-950/50 backdrop-blur-3xl overflow-hidden my-auto">
         {/* Top Glowing Beam */}
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-400 via-indigo-500 to-fuchsia-500" />
 

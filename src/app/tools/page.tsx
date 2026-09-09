@@ -420,7 +420,7 @@ function ToolsDirectoryContent() {
                 <ToolGridSkeleton count={6} />
               ) : tools.length > 0 ? (
                 viewMode === "grid" ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                     {tools.map(tool => (
                       <ToolCard
                         key={tool.id}
@@ -568,7 +568,7 @@ function ToolsDirectoryContent() {
               ))}
             </div>
           ) : universeTools.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {universeTools.map(tool => (
                 <div
                   key={tool.id}

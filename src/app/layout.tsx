@@ -58,7 +58,7 @@ export default function RootLayout({
           <MandatoryAuthGate />
           <NavigationProgressBar />
           <Navbar />
-          <main className="flex-1 w-full">
+          <main className="flex-1 w-full overflow-x-hidden min-w-0">
             {children}
           </main>
           <Footer />

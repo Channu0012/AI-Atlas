@@ -38,13 +38,13 @@ export default async function WorkflowDetailPage({
       </div>
 
       {/* Header Banner */}
-      <div className="p-8 rounded-3xl border border-zinc-800 bg-zinc-900/60 shadow-xl mb-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-zinc-800 bg-zinc-900/60 shadow-xl mb-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
           <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-purple-400 uppercase tracking-wider mb-2">
             <WorkflowIcon className="w-4 h-4" />
             <span>{workflow.category} Blueprint</span>
           </div>
-          <h1 className="text-3xl font-extrabold text-white tracking-tight mb-2">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-2">
             {workflow.name}
           </h1>
           <p className="text-sm text-zinc-300 max-w-2xl leading-relaxed">

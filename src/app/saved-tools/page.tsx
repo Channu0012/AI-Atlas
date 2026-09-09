@@ -29,20 +29,20 @@ export default function SavedToolsPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <div className="flex items-center justify-between pb-6 border-b border-zinc-800 mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-zinc-800 mb-8">
         <div>
           <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-400 uppercase tracking-wider mb-1">
             <Bookmark className="w-3.5 h-3.5" />
             <span>Personal Collection</span>
           </div>
-          <h1 className="text-3xl font-extrabold text-white tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
             Saved AI Tools
           </h1>
         </div>
 
         <Link
           href="/tools"
-          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-semibold border border-zinc-700 transition"
+          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-semibold border border-zinc-700 transition self-start sm:self-auto"
         >
           <Compass className="w-3.5 h-3.5" />
           <span>Explore Directory</span>
@@ -52,7 +52,7 @@ export default function SavedToolsPage() {
       {loading ? (
         <ToolGridSkeleton count={3} />
       ) : tools.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {tools.map(tool => (
             <ToolCard key={tool.id} tool={tool} />
           ))}

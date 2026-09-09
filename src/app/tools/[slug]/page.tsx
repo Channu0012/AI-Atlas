@@ -61,61 +61,61 @@ export default async function ToolDetailPage({
       </nav>
 
       {/* Top Header Card */}
-      <div className="p-8 rounded-3xl border border-zinc-800 bg-zinc-900/60 shadow-xl mb-10 backdrop-blur-sm">
+      <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-zinc-800 bg-zinc-900/60 shadow-xl mb-10 backdrop-blur-sm">
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
-          <div className="flex items-start gap-5 min-w-0">
+          <div className="flex items-start gap-4 sm:gap-5 min-w-0">
             <ToolLogo name={tool.name} logoUrl={tool.logo} size="xl" />
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-3 mb-1">
-                <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
                   {tool.name}
                 </h1>
                 <VerificationBadge verification={tool.verification} showDate={true} />
               </div>
 
-              <p className="text-sm text-zinc-400 font-medium mb-3">
+              <p className="text-xs sm:text-sm text-zinc-400 font-medium mb-3">
                 by {tool.company.name}
               </p>
 
-              <p className="text-base text-zinc-200 max-w-2xl leading-relaxed">
+              <p className="text-sm sm:text-base text-zinc-200 max-w-2xl leading-relaxed">
                 {tool.tagline}
               </p>
             </div>
           </div>
 
           {/* Action CTAs */}
-          <div className="flex flex-wrap md:flex-col items-center md:items-end gap-3 shrink-0">
+          <div className="w-full sm:w-auto flex flex-col sm:flex-row md:flex-col items-stretch sm:items-center md:items-end gap-2.5 sm:gap-3 shrink-0">
             <a
               href={tool.website}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition shadow-lg shadow-indigo-600/20"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition shadow-lg shadow-indigo-600/20"
             >
               <span>Visit Website</span>
               <ExternalLink className="w-4 h-4" />
             </a>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 w-full sm:w-auto">
               <Link
                 href={`/compare?tools=${tool.slug}`}
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-semibold border border-zinc-700 transition"
+                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-semibold border border-zinc-700 transition"
               >
                 <Scale className="w-3.5 h-3.5" />
-                Compare
+                <span>Compare</span>
               </Link>
               <Link
                 href="/stacks"
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-semibold border border-zinc-700 transition"
+                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-semibold border border-zinc-700 transition"
               >
                 <Layers className="w-3.5 h-3.5" />
-                Add to Stack
+                <span>Add to Stack</span>
               </Link>
             </div>
           </div>
         </div>
 
         {/* Quick Specs Ribbon */}
-        <div className="mt-8 pt-6 border-t border-zinc-800 flex flex-wrap items-center gap-6 text-xs text-zinc-400">
+        <div className="mt-8 pt-6 border-t border-zinc-800 flex flex-wrap items-center gap-4 sm:gap-6 text-xs text-zinc-400">
           <div className="flex items-center gap-2">
             <span className="text-zinc-500 font-medium">Pricing:</span>
             <PricingBadge pricing={tool.pricing} />

@@ -52,7 +52,7 @@ export default function LoginPage() {
         </p>
       </div>
 
-      <div className="p-8 rounded-3xl border border-zinc-800 bg-zinc-900/60 shadow-xl space-y-6">
+      <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-zinc-800 bg-zinc-900/60 shadow-xl space-y-6">
         {error && (
           <div className="p-3 rounded-xl border border-rose-800/40 bg-rose-950/20 text-xs text-rose-300 flex items-center gap-2">
             <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />

@@ -97,7 +97,7 @@ export default function SubmitToolPage() {
           </button>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="p-8 rounded-3xl border border-zinc-800 bg-zinc-900/60 shadow-xl space-y-6">
+        <form onSubmit={handleSubmit} className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-zinc-800 bg-zinc-900/60 shadow-xl space-y-6">
           {errorMessage && (
             <div className="p-4 rounded-xl border border-rose-800/40 bg-rose-950/20 text-xs text-rose-300 flex items-center gap-2">
               <AlertCircle className="w-4 h-4 shrink-0 text-rose-400" />

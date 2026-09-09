@@ -65,12 +65,12 @@ export const ComparisonMatrix: React.FC<ComparisonMatrixProps> = ({ tools, onRem
   return (
     <div className="space-y-8">
       {/* AI Comparison Summary Box (PRD Section 31) */}
-      <div className="p-6 rounded-2xl border border-indigo-500/20 bg-indigo-950/20 backdrop-blur-sm">
+      <div className="p-4 sm:p-6 rounded-2xl border border-indigo-500/20 bg-indigo-950/20 backdrop-blur-sm">
         <div className="flex items-center gap-2 text-sm font-bold text-indigo-400 mb-3">
           <Sparkles className="w-4 h-4 text-indigo-400" />
           <span>Factual Decision Guidance</span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-zinc-300">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-zinc-300">
           {comparisonSummaries.map((item, idx) => (
             <div key={idx} className="p-3 rounded-xl bg-zinc-900/60 border border-zinc-800/80">
               <span className="font-semibold text-white">{item.name}: </span>
@@ -78,6 +78,11 @@ export const ComparisonMatrix: React.FC<ComparisonMatrixProps> = ({ tools, onRem
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Mobile Horizontal Swipe Indicator */}
+      <div className="flex sm:hidden items-center justify-end gap-1 text-[10px] text-zinc-500 font-mono">
+        <span>← Swipe to compare all tools →</span>
       </div>
 
       {/* Comparison Grid Table */}

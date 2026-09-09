@@ -79,7 +79,7 @@ export const LoadingStages: React.FC<LoadingStagesProps> = ({
   }, [totalDurationMs]);
 
   return (
-    <div className={cn("max-w-2xl mx-auto my-10 p-6 sm:p-9 rounded-3xl border border-indigo-500/30 bg-zinc-950/90 backdrop-blur-2xl shadow-2xl shadow-indigo-950/60 text-left relative overflow-hidden", className)}>
+    <div className={cn("max-w-2xl mx-auto my-10 p-4 sm:p-8 rounded-2xl sm:rounded-3xl border border-indigo-500/30 bg-zinc-950/90 backdrop-blur-2xl shadow-2xl shadow-indigo-950/60 text-left relative overflow-hidden", className)}>
       {/* Dynamic Cosmic Aurora Glows */}
       <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-96 h-40 bg-gradient-to-r from-indigo-500/20 via-cyan-500/20 to-purple-500/20 blur-[80px] pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-64 h-32 bg-cyan-500/10 blur-[70px] pointer-events-none" />
@@ -121,32 +121,32 @@ export const LoadingStages: React.FC<LoadingStagesProps> = ({
       </div>
 
       {/* Live Radar Telemetry HUD */}
-      <div className="my-6 grid grid-cols-3 gap-3 p-3.5 rounded-2xl bg-zinc-900/60 border border-zinc-800/80 shadow-inner">
-        <div className="flex flex-col items-center justify-center p-2 text-center border-r border-zinc-800/80">
-          <span className="text-[10px] uppercase font-mono tracking-wider text-zinc-500">
+      <div className="my-6 grid grid-cols-3 gap-2 sm:gap-3 p-2.5 sm:p-3.5 rounded-2xl bg-zinc-900/60 border border-zinc-800/80 shadow-inner">
+        <div className="flex flex-col items-center justify-center p-1.5 sm:p-2 text-center border-r border-zinc-800/80">
+          <span className="text-[9px] sm:text-[10px] uppercase font-mono tracking-wider text-zinc-500">
             Tools Screened
           </span>
-          <span className="text-lg sm:text-xl font-extrabold font-mono text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-400">
+          <span className="text-sm sm:text-xl font-extrabold font-mono text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-400">
             {scannedTools}
-            <span className="text-xs text-zinc-500 font-normal"> / 1,048</span>
+            <span className="text-[10px] sm:text-xs text-zinc-500 font-normal"> / 1,048</span>
           </span>
         </div>
 
-        <div className="flex flex-col items-center justify-center p-2 text-center border-r border-zinc-800/80">
-          <span className="text-[10px] uppercase font-mono tracking-wider text-zinc-500">
+        <div className="flex flex-col items-center justify-center p-1.5 sm:p-2 text-center border-r border-zinc-800/80">
+          <span className="text-[9px] sm:text-[10px] uppercase font-mono tracking-wider text-zinc-500">
             Domains Mapped
           </span>
-          <span className="text-lg sm:text-xl font-extrabold font-mono text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+          <span className="text-sm sm:text-xl font-extrabold font-mono text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
             {domainsChecked}
-            <span className="text-xs text-zinc-500 font-normal"> / 16</span>
+            <span className="text-[10px] sm:text-xs text-zinc-500 font-normal"> / 16</span>
           </span>
         </div>
 
-        <div className="flex flex-col items-center justify-center p-2 text-center">
-          <span className="text-[10px] uppercase font-mono tracking-wider text-zinc-500">
+        <div className="flex flex-col items-center justify-center p-1.5 sm:p-2 text-center">
+          <span className="text-[9px] sm:text-[10px] uppercase font-mono tracking-wider text-zinc-500">
             Goal Precision
           </span>
-          <span className="text-lg sm:text-xl font-extrabold font-mono text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
+          <span className="text-sm sm:text-xl font-extrabold font-mono text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
             {confidenceScore}%
           </span>
         </div>

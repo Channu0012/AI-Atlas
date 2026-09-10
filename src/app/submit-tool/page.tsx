@@ -107,8 +107,9 @@ export default function SubmitToolPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
-              <label className="text-xs font-semibold text-zinc-300 block mb-1.5">Tool Name *</label>
+              <label htmlFor="submit-tool-name" className="text-xs font-semibold text-zinc-300 block mb-1.5">Tool Name *</label>
               <input
+                id="submit-tool-name"
                 type="text"
                 required
                 value={toolName}
@@ -119,8 +120,9 @@ export default function SubmitToolPage() {
             </div>
 
             <div>
-              <label className="text-xs font-semibold text-zinc-300 block mb-1.5">Official Website URL *</label>
+              <label htmlFor="submit-tool-website" className="text-xs font-semibold text-zinc-300 block mb-1.5">Official Website URL *</label>
               <input
+                id="submit-tool-website"
                 type="url"
                 required
                 value={website}
@@ -132,8 +134,9 @@ export default function SubmitToolPage() {
           </div>
 
           <div>
-            <label className="text-xs font-semibold text-zinc-300 block mb-1.5">One-line Tagline *</label>
+            <label htmlFor="submit-tool-tagline" className="text-xs font-semibold text-zinc-300 block mb-1.5">One-line Tagline *</label>
             <input
+              id="submit-tool-tagline"
               type="text"
               required
               value={tagline}
@@ -144,8 +147,9 @@ export default function SubmitToolPage() {
           </div>
 
           <div>
-            <label className="text-xs font-semibold text-zinc-300 block mb-1.5">Comprehensive Description *</label>
+            <label htmlFor="submit-tool-description" className="text-xs font-semibold text-zinc-300 block mb-1.5">Comprehensive Description *</label>
             <textarea
+              id="submit-tool-description"
               required
               rows={4}
               value={description}
@@ -157,8 +161,9 @@ export default function SubmitToolPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <div>
-              <label className="text-xs font-semibold text-zinc-300 block mb-1.5">Primary Category</label>
+              <label htmlFor="submit-tool-category" className="text-xs font-semibold text-zinc-300 block mb-1.5">Primary Category</label>
               <select
+                id="submit-tool-category"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
                 className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-indigo-500"
@@ -174,8 +179,9 @@ export default function SubmitToolPage() {
             </div>
 
             <div>
-              <label className="text-xs font-semibold text-zinc-300 block mb-1.5">Pricing Model</label>
+              <label htmlFor="submit-tool-pricing-model" className="text-xs font-semibold text-zinc-300 block mb-1.5">Pricing Model</label>
               <select
+                id="submit-tool-pricing-model"
                 value={pricingModel}
                 onChange={(e) => setPricingModel(e.target.value as any)}
                 className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-indigo-500"
@@ -187,8 +193,9 @@ export default function SubmitToolPage() {
             </div>
 
             <div>
-              <label className="text-xs font-semibold text-zinc-300 block mb-1.5">Starting Price ($ USD/mo)</label>
+              <label htmlFor="submit-tool-price" className="text-xs font-semibold text-zinc-300 block mb-1.5">Starting Price ($ USD/mo)</label>
               <input
+                id="submit-tool-price"
                 type="number"
                 value={startingPrice}
                 onChange={(e) => setStartingPrice(Number(e.target.value))}
@@ -211,8 +218,9 @@ export default function SubmitToolPage() {
           </div>
 
           <div>
-            <label className="text-xs font-semibold text-zinc-300 block mb-1.5">Submitter Contact Email *</label>
+            <label htmlFor="submit-tool-contact" className="text-xs font-semibold text-zinc-300 block mb-1.5">Submitter Contact Email *</label>
             <input
+              id="submit-tool-contact"
               type="email"
               required
               value={contactEmail}

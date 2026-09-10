@@ -340,6 +340,7 @@ export const GoalPlannerCard: React.FC<GoalPlannerCardProps> = ({
             value={goal}
             onChange={(e) => setGoal(e.target.value)}
             placeholder="e.g. Launch a faceless YouTube channel with $0 budget, or build a SaaS app..."
+            aria-label="Describe what you want to achieve"
             disabled={loading}
             className="flex-1 bg-transparent px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-base text-white placeholder-zinc-500 focus:outline-none min-w-0"
           />

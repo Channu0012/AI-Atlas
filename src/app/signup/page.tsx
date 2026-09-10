@@ -54,10 +54,11 @@ export default function SignUpPage() {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="text-xs font-semibold text-zinc-300 block mb-1">Full Name</label>
+            <label htmlFor="signup-name" className="text-xs font-semibold text-zinc-300 block mb-1">Full Name</label>
             <div className="relative">
               <User className="w-4 h-4 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" />
               <input
+                id="signup-name"
                 type="text"
                 required
                 value={name}
@@ -69,10 +70,11 @@ export default function SignUpPage() {
           </div>
 
           <div>
-            <label className="text-xs font-semibold text-zinc-300 block mb-1">Email Address</label>
+            <label htmlFor="signup-email" className="text-xs font-semibold text-zinc-300 block mb-1">Email Address</label>
             <div className="relative">
               <Mail className="w-4 h-4 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" />
               <input
+                id="signup-email"
                 type="email"
                 required
                 value={email}
@@ -84,10 +86,11 @@ export default function SignUpPage() {
           </div>
 
           <div>
-            <label className="text-xs font-semibold text-zinc-300 block mb-1">Password</label>
+            <label htmlFor="signup-password" className="text-xs font-semibold text-zinc-300 block mb-1">Password</label>
             <div className="relative">
               <Lock className="w-4 h-4 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" />
               <input
+                id="signup-password"
                 type="password"
                 required
                 value={password}

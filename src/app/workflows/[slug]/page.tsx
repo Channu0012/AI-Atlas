@@ -1,11 +1,39 @@
 import React from "react";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Repository } from "@/lib/db/repository";
 import { WorkflowStepper } from "@/components/workflows/workflow-stepper";
 import { Workflow as WorkflowIcon, Layers, ArrowLeft } from "lucide-react";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const workflow = await Repository.getWorkflowBySlug(slug);
+
+  if (!workflow) {
+    return {
+      title: "Workflow Not Found",
+    };
+  }
+
+  return {
+    title: `${workflow.name} — Execution Blueprint`,
+    description: workflow.description || `Step-by-step production workflow for ${workflow.name} on AI Atlas.`,
+    alternates: {
+      canonical: `/workflows/${slug}`,
+    },
+    openGraph: {
+      title: `${workflow.name} — AI Workflow Blueprint | AI Atlas`,
+      description: workflow.description,
+    },
+  };
+}
 
 export default async function WorkflowDetailPage({
   params,

@@ -1,9 +1,22 @@
 import React from "react";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { Repository } from "@/lib/db/repository";
 import { Workflow as WorkflowIcon, ArrowRight, Layers, Sparkles } from "lucide-react";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Curated AI Workflows & Execution Pipelines",
+  description: "Explore verified multi-step blueprints connecting specialized AI tools together into production-ready workflows.",
+  alternates: {
+    canonical: "/workflows",
+  },
+  openGraph: {
+    title: "Curated AI Workflows & Execution Pipelines | AI Atlas",
+    description: "Explore verified multi-step blueprints connecting specialized AI tools together into production-ready workflows.",
+  },
+};
 
 export default async function WorkflowsPage() {
   const workflows = await Repository.getWorkflows();

@@ -128,6 +128,7 @@ export const GoalSearch: React.FC<GoalSearchProps> = ({
                 type="button"
                 onClick={handleLogoClick}
                 title="Open Search Page"
+                aria-label="Open Search Page"
                 className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-xl overflow-hidden border border-white/20 ring-1 ring-white/10 bg-black shrink-0 ml-1 cursor-pointer hover:scale-105 active:scale-95 transition-transform"
               >
                 <Image
@@ -151,6 +152,7 @@ export const GoalSearch: React.FC<GoalSearchProps> = ({
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
                 placeholder="Describe your goal... (e.g., launch a YouTube channel or SaaS app)"
+                aria-label="Describe your goal or outcome"
                 autoFocus={autoFocus || isFocused}
                 disabled={isSearching}
                 className="flex-1 bg-transparent px-1.5 sm:px-2 text-xs sm:text-base text-zinc-100 placeholder-zinc-500 focus:outline-none min-w-0 disabled:opacity-70 font-medium"

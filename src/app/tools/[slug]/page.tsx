@@ -21,8 +21,45 @@ import {
   Sparkles,
   ArrowRight
 } from "lucide-react";
+import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const tool = await Repository.getToolBySlug(slug);
+
+  if (!tool) {
+    return {
+      title: "Tool Not Found",
+    };
+  }
+
+  const title = `${tool.name} — Overview, Pricing & Alternatives`;
+  const description = tool.tagline || tool.description?.slice(0, 160) || `Explore ${tool.name} capabilities and verified pricing on AI Atlas.`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `/tools/${slug}`,
+    },
+    openGraph: {
+      title: `${tool.name} — Verified AI Tool Profile | AI Atlas`,
+      description,
+      images: tool.logo ? [{ url: tool.logo, alt: `${tool.name} Logo` }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${tool.name} — Review & Pricing | AI Atlas`,
+      description,
+    },
+  };
+}
 
 export default async function ToolDetailPage({
   params,

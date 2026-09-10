@@ -1,9 +1,22 @@
 import React from "react";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { Repository } from "@/lib/db/repository";
 import { Target, ArrowRight, Workflow, Sparkles } from "lucide-react";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "AI Use Cases & Production Solutions",
+  description: "Discover verified AI tools mapped directly to real-world outcomes, business workflows, and technical challenges.",
+  alternates: {
+    canonical: "/use-cases",
+  },
+  openGraph: {
+    title: "AI Use Cases & Production Solutions | AI Atlas",
+    description: "Discover verified AI tools mapped directly to real-world outcomes, business workflows, and technical challenges.",
+  },
+};
 
 export default async function UseCasesPage() {
   const useCases = await Repository.getUseCases();

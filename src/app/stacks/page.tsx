@@ -1,9 +1,22 @@
 import React from "react";
+import type { Metadata } from "next";
 import { Repository } from "@/lib/db/repository";
 import { StackBuilder } from "@/components/stacks/stack-builder";
 import { Layers, Sparkles } from "lucide-react";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "AI Stack Builder & Cost Calculator",
+  description: "Assemble custom multi-tool AI pipelines tailored to your outcome. Calculate exact monthly expenditure with verified pricing.",
+  alternates: {
+    canonical: "/stacks",
+  },
+  openGraph: {
+    title: "AI Stack Builder & Cost Calculator | AI Atlas",
+    description: "Assemble custom multi-tool AI pipelines tailored to your outcome. Calculate exact monthly expenditure with verified pricing.",
+  },
+};
 
 export default async function StacksPage() {
   const availableTools = await Repository.getPublishedTools();

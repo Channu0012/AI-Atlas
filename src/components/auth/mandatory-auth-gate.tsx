@@ -183,10 +183,11 @@ export const MandatoryAuthGate: React.FC = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           {mode === "signup" && (
             <div>
-              <label className="text-xs font-semibold text-zinc-300 block mb-1.5">
+              <label htmlFor="auth-gate-name" className="text-xs font-semibold text-zinc-300 block mb-1.5">
                 Full Name
               </label>
               <input
+                id="auth-gate-name"
                 type="text"
                 required
                 value={name}
@@ -198,10 +199,11 @@ export const MandatoryAuthGate: React.FC = () => {
           )}
 
           <div>
-            <label className="text-xs font-semibold text-zinc-300 block mb-1.5">
+            <label htmlFor="auth-gate-email" className="text-xs font-semibold text-zinc-300 block mb-1.5">
               Email Address
             </label>
             <input
+              id="auth-gate-email"
               type="email"
               required
               value={email}
@@ -212,10 +214,11 @@ export const MandatoryAuthGate: React.FC = () => {
           </div>
 
           <div>
-            <label className="text-xs font-semibold text-zinc-300 block mb-1.5">
+            <label htmlFor="auth-gate-password" className="text-xs font-semibold text-zinc-300 block mb-1.5">
               Password
             </label>
             <input
+              id="auth-gate-password"
               type="password"
               required
               value={password}

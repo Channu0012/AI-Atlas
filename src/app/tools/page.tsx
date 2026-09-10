@@ -321,6 +321,7 @@ function ToolsDirectoryContent() {
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     placeholder="Search verified tools by name, feature, company..."
+                    aria-label="Search verified tools by name, feature, or company"
                     className="w-full bg-zinc-900 border border-zinc-800 rounded-xl pl-10 pr-4 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-indigo-500 transition shadow-inner"
                   />
                 </div>
@@ -536,6 +537,7 @@ function ToolsDirectoryContent() {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Search any model: llama, flux, whisper..."
+                  aria-label="Search any model architecture"
                   className="w-full bg-zinc-900 border border-purple-500/40 rounded-xl pl-10 pr-4 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-cyan-400 transition"
                 />
               </div>

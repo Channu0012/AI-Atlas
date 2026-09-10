@@ -217,6 +217,7 @@ function AskContent() {
               value={inputQuery}
               onChange={(e) => setInputQuery(e.target.value)}
               placeholder="e.g. I want to launch an automated YouTube channel with ₹2,000 budget and AI video editing..."
+              aria-label="Describe what you want to achieve"
               className="flex-1 bg-transparent px-2.5 sm:px-3 text-xs sm:text-base text-zinc-100 placeholder-zinc-500 focus:outline-none min-w-0"
             />
             <button

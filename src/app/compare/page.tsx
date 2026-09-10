@@ -97,6 +97,7 @@ function CompareContent() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search tools to add..."
+                    aria-label="Search tools to add"
                     className="w-full bg-zinc-950 border border-zinc-800 rounded-lg pl-8 pr-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500"
                     autoFocus
                   />

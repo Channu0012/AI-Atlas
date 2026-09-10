@@ -218,6 +218,19 @@ export default async function HomePage() {
 
       {/* Feature Teasers: Stacks & Comparison */}
       <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-zinc-800/60">
+        <div className="mb-10 text-center sm:text-left">
+          <div className="inline-flex items-center gap-2 text-xs font-bold text-indigo-400 uppercase tracking-wider mb-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
+            <span>Architecture & Decisions</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Decision Systems & Stack Architecture
+          </h2>
+          <p className="mt-2 text-sm text-zinc-400 max-w-xl">
+            Model your monthly AI software expenditure with live pricing or evaluate competing frontier engines side by side.
+          </p>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {/* Stack Builder Teaser */}
           <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl glass-panel relative overflow-hidden flex flex-col justify-between group">
@@ -280,9 +293,9 @@ export default async function HomePage() {
                 <WorkflowIcon className="w-3.5 h-3.5" />
                 <span>Featured Production Workflow</span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
                 {featuredWorkflow.name}
-              </h3>
+              </h2>
               <p className="mt-3 text-sm text-zinc-300 leading-relaxed">
                 {featuredWorkflow.description}
               </p>

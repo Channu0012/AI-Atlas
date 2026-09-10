@@ -57,6 +57,7 @@ export const ToolCard: React.FC<ToolCardProps> = ({
           <button
             onClick={() => toggleSaveTool(tool.id)}
             title={saved ? "Remove from saved" : "Save tool"}
+            aria-label={saved ? `Remove ${tool.name} from saved` : `Save ${tool.name}`}
             className={cn(
               "p-2 rounded-lg transition border",
               saved
@@ -106,6 +107,7 @@ export const ToolCard: React.FC<ToolCardProps> = ({
                   : "bg-zinc-800/40 text-zinc-400 border-zinc-700/40 hover:text-zinc-200"
               )}
               title="Compare with other tools"
+              aria-label={`Compare ${tool.name} with other tools`}
             >
               <Scale className="w-3.5 h-3.5" />
             </button>

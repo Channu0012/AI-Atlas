@@ -89,6 +89,7 @@ export const Navbar: React.FC = () => {
             href="/ask"
             className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900/80 hover:bg-zinc-800/80 border border-white/[0.08] text-xs text-zinc-400 hover:text-zinc-200 transition shadow-inner"
             title="Search AI Atlas"
+            aria-label="Search AI Atlas tools"
           >
             <Search className="w-3.5 h-3.5 text-zinc-400" />
             <span className="hidden md:inline text-zinc-400">Search tools...</span>
@@ -112,6 +113,7 @@ export const Navbar: React.FC = () => {
               <Link
                 href="/saved-tools"
                 title="Saved Tools"
+                aria-label="Saved Tools"
                 className={cn(
                   "p-2 rounded-lg text-zinc-400 hover:text-zinc-200 hover:bg-white/[0.04] transition relative",
                   pathname === "/saved-tools" && "text-white bg-white/[0.08]"

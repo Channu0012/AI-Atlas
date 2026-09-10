@@ -556,13 +556,15 @@ export default function ProfilePage() {
 
             {/* Override with Custom Key */}
             <div className="space-y-3 pt-4 border-t border-zinc-800">
-              <label className="text-xs font-semibold text-zinc-300 block">
+              <label htmlFor="custom-kie-key" className="text-xs font-semibold text-zinc-300 block">
                 Override with Personal Kie.ai Key (Optional)
               </label>
               <div className="flex flex-col sm:flex-row gap-3">
                 <input
+                  id="custom-kie-key"
                   type="text"
                   placeholder="Paste your personal Kie.ai API key"
+                  aria-label="Personal Kie.ai API key"
                   value={customKey}
                   onChange={(e) => setCustomKey(e.target.value)}
                   className="flex-1 bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2 text-xs font-mono text-white focus:outline-none focus:border-cyan-500"
@@ -621,11 +623,13 @@ export default function ProfilePage() {
             </h3>
 
             <div>
-              <label className="text-xs font-semibold text-zinc-400 block mb-1">Display Name</label>
+              <label htmlFor="profile-display-name" className="text-xs font-semibold text-zinc-400 block mb-1">Display Name</label>
               <input
+                id="profile-display-name"
                 type="text"
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
+                aria-label="Display Name"
                 className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-indigo-500"
               />
             </div>

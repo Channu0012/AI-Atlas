@@ -115,6 +115,8 @@ export const ToolCard: React.FC<ToolCardProps> = ({
 
           <Link
             href={`/tools/${tool.slug}`}
+            aria-label={`View full details and verified pricing for ${tool.name}`}
+            title={`View ${tool.name}`}
             className="inline-flex items-center gap-1 text-xs font-semibold text-zinc-300 hover:text-white px-2.5 py-1.5 rounded-md hover:bg-zinc-800 transition"
           >
             Details

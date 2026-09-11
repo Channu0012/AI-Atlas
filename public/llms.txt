@@ -1,0 +1,44 @@
+# AI Atlas
+
+> The deterministic decision engine and verified stack builder for artificial intelligence tools.
+
+AI Atlas solves tool selection paralysis by matching user goals directly to verified AI software, models, and multi-step execution workflows. Every tool's capability, pricing tier, and platform compatibility is strictly verified to eliminate hallucinations.
+
+## Core Capabilities
+
+- Natural Language Goal Search: Convert ambiguous user goals into complete AI execution blueprints.
+- Verified AI Tool Directory: 1,000+ fact-verified tools categorized across 16 foundational domains.
+- AI Stack Builder: Combine specialized tools, calculate true monthly subscription costs, and eliminate duplicate feature spend.
+- Side-by-Side Comparison: Direct factual matrix evaluating pricing, developer APIs, strengths, and tradeoffs.
+- Curated AI Workflows: Proven production blueprints connecting disparate tools into automated pipelines.
+- Multimodal Live Execution: Generate initial deliverables via Kie.ai multimodal generation engine.
+
+## Taxonomy & Deep Domains
+
+- AI Coding & IDEs: Agentic code editors, CLI tools, repository reasoning engines.
+- AI Writing & Content: Copywriting, document analysis, factual research assistants.
+- AI Video & Motion: Diffusion video generators, lip-sync engines, automated video editors.
+- AI Audio & Voice: Hyper-realistic voice clones, generative music composition, speech-to-text.
+- AI Design & 3D: High-resolution image synthesis, UI mockups, 3D asset generation.
+- Autonomous Agents: Computer-use agents, multi-agent frameworks, task runners.
+- Research & Science: Deep document reasoning, literature review, citation verification.
+- Automation & Connectors: Workflow automation, web scraping, deterministic API pipelines.
+
+## Key URLs
+
+- Home: https://ai-atlas-app.vercel.app/
+- Natural Language Search: https://ai-atlas-app.vercel.app/ask
+- Verified Tool Directory: https://ai-atlas-app.vercel.app/tools
+- Side-by-Side Comparison: https://ai-atlas-app.vercel.app/compare
+- Curated Workflows: https://ai-atlas-app.vercel.app/workflows
+- AI Stack Builder: https://ai-atlas-app.vercel.app/stacks
+- AI Goal Planner: https://ai-atlas-app.vercel.app/plan
+- Sitemap: https://ai-atlas-app.vercel.app/sitemap.xml
+- Robots Directive: https://ai-atlas-app.vercel.app/robots.txt
+
+## Contact & Corporate
+
+- Company: AI Atlas Technologies Inc.
+- Address: 548 Market St, Suite 48201, San Francisco, CA 94104
+- Support: contact@ai-atlas-app.vercel.app
+- Socials: https://x.com/aiatlas_app, https://github.com/Channu0012/AI-Atlas

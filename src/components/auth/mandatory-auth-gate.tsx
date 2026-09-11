@@ -42,12 +42,12 @@ export const MandatoryAuthGate: React.FC = () => {
 
   useEffect(() => {
     if (shouldShow && !unlockedAnimation) {
-      document.body.style.overflow = "hidden";
+      document.body.classList.add("overflow-hidden");
     } else {
-      document.body.style.overflow = "unset";
+      document.body.classList.remove("overflow-hidden");
     }
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.classList.remove("overflow-hidden");
     };
   }, [shouldShow, unlockedAnimation]);
 
@@ -132,9 +132,9 @@ export const MandatoryAuthGate: React.FC = () => {
               <Lock className="w-3 h-3 text-cyan-400" />
               <span>AI ATLAS UNIVERSE GATEWAY</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            <div role="heading" aria-level={2} className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
               Unlock the AI Universe
-            </h2>
+            </div>
             <p className="text-xs text-zinc-400 mt-1 max-w-xs mx-auto leading-relaxed">
               Create your free account to access 1,000+ verified tools, deterministic stack planning, and live Kie.ai solutions.
             </p>

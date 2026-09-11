@@ -42,7 +42,7 @@ export const Navbar: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
         {/* Brand Logo & Name */}
-        <Link href="/" className="flex items-center gap-3 group shrink-0">
+        <Link href="/" aria-label="AI Atlas Home" title="AI Atlas — Home" className="flex items-center gap-3 group shrink-0">
           <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden shadow-lg shadow-indigo-500/20 border border-white/10 ring-1 ring-white/5 bg-black shrink-0 transition-transform duration-300 group-hover:scale-105">
             <Image
               src="/images/ai-atlas-logo.png"

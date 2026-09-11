@@ -86,8 +86,33 @@ export default async function ToolDetailPage({
     wf.steps.some(step => step.recommendedToolIds.includes(tool.id))
   );
 
+  const activePlatforms = Object.entries(tool.platforms || {})
+    .filter(([_, enabled]) => Boolean(enabled))
+    .map(([platform]) => platform.toUpperCase())
+    .join(", ") || "Web, Cloud";
+
+  const toolJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: tool.name,
+    description: tool.description,
+    applicationCategory: (tool.categoryIds || []).join(", "),
+    operatingSystem: activePlatforms,
+    url: tool.website,
+    offers: {
+      "@type": "Offer",
+      price: tool.pricing?.startingPrice || 0,
+      priceCurrency: tool.pricing?.currency || "USD",
+      description: tool.pricing?.model || "free",
+    },
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(toolJsonLd) }}
+      />
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-xs text-zinc-500 mb-6 font-medium">
         <Link href="/" className="hover:text-zinc-300">Home</Link>

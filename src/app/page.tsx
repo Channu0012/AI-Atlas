@@ -273,10 +273,12 @@ export default async function HomePage() {
             </div>
             <div className="mt-8">
               <Link
-                href="/compare?tools=claude-3-5-sonnet,chatgpt,cursor"
+                href="/compare"
+                title="Compare AI Tools Side-by-Side"
+                aria-label="Compare Frontier AI Tools Side-by-Side"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-sm font-semibold text-white transition"
               >
-                <span>Compare Frontier Tools</span>
+                <span>Compare Frontier AI Tools</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -289,7 +291,7 @@ export default async function HomePage() {
         <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-zinc-800/60">
           <div className="p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl glass-card border-indigo-500/30 glow-border-indigo flex flex-col lg:flex-row items-center justify-between gap-8">
             <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-semibold text-indigo-400 mb-3">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-semibold text-indigo-400 mb-3">
                 <WorkflowIcon className="w-3.5 h-3.5" />
                 <span>Featured Production Workflow</span>
               </div>
@@ -315,6 +317,8 @@ export default async function HomePage() {
             <div className="flex-shrink-0">
               <Link
                 href={`/workflows/${featuredWorkflow.slug}`}
+                aria-label={`Execute the ${featuredWorkflow.name} workflow blueprint`}
+                title={`Execute ${featuredWorkflow.name}`}
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-bold text-sm transition shadow-lg shadow-indigo-500/25 group cursor-pointer"
               >
                 <span>Execute This Workflow</span>

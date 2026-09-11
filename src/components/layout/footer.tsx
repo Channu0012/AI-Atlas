@@ -137,9 +137,9 @@ export const Footer: React.FC = () => {
 
           {/* Column 2: Discovery */}
           <div>
-            <h3 className="text-xs font-semibold text-zinc-200 uppercase tracking-wider mb-3">
+            <p className="text-xs font-semibold text-zinc-200 uppercase tracking-wider mb-3">
               Discovery & Tools
-            </h3>
+            </p>
             <ul className="space-y-2 text-xs">
               <li>
                 <Link href="/ask" className="hover:text-white transition">
@@ -171,9 +171,9 @@ export const Footer: React.FC = () => {
 
           {/* Column 3: Decisions & Stacks */}
           <div>
-            <h3 className="text-xs font-semibold text-zinc-200 uppercase tracking-wider mb-3">
+            <p className="text-xs font-semibold text-zinc-200 uppercase tracking-wider mb-3">
               Decisions & Blueprints
-            </h3>
+            </p>
             <ul className="space-y-2 text-xs">
               <li>
                 <Link href="/compare" className="hover:text-white transition">
@@ -205,9 +205,9 @@ export const Footer: React.FC = () => {
 
           {/* Column 4: Standards, Contact & LLM SEO */}
           <div>
-            <h3 className="text-xs font-semibold text-zinc-200 uppercase tracking-wider mb-3">
+            <p className="text-xs font-semibold text-zinc-200 uppercase tracking-wider mb-3">
               Corporate & Standards
-            </h3>
+            </p>
             <div className="space-y-2 text-xs text-zinc-400">
               <div className="flex items-start gap-1.5">
                 <MapPin className="w-3.5 h-3.5 text-zinc-500 mt-0.5 shrink-0" />

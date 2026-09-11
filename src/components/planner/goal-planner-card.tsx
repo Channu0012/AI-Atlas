@@ -450,9 +450,9 @@ export const GoalPlannerCard: React.FC<GoalPlannerCardProps> = ({
                   <div className={cn("w-6 h-6 sm:w-7 sm:h-7 rounded-xl border flex items-center justify-center", preset.color)}>
                     <Icon className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                   </div>
-                  <h4 className="text-[11px] sm:text-xs font-bold text-white group-hover:text-cyan-300 transition line-clamp-1">
+                  <span className="text-[11px] sm:text-xs font-bold text-white group-hover:text-cyan-300 transition line-clamp-1 block">
                     {preset.title}
-                  </h4>
+                  </span>
                   <p className="text-[9px] sm:text-[10px] text-zinc-400 line-clamp-1 leading-tight">
                     {preset.desc}
                   </p>
@@ -475,7 +475,7 @@ export const GoalPlannerCard: React.FC<GoalPlannerCardProps> = ({
             <RefreshCw className="w-6 h-6 animate-spin text-cyan-400" />
           </div>
           <div>
-            <h4 className="text-base font-bold text-white">Synthesizing Step-by-Step Action Plan</h4>
+            <p className="text-base font-bold text-white">Synthesizing Step-by-Step Action Plan</p>
             <p className="text-xs text-zinc-400 mt-1">Screening 1,000+ verified AI tools & crafting ready-to-use prompts...</p>
           </div>
           <div className="w-48 h-1.5 bg-zinc-900 rounded-full mx-auto overflow-hidden">

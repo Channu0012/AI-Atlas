@@ -22,7 +22,7 @@ import {
   DollarSign
 } from "lucide-react";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 export default async function HomePage() {
   const publishedTools = await Repository.getPublishedTools();
